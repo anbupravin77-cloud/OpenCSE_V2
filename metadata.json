@@ -1,0 +1,8 @@
+{
+  "name": "Remix Open Access CSE",
+  "description": "A minimalist, distraction-free eLearning platform for Computer Science students.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

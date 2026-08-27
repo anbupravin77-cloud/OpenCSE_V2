@@ -1,0 +1,949 @@
+{
+  "subjects": [
+    {
+      "id": "sub_os",
+      "name": "Operating Systems",
+      "code": "22CH362",
+      "description": "Process management, memory management, file systems, and concurrency control in modern operating systems.",
+      "semester": "",
+      "department": "",
+      "credits": 3,
+      "academic_year": "2nd",
+      "is_active": true,
+      "created_at": "2026-08-27T13:59:10.724Z",
+      "updated_at": "2026-08-27T13:59:10.724Z"
+    },
+    {
+      "id": "sub_dsa",
+      "name": "Data Structures and Algorithm",
+      "code": "22CH342",
+      "description": "In-depth study of arrays, linked lists, stacks, queues, trees, and graphs, focusing on algorithmic efficiency.",
+      "semester": "",
+      "department": "",
+      "credits": 3,
+      "academic_year": "2nd",
+      "is_active": true,
+      "created_at": "2026-08-27T13:59:10.724Z",
+      "updated_at": "2026-08-27T13:59:10.724Z"
+    },
+    {
+      "id": "sub_oop",
+      "name": "Object Oriented Programming",
+      "code": "22CH331",
+      "description": "Principles of OOP including encapsulation, inheritance, and polymorphism using modern design patterns.",
+      "semester": "",
+      "department": "",
+      "credits": 3,
+      "academic_year": "2nd",
+      "is_active": true,
+      "created_at": "2026-08-27T13:59:10.724Z",
+      "updated_at": "2026-08-27T13:59:10.724Z"
+    },
+    {
+      "id": "sub_prob",
+      "name": "Probability and Statistics",
+      "code": "22CH311",
+      "description": "Foundations of probability theory, statistical inference, and their applications in data analysis.",
+      "semester": "",
+      "department": "",
+      "credits": 3,
+      "academic_year": "2nd",
+      "is_active": true,
+      "created_at": "2026-08-27T13:59:10.724Z",
+      "updated_at": "2026-08-27T13:59:10.724Z"
+    },
+    {
+      "id": "sub_tdpl",
+      "name": "Theory and Design of Programming Languages",
+      "code": "22CH321",
+      "description": "Study of programming language paradigms, syntax, semantics, and implementation techniques.",
+      "semester": "",
+      "department": "",
+      "credits": 3,
+      "academic_year": "2nd",
+      "is_active": true,
+      "created_at": "2026-08-27T13:59:10.724Z",
+      "updated_at": "2026-08-27T13:59:10.724Z"
+    }
+  ],
+  "cos": [
+    {
+      "id": "22CH362_co1",
+      "subject_id": "sub_os",
+      "code": "CO1",
+      "name": "OS Structures & System Calls",
+      "description": "",
+      "display_order": 1
+    },
+    {
+      "id": "22CH362_co2",
+      "subject_id": "sub_os",
+      "code": "CO2",
+      "name": "Process & CPU Scheduling",
+      "description": "",
+      "display_order": 2
+    },
+    {
+      "id": "22CH362_co3",
+      "subject_id": "sub_os",
+      "code": "CO3",
+      "name": "Process Synchronization & Deadlocks",
+      "description": "",
+      "display_order": 3
+    },
+    {
+      "id": "22CH362_co4",
+      "subject_id": "sub_os",
+      "code": "CO4",
+      "name": "Memory Management",
+      "description": "",
+      "display_order": 4
+    },
+    {
+      "id": "22CH362_co5",
+      "subject_id": "sub_os",
+      "code": "CO5",
+      "name": "Storage & File Systems",
+      "description": "",
+      "display_order": 5
+    },
+    {
+      "id": "22CH362_co6",
+      "subject_id": "sub_os",
+      "code": "CO6",
+      "name": "Protection & Security",
+      "description": "",
+      "display_order": 6
+    },
+    {
+      "id": "22CH342_co1",
+      "subject_id": "sub_dsa",
+      "code": "CO1",
+      "name": "Algorithmic Complexity & Arrays",
+      "description": "",
+      "display_order": 1
+    },
+    {
+      "id": "22CH342_co2",
+      "subject_id": "sub_dsa",
+      "code": "CO2",
+      "name": "Linear Data Structures",
+      "description": "",
+      "display_order": 2
+    },
+    {
+      "id": "22CH342_co3",
+      "subject_id": "sub_dsa",
+      "code": "CO3",
+      "name": "Hierarchical Data Structures",
+      "description": "",
+      "display_order": 3
+    },
+    {
+      "id": "22CH342_co4",
+      "subject_id": "sub_dsa",
+      "code": "CO4",
+      "name": "Graph Algorithms",
+      "description": "",
+      "display_order": 4
+    },
+    {
+      "id": "22CH342_co5",
+      "subject_id": "sub_dsa",
+      "code": "CO5",
+      "name": "Sorting & Searching",
+      "description": "",
+      "display_order": 5
+    },
+    {
+      "id": "22CH342_co6",
+      "subject_id": "sub_dsa",
+      "code": "CO6",
+      "name": "Advanced Algorithmic Design",
+      "description": "",
+      "display_order": 6
+    },
+    {
+      "id": "22CH331_co1",
+      "subject_id": "sub_oop",
+      "code": "CO1",
+      "name": "Foundations of Java & JVM",
+      "description": "",
+      "display_order": 1
+    },
+    {
+      "id": "22CH331_co2",
+      "subject_id": "sub_oop",
+      "code": "CO2",
+      "name": "Classes and Encapsulation",
+      "description": "",
+      "display_order": 2
+    },
+    {
+      "id": "22CH331_co3",
+      "subject_id": "sub_oop",
+      "code": "CO3",
+      "name": "Inheritance & Polymorphism",
+      "description": "",
+      "display_order": 3
+    },
+    {
+      "id": "22CH331_co4",
+      "subject_id": "sub_oop",
+      "code": "CO4",
+      "name": "Interfaces & Abstract Classes",
+      "description": "",
+      "display_order": 4
+    },
+    {
+      "id": "22CH331_co5",
+      "subject_id": "sub_oop",
+      "code": "CO5",
+      "name": "Exception Handling & I/O",
+      "description": "",
+      "display_order": 5
+    },
+    {
+      "id": "22CH331_co6",
+      "subject_id": "sub_oop",
+      "code": "CO6",
+      "name": "Multithreading & Collections",
+      "description": "",
+      "display_order": 6
+    },
+    {
+      "id": "22CH311_co1",
+      "subject_id": "sub_prob",
+      "code": "CO1",
+      "name": "Basic Probability Theory",
+      "description": "",
+      "display_order": 1
+    },
+    {
+      "id": "22CH311_co2",
+      "subject_id": "sub_prob",
+      "code": "CO2",
+      "name": "Discrete Random Variables",
+      "description": "",
+      "display_order": 2
+    },
+    {
+      "id": "22CH311_co3",
+      "subject_id": "sub_prob",
+      "code": "CO3",
+      "name": "Continuous Random Variables",
+      "description": "",
+      "display_order": 3
+    },
+    {
+      "id": "22CH311_co4",
+      "subject_id": "sub_prob",
+      "code": "CO4",
+      "name": "Joint Distributions",
+      "description": "",
+      "display_order": 4
+    },
+    {
+      "id": "22CH311_co5",
+      "subject_id": "sub_prob",
+      "code": "CO5",
+      "name": "Statistical Inference",
+      "description": "",
+      "display_order": 5
+    },
+    {
+      "id": "22CH311_co6",
+      "subject_id": "sub_prob",
+      "code": "CO6",
+      "name": "Hypothesis Testing",
+      "description": "",
+      "display_order": 6
+    },
+    {
+      "id": "22CH321_co1",
+      "subject_id": "sub_tdpl",
+      "code": "CO1",
+      "name": "Syntax and Semantics",
+      "description": "",
+      "display_order": 1
+    },
+    {
+      "id": "22CH321_co2",
+      "subject_id": "sub_tdpl",
+      "code": "CO2",
+      "name": "Lexical & Syntax Analysis",
+      "description": "",
+      "display_order": 2
+    },
+    {
+      "id": "22CH321_co3",
+      "subject_id": "sub_tdpl",
+      "code": "CO3",
+      "name": "Names, Bindings, & Scopes",
+      "description": "",
+      "display_order": 3
+    },
+    {
+      "id": "22CH321_co4",
+      "subject_id": "sub_tdpl",
+      "code": "CO4",
+      "name": "Data Types & Expressions",
+      "description": "",
+      "display_order": 4
+    },
+    {
+      "id": "22CH321_co5",
+      "subject_id": "sub_tdpl",
+      "code": "CO5",
+      "name": "Subprograms & Control Flow",
+      "description": "",
+      "display_order": 5
+    },
+    {
+      "id": "22CH321_co6",
+      "subject_id": "sub_tdpl",
+      "code": "CO6",
+      "name": "Language Paradigms",
+      "description": "",
+      "display_order": 6
+    }
+  ],
+  "topics": [
+    {
+      "id": "22CH362_co1_t1",
+      "subject_id": "sub_os",
+      "co_id": "22CH362_co1",
+      "title": "Monolithic vs Microkernels, Dual-mode execution",
+      "description": "",
+      "content": "<p>Monolithic kernels and microkernels represent two fundamentally different architectural approaches to operating system design. In a **Monolithic Kernel**, the entire operating system works in kernel space. This includes the scheduler, file system, memory management, and device drivers. Because all components share the same memory space, inter-process communication is extremely fast. However, a single bug in a device driver can crash the entire system. A **Microkernel**, on the other hand, strips the kernel down to its bare minimum—typically just IPC (Inter-Process Communication), basic scheduling, and basic memory management. All other services (like file systems and drivers) run in user space as separate servers. This provides excellent stability and modularity, as a crashing driver won't bring down the kernel. The tradeoff is performance overhead due to constant context switching and message passing between user space and kernel space. ### Dual-Mode Execution To ensure system protection, modern processors provide at least two modes of operation: User Mode and Kernel Mode. A mode bit in the hardware indicates the current mode. When a user application requests a service from the operating system (via a system call), the system transitions from user mode to kernel mode to execute the privileged instruction, returning to user mode upon completion.</p><p></p>",
+      "display_order": 1
+    },
+    {
+      "id": "22CH362_co1_t2",
+      "subject_id": "sub_os",
+      "co_id": "22CH362_co1",
+      "title": "System Calls & Interrupts",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **System Calls & Interrupts**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 2
+    },
+    {
+      "id": "22CH362_co2_t1",
+      "subject_id": "sub_os",
+      "co_id": "22CH362_co2",
+      "title": "Process Control Block (PCB)",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Process Control Block (PCB)**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 1
+    },
+    {
+      "id": "22CH362_co2_t2",
+      "subject_id": "sub_os",
+      "co_id": "22CH362_co2",
+      "title": "Preemptive CPU Scheduling (Round Robin, FCFS)",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Preemptive CPU Scheduling (Round Robin, FCFS)**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 2
+    },
+    {
+      "id": "22CH362_co3_t1",
+      "subject_id": "sub_os",
+      "co_id": "22CH362_co3",
+      "title": "Critical Section Problem & Mutex Locks",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Critical Section Problem & Mutex Locks**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 1
+    },
+    {
+      "id": "22CH362_co3_t2",
+      "subject_id": "sub_os",
+      "co_id": "22CH362_co3",
+      "title": "Banker's Algorithm for Deadlock Avoidance",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Banker's Algorithm for Deadlock Avoidance**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 2
+    },
+    {
+      "id": "22CH362_co4_t1",
+      "subject_id": "sub_os",
+      "co_id": "22CH362_co4",
+      "title": "Paging, Segmentation, and TLB",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Paging, Segmentation, and TLB**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 1
+    },
+    {
+      "id": "22CH362_co4_t2",
+      "subject_id": "sub_os",
+      "co_id": "22CH362_co4",
+      "title": "Virtual Memory & Page Replacement Algorithms",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Virtual Memory & Page Replacement Algorithms**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 2
+    },
+    {
+      "id": "22CH362_co5_t1",
+      "subject_id": "sub_os",
+      "co_id": "22CH362_co5",
+      "title": "File Allocation Methods (Contiguous, Linked, Indexed)",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **File Allocation Methods (Contiguous, Linked, Indexed)**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 1
+    },
+    {
+      "id": "22CH362_co5_t2",
+      "subject_id": "sub_os",
+      "co_id": "22CH362_co5",
+      "title": "Disk Scheduling Algorithms (SCAN, C-SCAN)",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Disk Scheduling Algorithms (SCAN, C-SCAN)**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 2
+    },
+    {
+      "id": "22CH362_co6_t1",
+      "subject_id": "sub_os",
+      "co_id": "22CH362_co6",
+      "title": "Access Matrix & Cryptography basics",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Access Matrix & Cryptography basics**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 1
+    },
+    {
+      "id": "22CH362_co6_t2",
+      "subject_id": "sub_os",
+      "co_id": "22CH362_co6",
+      "title": "Intrusion Detection & Malware concepts",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Intrusion Detection & Malware concepts**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 2
+    },
+    {
+      "id": "22CH342_co1_t1",
+      "subject_id": "sub_dsa",
+      "co_id": "22CH342_co1",
+      "title": "Asymptotic Notations (Big-O, Omega, Theta)",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Asymptotic Notations (Big-O, Omega, Theta)**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 1
+    },
+    {
+      "id": "22CH342_co1_t2",
+      "subject_id": "sub_dsa",
+      "co_id": "22CH342_co1",
+      "title": "Memory Allocation & Array Operations",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Memory Allocation & Array Operations**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 2
+    },
+    {
+      "id": "22CH342_co2_t1",
+      "subject_id": "sub_dsa",
+      "co_id": "22CH342_co2",
+      "title": "Stack/Queue Operations",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Stack/Queue Operations**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 1
+    },
+    {
+      "id": "22CH342_co2_t2",
+      "subject_id": "sub_dsa",
+      "co_id": "22CH342_co2",
+      "title": "Infix to Postfix Conversion",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Infix to Postfix Conversion**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 2
+    },
+    {
+      "id": "22CH342_co2_t3",
+      "subject_id": "sub_dsa",
+      "co_id": "22CH342_co2",
+      "title": "Singly & Doubly Linked Lists",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Singly & Doubly Linked Lists**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 3
+    },
+    {
+      "id": "22CH342_co3_t1",
+      "subject_id": "sub_dsa",
+      "co_id": "22CH342_co3",
+      "title": "Binary Search Trees (BST)",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Binary Search Trees (BST)**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 1
+    },
+    {
+      "id": "22CH342_co3_t2",
+      "subject_id": "sub_dsa",
+      "co_id": "22CH342_co3",
+      "title": "AVL Trees & Rotations",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **AVL Trees & Rotations**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 2
+    },
+    {
+      "id": "22CH342_co3_t3",
+      "subject_id": "sub_dsa",
+      "co_id": "22CH342_co3",
+      "title": "Heap Data Structure",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Heap Data Structure**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 3
+    },
+    {
+      "id": "22CH342_co4_t1",
+      "subject_id": "sub_dsa",
+      "co_id": "22CH342_co4",
+      "title": "Graph Traversals (BFS & DFS)",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Graph Traversals (BFS & DFS)**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 1
+    },
+    {
+      "id": "22CH342_co4_t2",
+      "subject_id": "sub_dsa",
+      "co_id": "22CH342_co4",
+      "title": "Dijkstra's Shortest Path",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Dijkstra's Shortest Path**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 2
+    },
+    {
+      "id": "22CH342_co4_t3",
+      "subject_id": "sub_dsa",
+      "co_id": "22CH342_co4",
+      "title": "Minimum Spanning Trees (Prim & Kruskal)",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Minimum Spanning Trees (Prim & Kruskal)**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 3
+    },
+    {
+      "id": "22CH342_co5_t1",
+      "subject_id": "sub_dsa",
+      "co_id": "22CH342_co5",
+      "title": "Quick Sort vs Merge Sort",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Quick Sort vs Merge Sort**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 1
+    },
+    {
+      "id": "22CH342_co5_t2",
+      "subject_id": "sub_dsa",
+      "co_id": "22CH342_co5",
+      "title": "Binary Search implementations",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Binary Search implementations**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 2
+    },
+    {
+      "id": "22CH342_co5_t3",
+      "subject_id": "sub_dsa",
+      "co_id": "22CH342_co5",
+      "title": "Hashing & Collision Resolution",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Hashing & Collision Resolution**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 3
+    },
+    {
+      "id": "22CH342_co6_t1",
+      "subject_id": "sub_dsa",
+      "co_id": "22CH342_co6",
+      "title": "Dynamic Programming basics",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Dynamic Programming basics**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 1
+    },
+    {
+      "id": "22CH342_co6_t2",
+      "subject_id": "sub_dsa",
+      "co_id": "22CH342_co6",
+      "title": "Greedy Algorithms vs Divide and Conquer",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Greedy Algorithms vs Divide and Conquer**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 2
+    },
+    {
+      "id": "22CH331_co1_t1",
+      "subject_id": "sub_oop",
+      "co_id": "22CH331_co1",
+      "title": "JVM Architecture, Bytecode, Primitive Data Types",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **JVM Architecture, Bytecode, Primitive Data Types**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 1
+    },
+    {
+      "id": "22CH331_co1_t2",
+      "subject_id": "sub_oop",
+      "co_id": "22CH331_co1",
+      "title": "Control Flow Statements",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Control Flow Statements**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 2
+    },
+    {
+      "id": "22CH331_co2_t1",
+      "subject_id": "sub_oop",
+      "co_id": "22CH331_co2",
+      "title": "Classes, Constructors, Garbage Collection",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Classes, Constructors, Garbage Collection**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 1
+    },
+    {
+      "id": "22CH331_co2_t2",
+      "subject_id": "sub_oop",
+      "co_id": "22CH331_co2",
+      "title": "Access Modifiers & Scope",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Access Modifiers & Scope**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 2
+    },
+    {
+      "id": "22CH331_co3_t1",
+      "subject_id": "sub_oop",
+      "co_id": "22CH331_co3",
+      "title": "Method Overloading vs Overriding",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Method Overloading vs Overriding**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 1
+    },
+    {
+      "id": "22CH331_co3_t2",
+      "subject_id": "sub_oop",
+      "co_id": "22CH331_co3",
+      "title": "Super keyword & Constructor Chaining",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Super keyword & Constructor Chaining**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 2
+    },
+    {
+      "id": "22CH331_co4_t1",
+      "subject_id": "sub_oop",
+      "co_id": "22CH331_co4",
+      "title": "Defining Interfaces",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Defining Interfaces**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 1
+    },
+    {
+      "id": "22CH331_co4_t2",
+      "subject_id": "sub_oop",
+      "co_id": "22CH331_co4",
+      "title": "Abstract Classes vs Interfaces",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Abstract Classes vs Interfaces**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 2
+    },
+    {
+      "id": "22CH331_co4_t3",
+      "subject_id": "sub_oop",
+      "co_id": "22CH331_co4",
+      "title": "Multiple Inheritance via Interfaces",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Multiple Inheritance via Interfaces**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 3
+    },
+    {
+      "id": "22CH331_co5_t1",
+      "subject_id": "sub_oop",
+      "co_id": "22CH331_co5",
+      "title": "Try-Catch-Finally blocks",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Try-Catch-Finally blocks**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 1
+    },
+    {
+      "id": "22CH331_co5_t2",
+      "subject_id": "sub_oop",
+      "co_id": "22CH331_co5",
+      "title": "Custom Exceptions",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Custom Exceptions**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 2
+    },
+    {
+      "id": "22CH331_co5_t3",
+      "subject_id": "sub_oop",
+      "co_id": "22CH331_co5",
+      "title": "File Input/Output Streams",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **File Input/Output Streams**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 3
+    },
+    {
+      "id": "22CH331_co6_t1",
+      "subject_id": "sub_oop",
+      "co_id": "22CH331_co6",
+      "title": "Thread Lifecycle & Runnable Interface",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Thread Lifecycle & Runnable Interface**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 1
+    },
+    {
+      "id": "22CH331_co6_t2",
+      "subject_id": "sub_oop",
+      "co_id": "22CH331_co6",
+      "title": "Java Collections Framework (List, Set, Map)",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Java Collections Framework (List, Set, Map)**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 2
+    },
+    {
+      "id": "22CH311_co1_t1",
+      "subject_id": "sub_prob",
+      "co_id": "22CH311_co1",
+      "title": "Permutations & Combinations",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Permutations & Combinations**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 1
+    },
+    {
+      "id": "22CH311_co1_t2",
+      "subject_id": "sub_prob",
+      "co_id": "22CH311_co1",
+      "title": "Conditional Probability & Bayes Theorem",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Conditional Probability & Bayes Theorem**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 2
+    },
+    {
+      "id": "22CH311_co2_t1",
+      "subject_id": "sub_prob",
+      "co_id": "22CH311_co2",
+      "title": "Random Variables & PMF",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Random Variables & PMF**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 1
+    },
+    {
+      "id": "22CH311_co2_t2",
+      "subject_id": "sub_prob",
+      "co_id": "22CH311_co2",
+      "title": "Binomial & Poisson Distributions",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Binomial & Poisson Distributions**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 2
+    },
+    {
+      "id": "22CH311_co3_t1",
+      "subject_id": "sub_prob",
+      "co_id": "22CH311_co3",
+      "title": "Probability Density Functions (PDF)",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Probability Density Functions (PDF)**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 1
+    },
+    {
+      "id": "22CH311_co3_t2",
+      "subject_id": "sub_prob",
+      "co_id": "22CH311_co3",
+      "title": "Normal & Exponential Distributions",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Normal & Exponential Distributions**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 2
+    },
+    {
+      "id": "22CH311_co4_t1",
+      "subject_id": "sub_prob",
+      "co_id": "22CH311_co4",
+      "title": "Marginal & Conditional Distributions",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Marginal & Conditional Distributions**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 1
+    },
+    {
+      "id": "22CH311_co4_t2",
+      "subject_id": "sub_prob",
+      "co_id": "22CH311_co4",
+      "title": "Covariance & Correlation",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Covariance & Correlation**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 2
+    },
+    {
+      "id": "22CH311_co5_t1",
+      "subject_id": "sub_prob",
+      "co_id": "22CH311_co5",
+      "title": "Point Estimation & Maximum Likelihood",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Point Estimation & Maximum Likelihood**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 1
+    },
+    {
+      "id": "22CH311_co5_t2",
+      "subject_id": "sub_prob",
+      "co_id": "22CH311_co5",
+      "title": "Confidence Intervals",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Confidence Intervals**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 2
+    },
+    {
+      "id": "22CH311_co6_t1",
+      "subject_id": "sub_prob",
+      "co_id": "22CH311_co6",
+      "title": "Null vs Alternative Hypothesis",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Null vs Alternative Hypothesis**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 1
+    },
+    {
+      "id": "22CH311_co6_t2",
+      "subject_id": "sub_prob",
+      "co_id": "22CH311_co6",
+      "title": "T-Tests & Chi-Square Tests",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **T-Tests & Chi-Square Tests**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 2
+    },
+    {
+      "id": "22CH321_co1_t1",
+      "subject_id": "sub_tdpl",
+      "co_id": "22CH321_co1",
+      "title": "Formal Methods of Describing Syntax",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Formal Methods of Describing Syntax**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 1
+    },
+    {
+      "id": "22CH321_co1_t2",
+      "subject_id": "sub_tdpl",
+      "co_id": "22CH321_co1",
+      "title": "BNF & EBNF Grammars",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **BNF & EBNF Grammars**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 2
+    },
+    {
+      "id": "22CH321_co2_t1",
+      "subject_id": "sub_tdpl",
+      "co_id": "22CH321_co2",
+      "title": "Lexical Analysis phases",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Lexical Analysis phases**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 1
+    },
+    {
+      "id": "22CH321_co2_t2",
+      "subject_id": "sub_tdpl",
+      "co_id": "22CH321_co2",
+      "title": "Recursive-Descent Parsing",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Recursive-Descent Parsing**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 2
+    },
+    {
+      "id": "22CH321_co2_t3",
+      "subject_id": "sub_tdpl",
+      "co_id": "22CH321_co2",
+      "title": "Syntax Trees",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Syntax Trees**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 3
+    },
+    {
+      "id": "22CH321_co3_t1",
+      "subject_id": "sub_tdpl",
+      "co_id": "22CH321_co3",
+      "title": "Static vs Dynamic Scoping",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Static vs Dynamic Scoping**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 1
+    },
+    {
+      "id": "22CH321_co3_t2",
+      "subject_id": "sub_tdpl",
+      "co_id": "22CH321_co3",
+      "title": "Lifetime of Variables & Referencing Environments",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Lifetime of Variables & Referencing Environments**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 2
+    },
+    {
+      "id": "22CH321_co4_t1",
+      "subject_id": "sub_tdpl",
+      "co_id": "22CH321_co4",
+      "title": "Strong vs Weak Typing",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Strong vs Weak Typing**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 1
+    },
+    {
+      "id": "22CH321_co4_t2",
+      "subject_id": "sub_tdpl",
+      "co_id": "22CH321_co4",
+      "title": "Pointer & Reference Types",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Pointer & Reference Types**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 2
+    },
+    {
+      "id": "22CH321_co4_t3",
+      "subject_id": "sub_tdpl",
+      "co_id": "22CH321_co4",
+      "title": "Operator Precedence",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Operator Precedence**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 3
+    },
+    {
+      "id": "22CH321_co5_t1",
+      "subject_id": "sub_tdpl",
+      "co_id": "22CH321_co5",
+      "title": "Parameter Passing Methods",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Parameter Passing Methods**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 1
+    },
+    {
+      "id": "22CH321_co5_t2",
+      "subject_id": "sub_tdpl",
+      "co_id": "22CH321_co5",
+      "title": "Coroutines & Exception Handling",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Coroutines & Exception Handling**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 2
+    },
+    {
+      "id": "22CH321_co6_t1",
+      "subject_id": "sub_tdpl",
+      "co_id": "22CH321_co6",
+      "title": "Imperative vs Declarative paradigms",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Imperative vs Declarative paradigms**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 1
+    },
+    {
+      "id": "22CH321_co6_t2",
+      "subject_id": "sub_tdpl",
+      "co_id": "22CH321_co6",
+      "title": "Functional Programming concepts",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Functional Programming concepts**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 2
+    },
+    {
+      "id": "22CH321_co6_t3",
+      "subject_id": "sub_tdpl",
+      "co_id": "22CH321_co6",
+      "title": "Logic Programming (Prolog)",
+      "description": "",
+      "content": "This comprehensive module covers the foundational principles and advanced mechanics of **Logic Programming (Prolog)**. \n\nStudents will explore the theoretical frameworks, algorithmic structures, and practical implementation details required to master this domain. The curriculum is strictly aligned with the core course outcomes, ensuring a rigorous mathematical and logical approach to problem-solving.\n\n### Key Learning Objectives\n- Understand the core architectural patterns associated with this topic.\n- Analyze the computational complexity and resource management tradeoffs.\n- Apply theoretical models to real-world engineering challenges.\n\nPlease refer to the linked presentation slides and PDF study modules below for the complete mathematical proofs and code reference architectures.",
+      "display_order": 3
+    }
+  ],
+  "resources": [
+    {
+      "subject_id": "sub_os",
+      "topic_id": "22CH362_co1_t1",
+      "title": "Give me in the tabulation format.docx",
+      "file_name": "Give me in the tabulation format.docx",
+      "file_url": "/uploads/1787839184888-262341197.docx",
+      "file_type": "DOCX",
+      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "file_size": 8374,
+      "display_order": 1,
+      "id": "c2f6047f-af25-49e6-9499-87270d829f4e",
+      "created_at": "2026-08-27T13:59:45.622Z"
+    }
+  ]
+}
