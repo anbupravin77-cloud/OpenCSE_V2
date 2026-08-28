@@ -31,38 +31,56 @@ function RouteFallback() {
   );
 }
 
+function ScrollProgressBar() {
+  const shouldReduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll();
+
+  if (shouldReduceMotion) return null;
+
+  return (
+    <motion.div
+      aria-hidden="true"
+      style={{ scaleX: scrollYProgress, transformOrigin: '0%' }}
+      className="fixed top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-zinc-950 via-zinc-600 to-zinc-950 dark:from-white dark:via-zinc-400 dark:to-white z-[60] pointer-events-none transform-gpu"
+    />
+  );
+}
+
 function StudentHeader() {
   return (
-    <header className="border-b border-zinc-200/80 dark:border-zinc-800/80 bg-white/75 dark:bg-zinc-950/75 backdrop-blur-xl sticky top-0 z-50 transition-colors duration-200">
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-4 group" aria-label="OpenCSE Home">
-          <div className="w-10 h-10 bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 flex items-center justify-center font-serif text-xl font-bold rounded-xl shadow-sm transition-transform duration-200 group-hover:scale-105 shrink-0">
+    <header className="border-b border-zinc-200/90 dark:border-zinc-800/90 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl sticky top-0 z-50 transition-colors duration-200">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <Link to="/" className="flex items-center gap-3.5 group min-h-[44px]" aria-label="OpenCSE Home">
+          <div className="w-10 h-10 bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 flex items-center justify-center font-serif text-xl font-bold rounded-xl shadow-sm border border-zinc-800/50 dark:border-zinc-200/50 transition-transform duration-200 group-hover:scale-105 shrink-0">
             O
           </div>
-          <span className="font-serif font-bold tracking-tight text-2xl text-zinc-950 dark:text-white">OpenCSE</span>
+          <div className="flex flex-col">
+            <span className="font-serif font-bold tracking-tight text-2xl text-zinc-950 dark:text-white leading-none">OpenCSE</span>
+            <span className="font-mono text-[9px] text-zinc-600 dark:text-zinc-400 tracking-wider uppercase mt-1 hidden sm:block">CURRICULUM ARCHIVE</span>
+          </div>
         </Link>
-        <nav aria-label="Main Navigation" className="flex items-center gap-4 sm:gap-6">
+        <nav aria-label="Main Navigation" className="flex items-center gap-1 sm:gap-2">
           <Link 
             to="/about"
-            className="text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors hidden sm:inline"
+            className="text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white px-3.5 py-2 rounded-xl transition-all hover:bg-zinc-100 dark:hover:bg-zinc-900 min-h-[44px] flex items-center hidden sm:flex"
           >
             About
           </Link>
           <Link 
             to="/contact"
-            className="text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors hidden sm:inline"
+            className="text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white px-3.5 py-2 rounded-xl transition-all hover:bg-zinc-100 dark:hover:bg-zinc-900 min-h-[44px] flex items-center hidden sm:flex"
           >
             Contact
           </Link>
           <Link 
             to="/admin"
-            className="flex items-center gap-2 text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
+            className="flex items-center gap-2 text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white px-3.5 py-2 rounded-xl transition-all hover:bg-zinc-100 dark:hover:bg-zinc-900 min-h-[44px]"
             aria-label="Admin Access"
           >
-            <Settings size={18} />
+            <Settings size={17} />
             <span className="hidden sm:inline">Admin Access</span>
           </Link>
-          <div className="pl-1 sm:pl-2 border-l border-zinc-200 dark:border-zinc-800">
+          <div className="pl-2 ml-1 border-l border-zinc-200 dark:border-zinc-800 flex items-center">
             <ThemeToggle />
           </div>
         </nav>
@@ -73,7 +91,7 @@ function StudentHeader() {
 
 function StudentFooter() {
   return (
-    <footer className="border-t border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-100/60 dark:bg-zinc-950/60 py-12 px-6 sm:px-8 lg:px-12 mt-20 transition-colors duration-200">
+    <footer className="border-t border-zinc-200/90 dark:border-zinc-800/90 bg-zinc-100/70 dark:bg-zinc-950/70 py-12 px-4 sm:px-6 lg:px-8 mt-20 transition-colors duration-200">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 flex items-center justify-center font-serif text-sm font-bold rounded-lg shadow-sm shrink-0">
@@ -81,7 +99,7 @@ function StudentFooter() {
           </div>
           <div>
             <span className="font-serif font-bold text-zinc-950 dark:text-white text-base">OpenCSE</span>
-            <span className="text-xs text-zinc-600 dark:text-zinc-400 ml-3 hidden sm:inline font-light">Distraction-free academic resources for Computer Science</span>
+            <span className="text-xs text-zinc-600 dark:text-zinc-400 ml-3 hidden sm:inline font-light">Outcome-Based Academic Resources for Computer Science</span>
           </div>
         </div>
         <nav aria-label="Footer Navigation" className="flex flex-wrap items-center justify-center gap-6 text-sm text-zinc-600 dark:text-zinc-400">
@@ -103,8 +121,9 @@ function StudentFooter() {
 function StudentLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-[#fafafa] dark:bg-zinc-950 text-zinc-950 dark:text-zinc-50 font-sans flex flex-col justify-between transition-colors duration-200">
+      <ScrollProgressBar />
       <StudentHeader />
-      <main className="flex-1 py-12 sm:py-20 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto w-full">
+      <main className="flex-1 py-10 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
         {children}
       </main>
       <StudentFooter />
@@ -113,85 +132,47 @@ function StudentLayout({ children }: { children: React.ReactNode }) {
 }
 
 function HeroAmbience() {
-  const shouldReduceMotion = useReducedMotion();
-  const { scrollY } = useScroll();
-
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const mq = window.matchMedia('(max-width: 640px)');
-    setIsMobile(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
-    mq.addEventListener('change', handler);
-    return () => mq.removeEventListener('change', handler);
-  }, []);
-
-  // Restrained, hardware-composited parallax ranges
-  // Desktop: 14-24px max, Mobile: 4-6px max, Reduced motion: 0px
-  const maxRangeGlow = shouldReduceMotion ? 0 : isMobile ? 6 : 22;
-  const maxRangeGrid = shouldReduceMotion ? 0 : isMobile ? 4 : 14;
-  const maxRangeMarkers = shouldReduceMotion ? 0 : isMobile ? 6 : 26;
-
-  const glowY = useTransform(scrollY, [0, 500], [0, maxRangeGlow]);
-  const gridY = useTransform(scrollY, [0, 500], [0, maxRangeGrid]);
-  const markersY = useTransform(scrollY, [0, 500], [0, maxRangeMarkers]);
-
   return (
     <div 
       aria-hidden="true" 
       className="absolute -top-12 sm:-top-16 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[420px] sm:h-[460px] pointer-events-none select-none overflow-hidden -z-10"
     >
-      {/* LAYER 1: Base Atmosphere (Restrained scroll parallax) */}
-      <motion.div 
-        style={{ y: glowY }}
-        className="absolute inset-0 academic-hero-glow" 
-      />
+      {/* LAYER 1: Base Atmosphere (Pure static CSS radial glow - zero JS animation overhead) */}
+      <div className="absolute inset-0 academic-hero-glow" />
 
-      {/* LAYER 2: Technical Grid Matrix (Restrained scroll parallax) */}
-      <motion.div 
-        style={{ y: gridY }}
-        className="absolute inset-0 academic-grid-pattern opacity-50 dark:opacity-45 sm:opacity-75 sm:dark:opacity-60" 
-      />
+      {/* LAYER 2: Technical Grid Matrix */}
+      <div className="absolute inset-0 academic-grid-pattern opacity-50 dark:opacity-45 sm:opacity-75 sm:dark:opacity-60" />
 
-      {/* LAYER 3: Static Technical Depth Markers (Restrained scroll parallax) */}
-      <motion.div 
-        style={{ y: markersY }}
-        className="absolute inset-0 pointer-events-none"
-      >
+      {/* LAYER 3: Static Technical Depth Markers */}
+      <div className="absolute inset-0 pointer-events-none">
         {/* Marker 1: Top-Left Crosshair & Coordinate */}
         <div className="absolute top-8 sm:top-10 left-3 sm:left-6 flex items-center gap-2">
-          <span className="font-mono text-xs text-zinc-400/60 dark:text-zinc-500/70">+</span>
-          <span className="hidden sm:inline-block font-mono text-[9px] text-zinc-400/50 dark:text-zinc-600/60 tracking-wider">[42.36° N]</span>
+          <span className="font-mono text-xs text-zinc-400/70 dark:text-zinc-500/70">+</span>
+          <span className="hidden sm:inline-block font-mono text-[9px] text-zinc-400/60 dark:text-zinc-600/70 tracking-wider">[42.36° N // ENG]</span>
         </div>
 
         {/* Marker 2: Top-Right OBE Curriculum Badge */}
-        <div className="absolute top-6 sm:top-8 right-3 sm:right-6 flex items-center gap-2 px-2.5 py-1 rounded-full border border-zinc-200/70 dark:border-zinc-800/80 bg-zinc-50/70 dark:bg-zinc-900/70 text-[10px] font-mono text-zinc-600 dark:text-zinc-400 shadow-sm">
+        <div className="absolute top-6 sm:top-8 right-3 sm:right-6 flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-200/80 dark:border-zinc-800/90 bg-zinc-50/80 dark:bg-zinc-900/80 text-[10px] font-mono text-zinc-600 dark:text-zinc-400 shadow-sm">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-          <span className="tracking-wider">OBE CURRICULUM</span>
+          <span className="tracking-wider">OBE ACCREDITED</span>
         </div>
 
         {/* Marker 3: Mid-Left Hairline Accent */}
         <div className="hidden md:flex absolute top-32 left-4 items-center gap-2.5">
           <div className="w-6 h-[1px] bg-zinc-300/60 dark:bg-zinc-700/60" />
-          <span className="font-mono text-[9px] text-zinc-400/50 dark:text-zinc-600/60 tracking-widest uppercase">ACAD.V2</span>
+          <span className="font-mono text-[9px] text-zinc-400/60 dark:text-zinc-600/70 tracking-widest uppercase">ACAD.V2</span>
         </div>
 
-        {/* Marker 4: Top-Right Crosshair Accent */}
-        <div className="hidden lg:block absolute top-14 right-36 font-mono text-xs text-zinc-400/40 dark:text-zinc-600/50 select-none">
-          +
+        {/* Marker 4: Bottom-Right Technical Index */}
+        <div className="hidden md:block absolute bottom-10 right-6 text-[9px] font-mono text-zinc-400/60 dark:text-zinc-600/70 tracking-widest uppercase select-none">
+          [CS-ENG // BATCH 2024-28]
         </div>
 
-        {/* Marker 5: Bottom-Right Technical Index */}
-        <div className="hidden md:block absolute bottom-10 right-6 text-[9px] font-mono text-zinc-400/50 dark:text-zinc-600/50 tracking-widest uppercase select-none">
-          [CS-ENG // 2026]
+        {/* Marker 5: Bottom-Left Course Outcome Index */}
+        <div className="hidden sm:block absolute bottom-10 left-6 text-[9px] font-mono text-zinc-400/60 dark:text-zinc-600/70 tracking-widest uppercase select-none">
+          [CO-01 // CO-06] VERIFIED OUTCOMES
         </div>
-
-        {/* Marker 6: Bottom-Left Course Outcome Index */}
-        <div className="hidden sm:block absolute bottom-10 left-6 text-[9px] font-mono text-zinc-400/50 dark:text-zinc-600/50 tracking-widest uppercase select-none">
-          [01-04] ACCREDITED OUTCOMES
-        </div>
-      </motion.div>
+      </div>
     </div>
   );
 }
@@ -254,121 +235,146 @@ function StudentDashboard() {
         canonicalPath="/"
       />
 
-      {/* Decorative layered ambient hero background with restrained parallax */}
+      {/* Decorative layered ambient hero background with zero JS scroll overhead */}
       <HeroAmbience />
 
-      {/* Hero Header with subtle entrance animation (CLS protected) */}
+      {/* Hero Header with subtle coordinated entrance */}
       <motion.header 
         initial={shouldReduceMotion ? false : { opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ 
-          duration: shouldReduceMotion ? 0 : 0.5, 
+          duration: shouldReduceMotion ? 0 : 0.45, 
           ease: [0.21, 0.47, 0.32, 0.98] 
         }}
-        className="mb-12 sm:mb-16"
+        className="mb-10 sm:mb-14"
       >
-        <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-100/80 dark:bg-zinc-900/80 text-xs font-mono font-medium text-zinc-600 dark:text-zinc-400">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-          <span>Computer Science & Engineering</span>
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 mb-5 rounded-full border border-zinc-300/80 dark:border-zinc-800/90 bg-zinc-100/90 dark:bg-zinc-900/90 text-xs font-mono font-medium text-zinc-700 dark:text-zinc-300 shadow-sm backdrop-blur-sm">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          <span>DEPARTMENT OF COMPUTER SCIENCE // CURRICULUM ARCHIVE</span>
         </div>
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white mb-4 sm:mb-6 leading-[1.1]">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white mb-4 sm:mb-6 leading-[1.08]">
           Knowledge Without Barriers.
         </h1>
         <p className="text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl font-light leading-relaxed">
-          Everything you need to learn, organized in one place.
+          Everything you need to learn, structured by accredited course outcomes and verified by engineering faculty.
         </p>
       </motion.header>
 
-      {/* Year Navigation with Accessibility, 44px+ touch targets, and coordinated entry */}
-      <motion.nav 
-        aria-label="Academic Year Filter" 
-        initial={shouldReduceMotion ? false : { opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ 
-          duration: shouldReduceMotion ? 0 : 0.45, 
-          delay: shouldReduceMotion ? 0 : 0.08,
-          ease: [0.21, 0.47, 0.32, 0.98] 
-        }}
-        className="flex gap-8 sm:gap-12 border-b border-zinc-200 dark:border-zinc-800 mb-12 overflow-x-auto hide-scrollbar"
-      >
-        {years.map(y => (
-          <button 
-            key={y} 
-            onClick={() => setSelectedYear(y)} 
-            aria-label={`${y} Year Curriculum`}
-            aria-pressed={selectedYear === y}
-            className={`pb-4 pt-2 text-sm uppercase tracking-widest whitespace-nowrap transition-colors cursor-pointer min-h-[44px] flex items-center ${
-              selectedYear === y 
-                ? 'border-b-2 border-zinc-950 dark:border-white font-bold text-zinc-950 dark:text-white -mb-[1px]' 
-                : 'text-zinc-600 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-200 border-b-2 border-transparent'
-            }`}
-          >
-            {y} Year
-          </button>
-        ))}
-      </motion.nav>
+      {/* Premium Segmented Year Selector */}
+      <div className="mb-10 sm:mb-12">
+        <div className="text-xs font-mono font-bold tracking-wider text-zinc-600 dark:text-zinc-400 uppercase mb-3 px-1">
+          SELECT ACADEMIC TIER
+        </div>
+        <nav 
+          role="tablist"
+          aria-label="Academic Year Filter" 
+          className="inline-flex p-1.5 bg-zinc-200/70 dark:bg-zinc-900/80 border border-zinc-300/80 dark:border-zinc-800/90 rounded-2xl backdrop-blur-md shadow-inner gap-1.5 max-w-full overflow-x-auto hide-scrollbar"
+        >
+          {years.map(y => (
+            <button 
+              key={y} 
+              role="tab"
+              onClick={() => setSelectedYear(y)} 
+              aria-label={`${y} Year Curriculum`}
+              aria-selected={selectedYear === y}
+              className={`rounded-xl px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-semibold tracking-wider uppercase whitespace-nowrap transition-all duration-200 cursor-pointer min-h-[44px] flex items-center justify-center ${
+                selectedYear === y 
+                  ? 'bg-white dark:bg-zinc-800 text-zinc-950 dark:text-white shadow-sm border border-zinc-300/60 dark:border-white/10 font-bold' 
+                  : 'text-zinc-600 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-200 hover:bg-white/40 dark:hover:bg-zinc-800/40 border border-transparent'
+              }`}
+            >
+              {y} Year
+            </button>
+          ))}
+        </nav>
+      </div>
 
-      {/* Subject Cards or Stable Skeleton */}
+      {/* Curriculum Section Header Bar */}
+      <div className="flex items-center justify-between pb-4 mb-6 border-b border-zinc-200/90 dark:border-zinc-800/90">
+        <div className="flex items-center gap-3">
+          <h2 className="text-xs font-mono font-bold tracking-wider uppercase text-zinc-700 dark:text-zinc-300">
+            {selectedYear} Year Curriculum
+          </h2>
+          <span className="text-xs px-2.5 py-0.5 rounded-full font-mono bg-zinc-200/80 dark:bg-zinc-800/80 text-zinc-700 dark:text-zinc-300 border border-zinc-300/60 dark:border-zinc-700/60">
+            {currentYearSubjects.length} {currentYearSubjects.length === 1 ? 'Course' : 'Courses'}
+          </span>
+        </div>
+        <div className="hidden sm:flex items-center gap-2 text-xs font-mono text-zinc-600 dark:text-zinc-400">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+          <span>NBA / OBE COMPLIANT</span>
+        </div>
+      </div>
+
+      {/* Subject Cards with Single Group Reveal on Year Switch */}
       <div className="relative min-h-[300px]">
         {loading ? (
           <SubjectCardSkeleton />
         ) : currentYearSubjects.length === 0 ? (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="py-24 text-center">
-            <h2 className="text-3xl font-serif tracking-tight text-zinc-400 dark:text-zinc-600">Coming Soon</h2>
-            <p className="text-zinc-600 dark:text-zinc-400 mt-4 text-sm font-light">The curriculum for this year is currently being compiled.</p>
-          </motion.div>
-        ) : (
-          <div className="grid gap-6">
-            {currentYearSubjects.map((subject, index) => (
-              <motion.button
-                initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
-                transition={{ 
-                  duration: shouldReduceMotion ? 0 : 0.48, 
-                  delay: shouldReduceMotion ? 0 : Math.min(index * 0.045, 0.22), 
-                  ease: [0.21, 0.47, 0.32, 0.98] 
-                }}
-                key={subject.id}
-                onClick={() => {
-                  navigate(`/subject/${encodeURIComponent(subject.id)}`);
-                }}
-                className="group relative flex flex-col sm:flex-row sm:items-center justify-between p-7 sm:p-8 liquid-glass-card subject-card rounded-2xl text-left cursor-pointer transform-gpu overflow-hidden"
-                aria-label={`View ${subject.name} curriculum and topics`}
-              >
-                {/* Subtle Specular Light Sweep */}
-                <div aria-hidden="true" className="subject-card-sweep" />
-
-                <div className="relative z-10 pr-0 sm:pr-6">
-                  <div className="flex items-center gap-3 mb-3.5">
-                    <span className="text-xs font-bold tracking-widest text-zinc-700 dark:text-zinc-300 uppercase font-mono px-2 py-0.5 rounded bg-zinc-200/70 dark:bg-zinc-800/70 border border-zinc-300/60 dark:border-zinc-700/60">
-                      {subject.code}
-                    </span>
-                    <span className="text-xs px-3 py-0.5 bg-zinc-200/80 text-zinc-800 dark:bg-zinc-800/80 dark:text-zinc-300 rounded-full font-medium shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)] border border-zinc-300/40 dark:border-white/10">
-                      {subject.credits} Credits
-                    </span>
-                    {subject.department && (
-                      <span className="hidden sm:inline text-xs text-zinc-500 dark:text-zinc-400 font-light truncate max-w-[200px]">
-                        • {subject.department}
-                      </span>
-                    )}
-                  </div>
-                  <h2 className="text-2xl sm:text-3xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white group-hover:text-zinc-700 dark:group-hover:text-zinc-200 transition-colors duration-200">
-                    {subject.name}
-                  </h2>
-                </div>
-                
-                <div className="relative z-10 flex items-center gap-3 mt-6 sm:mt-0 shrink-0">
-                  <span className="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors duration-200 hidden sm:inline">
-                    Explore
-                  </span>
-                  <div className="w-10 h-10 rounded-xl bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center text-zinc-400 dark:text-zinc-500 group-hover:text-zinc-950 dark:group-hover:text-white group-hover:bg-zinc-200 dark:group-hover:bg-zinc-800 transition-all duration-200 shadow-sm">
-                    <ArrowRight className="transform group-hover:translate-x-1 transition-transform duration-200" size={18} />
-                  </div>
-                </div>
-              </motion.button>
-            ))}
+          <div className="py-24 text-center">
+            <h3 className="text-3xl font-serif tracking-tight text-zinc-400 dark:text-zinc-600">Curriculum in Progress</h3>
+            <p className="text-zinc-600 dark:text-zinc-400 mt-4 text-sm font-light">The curriculum for this tier is being compiled according to university regulations.</p>
           </div>
+        ) : (
+          <motion.div 
+            key={selectedYear}
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: shouldReduceMotion ? 0 : 0.35, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="grid gap-5 sm:gap-6"
+          >
+            {currentYearSubjects.map((subject) => {
+              const totalTopics = subject.cos ? subject.cos.reduce((acc, co) => acc + (co.topics ? co.topics.length : 0), 0) : 0;
+              return (
+                <button
+                  key={subject.id}
+                  onClick={() => {
+                    navigate(`/subject/${encodeURIComponent(subject.id)}`);
+                  }}
+                  className="group relative flex flex-col sm:flex-row sm:items-center justify-between p-6 sm:p-8 liquid-glass-card subject-card rounded-2xl text-left cursor-pointer transform-gpu overflow-hidden w-full"
+                  aria-label={`View ${subject.name} curriculum and topics`}
+                >
+                  {/* Subtle Specular Light Sweep on Desktop Hover */}
+                  <div aria-hidden="true" className="subject-card-sweep" />
+
+                  <div className="relative z-10 pr-0 sm:pr-6 flex-1 min-w-0">
+                    <div className="flex flex-wrap items-center gap-2.5 mb-3.5">
+                      <span className="text-xs font-bold tracking-widest text-zinc-800 dark:text-zinc-200 uppercase font-mono px-2.5 py-1 rounded bg-zinc-200/80 dark:bg-zinc-800/80 border border-zinc-300/70 dark:border-zinc-700/70 shadow-xs">
+                        {subject.code}
+                      </span>
+                      <span className="text-xs px-3 py-1 bg-zinc-200/80 text-zinc-800 dark:bg-zinc-800/80 dark:text-zinc-300 rounded-full font-medium border border-zinc-300/40 dark:border-white/10">
+                        {subject.credits} Credits
+                      </span>
+                      {totalTopics > 0 && (
+                        <span className="text-xs px-2.5 py-1 bg-zinc-100/90 text-zinc-700 dark:bg-zinc-900/90 dark:text-zinc-400 rounded-full font-mono border border-zinc-200 dark:border-zinc-800">
+                          {totalTopics} Topics
+                        </span>
+                      )}
+                      {subject.department && (
+                        <span className="hidden md:inline text-xs text-zinc-500 dark:text-zinc-400 font-light truncate">
+                          • {subject.department}
+                        </span>
+                      )}
+                    </div>
+                    <h3 className="text-2xl sm:text-3xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white group-hover:text-zinc-700 dark:group-hover:text-zinc-200 transition-colors duration-200">
+                      {subject.name}
+                    </h3>
+                  </div>
+                  
+                  <div className="relative z-10 flex items-center gap-3.5 mt-5 sm:mt-0 shrink-0">
+                    <span className="text-xs font-bold uppercase tracking-wider text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors duration-200 hidden sm:inline font-mono">
+                      EXPLORE
+                    </span>
+                    <div className="w-10 h-10 rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 flex items-center justify-center text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-white group-hover:bg-zinc-200 dark:group-hover:bg-zinc-800 transition-all duration-200 shadow-sm">
+                      <ArrowRight className="transform group-hover:translate-x-1 transition-transform duration-200" size={18} />
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+          </motion.div>
         )}
       </div>
     </div>
