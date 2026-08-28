@@ -25,7 +25,7 @@ export default function RichTextEditor({ content, onChange }: RichTextEditorProp
     },
     editorProps: {
       attributes: {
-        class: 'prose prose-invert max-w-none focus:outline-none min-h-[300px] p-4 font-sans prose-headings:font-serif prose-headings:tracking-tight prose-headings:text-white',
+        class: 'prose prose-invert prose-base sm:prose-lg max-w-none focus:outline-none min-h-[400px] font-sans prose-headings:font-serif prose-headings:tracking-tight prose-headings:font-bold prose-headings:text-white prose-a:text-white prose-a:font-bold hover:prose-a:text-zinc-300 prose-img:border prose-img:border-zinc-800 prose-img:rounded-2xl prose-blockquote:border-white prose-blockquote:font-serif prose-blockquote:italic',
       },
     },
   });
@@ -53,15 +53,28 @@ export default function RichTextEditor({ content, onChange }: RichTextEditorProp
   };
 
   const addLink = () => {
-    const url = window.prompt('URL');
-    if (url) editor.chain().focus().setLink({ href: url }).run();
+    const previousUrl = editor.getAttributes('link').href;
+    const url = window.prompt('URL', previousUrl);
+    
+    if (url === null) {
+      return; // Cancelled
+    }
+    
+    if (url === '') {
+      editor.chain().focus().extendMarkRange('link').unsetLink().run();
+      return;
+    }
+    
+    editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
   };
 
   const ToolbarButton = ({ onClick, isActive = false, children, title }: any) => (
     <button
+      type="button"
       onClick={onClick}
       title={title}
-      className={`p-2 transition-colors rounded-lg ${isActive ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:bg-zinc-800 hover:text-white'}`}
+      aria-label={title}
+      className={`p-2.5 sm:p-2 transition-colors rounded-lg flex items-center justify-center min-w-[44px] min-h-[44px] sm:min-w-0 sm:min-h-0 ${isActive ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:bg-zinc-800 hover:text-white'}`}
     >
       {children}
     </button>
@@ -69,21 +82,21 @@ export default function RichTextEditor({ content, onChange }: RichTextEditorProp
 
   return (
     <div className="flex flex-col h-full bg-zinc-950">
-      <div className="flex flex-wrap items-center gap-1 p-2 border-b border-zinc-800 bg-zinc-900">
+      <div className="flex items-center gap-1 sm:gap-1.5 p-2 border-b border-zinc-800 bg-zinc-900 overflow-x-auto whitespace-nowrap shrink-0 custom-scrollbar min-h-[56px] sm:min-h-0">
         <ToolbarButton onClick={() => editor.chain().focus().toggleBold().run()} isActive={editor.isActive('bold')} title="Bold">
           <Bold size={16} />
         </ToolbarButton>
         <ToolbarButton onClick={() => editor.chain().focus().toggleItalic().run()} isActive={editor.isActive('italic')} title="Italic">
           <Italic size={16} />
         </ToolbarButton>
-        <div className="w-px h-6 bg-zinc-800 mx-1"></div>
-        <ToolbarButton onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()} isActive={editor.isActive('heading', { level: 2 })} title="Heading 1">
+        <div className="w-px h-6 bg-zinc-800 mx-1 shrink-0"></div>
+        <ToolbarButton onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()} isActive={editor.isActive('heading', { level: 1 })} title="Heading 1">
           <Heading1 size={16} />
         </ToolbarButton>
-        <ToolbarButton onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()} isActive={editor.isActive('heading', { level: 3 })} title="Heading 2">
+        <ToolbarButton onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()} isActive={editor.isActive('heading', { level: 2 })} title="Heading 2">
           <Heading2 size={16} />
         </ToolbarButton>
-        <div className="w-px h-6 bg-zinc-800 mx-1"></div>
+        <div className="w-px h-6 bg-zinc-800 mx-1 shrink-0"></div>
         <ToolbarButton onClick={() => editor.chain().focus().toggleBulletList().run()} isActive={editor.isActive('bulletList')} title="Bullet List">
           <List size={16} />
         </ToolbarButton>
@@ -93,24 +106,24 @@ export default function RichTextEditor({ content, onChange }: RichTextEditorProp
         <ToolbarButton onClick={() => editor.chain().focus().toggleBlockquote().run()} isActive={editor.isActive('blockquote')} title="Quote">
           <Quote size={16} />
         </ToolbarButton>
-        <div className="w-px h-6 bg-zinc-800 mx-1"></div>
+        <div className="w-px h-6 bg-zinc-800 mx-1 shrink-0"></div>
         <ToolbarButton onClick={() => editor.chain().focus().toggleCodeBlock().run()} isActive={editor.isActive('codeBlock')} title="Code Block">
           <Code size={16} />
         </ToolbarButton>
         <ToolbarButton onClick={() => editor.chain().focus().setHorizontalRule().run()} title="Separator">
           <SeparatorHorizontal size={16} />
         </ToolbarButton>
-        <div className="w-px h-6 bg-zinc-800 mx-1"></div>
+        <div className="w-px h-6 bg-zinc-800 mx-1 shrink-0"></div>
         <ToolbarButton onClick={addLink} isActive={editor.isActive('link')} title="Link">
           <LinkIcon size={16} />
         </ToolbarButton>
         
-        <label className="p-2 rounded-lg text-zinc-400 hover:bg-zinc-800 hover:text-white cursor-pointer transition-colors" title="Insert Image">
+        <label className="p-2.5 sm:p-2 transition-colors rounded-lg flex items-center justify-center min-w-[40px] min-h-[40px] sm:min-w-0 sm:min-h-0 text-zinc-400 hover:bg-zinc-800 hover:text-white cursor-pointer shrink-0" title="Insert Image">
           {uploading ? <Loader2 size={16} className="animate-spin" /> : <ImageIcon size={16} />}
           <input type="file" accept="image/*" className="hidden" onChange={handleImageUpload} />
         </label>
       </div>
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto p-4 sm:p-6 custom-scrollbar">
         <EditorContent editor={editor} />
       </div>
     </div>

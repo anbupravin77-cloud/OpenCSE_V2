@@ -94,7 +94,7 @@ export default function ResourceUploader({ resources, onUpload, onDelete }: Reso
                 <a href={res.file_url} target="_blank" rel="noopener noreferrer" className="p-2 text-zinc-500 hover:text-white transition-colors" title="View File">
                   <ExternalLink size={16} />
                 </a>
-                <button onClick={() => onDelete(res.id)} className="p-2 text-zinc-500 hover:text-red-400 transition-colors" title="Delete File">
+                <button onClick={() => onDelete(res.id)} className="p-2 text-zinc-500 hover:text-red-400 transition-colors" title="Delete File" aria-label="Delete File">
                   <Trash2 size={16} />
                 </button>
               </div>

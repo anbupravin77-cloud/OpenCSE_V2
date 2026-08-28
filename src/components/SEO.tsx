@@ -5,13 +5,15 @@ interface SEOProps {
   description?: string;
   canonicalPath?: string;
   type?: 'website' | 'article';
+  loadAdsense?: boolean;
 }
 
 export function SEO({
   title,
   description = "Distraction-free academic resources, curriculum guides, course outcomes, and verified study materials for Computer Science & Engineering students.",
   canonicalPath = "/",
-  type = "website"
+  type = "website",
+  loadAdsense = false
 }: SEOProps) {
   useEffect(() => {
     // 1. Update Document Title
@@ -54,19 +56,19 @@ export function SEO({
       setMetaTag('name', 'google-site-verification', googleSite.trim());
     }
 
-    // 6. Optional AdSense Auto-script if configured in env
-    const adsenseClient = (import.meta as any).env?.VITE_ADSENSE_CLIENT;
-    if (adsenseClient && typeof adsenseClient === 'string' && adsenseClient.startsWith('ca-pub-')) {
+    // 6. AdSense Loading
+    if (loadAdsense) {
+      const adsenseClient = 'ca-pub-9179183326125387';
       const existingScript = document.querySelector(`script[src*="pagead2.googlesyndication.com"]`);
       if (!existingScript) {
         const script = document.createElement('script');
-        script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient.trim()}`;
+        script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`;
         script.async = true;
         script.crossOrigin = 'anonymous';
         document.head.appendChild(script);
       }
     }
-  }, [title, description, canonicalPath, type]);
+  }, [title, description, canonicalPath, type, loadAdsense]);
 
   return null;
 }

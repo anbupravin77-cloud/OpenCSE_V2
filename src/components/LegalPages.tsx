@@ -99,6 +99,8 @@ export function AboutPage() {
 export function ContactPage() {
   const [contactEmail, setContactEmail] = useState<string>('');
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const [category, setCategory] = useState('Feedback');
   const [name, setName] = useState('');
   const [userEmail, setUserEmail] = useState('');
@@ -123,13 +125,21 @@ export function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!message.trim()) return;
-
-    if (contactEmail) {
-      const subjectLine = encodeURIComponent(`[OpenCSE ${category}] from ${name || 'Student'}`);
-      const bodyText = encodeURIComponent(`Name: ${name}\nEmail: ${userEmail}\nCategory: ${category}\n\nMessage:\n${message}`);
-      window.location.href = `mailto:${contactEmail}?subject=${subjectLine}&body=${bodyText}`;
+    if (!message.trim() || !name.trim() || !userEmail.trim()) {
+      setErrorMessage('Please fill in all required fields.');
+      return;
     }
+
+    setErrorMessage('');
+    
+    // Direct mailto method pre-filling user input to anbupravin77@gmail.com
+    const destinationEmail = contactEmail || 'anbupravin77@gmail.com';
+    const subjectLine = encodeURIComponent(`[OpenCSE ${category}] from ${name} (${userEmail})`);
+    const bodyText = encodeURIComponent(
+      `Name: ${name}\nEmail: ${userEmail}\nCategory: ${category}\n\nMessage:\n${message}`
+    );
+
+    window.location.href = `mailto:${destinationEmail}?subject=${subjectLine}&body=${bodyText}`;
     setFormSubmitted(true);
   };
 
@@ -225,7 +235,8 @@ export function ContactPage() {
                   id="inquiry-category"
                   value={category} 
                   onChange={e => setCategory(e.target.value)}
-                  className="w-full bg-white dark:bg-zinc-950 border border-zinc-300 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-950 dark:text-white focus:outline-none focus:border-zinc-900 dark:focus:border-zinc-500 transition-colors"
+                  disabled={isSubmitting}
+                  className="w-full bg-white dark:bg-zinc-950 border border-zinc-300 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-950 dark:text-white focus:outline-none focus:border-zinc-900 dark:focus:border-zinc-500 transition-colors disabled:opacity-50"
                 >
                   <option value="Feedback">General Feedback</option>
                   <option value="Correction">Course Content Correction / Errata</option>
@@ -244,8 +255,9 @@ export function ContactPage() {
                     type="text" 
                     value={name} 
                     onChange={e => setName(e.target.value)}
+                    disabled={isSubmitting}
                     placeholder="e.g. Alex" 
-                    className="w-full bg-white dark:bg-zinc-950 border border-zinc-300 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-950 dark:text-white focus:outline-none focus:border-zinc-900 dark:focus:border-zinc-500 transition-colors"
+                    className="w-full bg-white dark:bg-zinc-950 border border-zinc-300 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-950 dark:text-white focus:outline-none focus:border-zinc-900 dark:focus:border-zinc-500 transition-colors disabled:opacity-50"
                   />
                 </div>
                 <div>
@@ -255,8 +267,9 @@ export function ContactPage() {
                     type="email" 
                     value={userEmail} 
                     onChange={e => setUserEmail(e.target.value)}
+                    disabled={isSubmitting}
                     placeholder="you@example.com" 
-                    className="w-full bg-white dark:bg-zinc-950 border border-zinc-300 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-950 dark:text-white focus:outline-none focus:border-zinc-900 dark:focus:border-zinc-500 transition-colors"
+                    className="w-full bg-white dark:bg-zinc-950 border border-zinc-300 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-950 dark:text-white focus:outline-none focus:border-zinc-900 dark:focus:border-zinc-500 transition-colors disabled:opacity-50"
                   />
                 </div>
               </div>
@@ -269,16 +282,24 @@ export function ContactPage() {
                   required
                   value={message} 
                   onChange={e => setMessage(e.target.value)}
+                  disabled={isSubmitting}
                   placeholder="Please describe your question, feedback, or specific subject topic in detail..." 
-                  className="w-full bg-white dark:bg-zinc-950 border border-zinc-300 dark:border-zinc-800 rounded-xl p-4 text-sm text-zinc-950 dark:text-white focus:outline-none focus:border-zinc-900 dark:focus:border-zinc-500 transition-colors resize-y"
+                  className="w-full bg-white dark:bg-zinc-950 border border-zinc-300 dark:border-zinc-800 rounded-xl p-4 text-sm text-zinc-950 dark:text-white focus:outline-none focus:border-zinc-900 dark:focus:border-zinc-500 transition-colors resize-y disabled:opacity-50"
                 />
               </div>
 
+              {errorMessage && (
+                <div className="text-red-500 dark:text-red-400 text-sm font-medium p-3 bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-900 rounded-xl">
+                  {errorMessage}
+                </div>
+              )}
+
               <button 
                 type="submit" 
-                className="w-full bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 py-3.5 px-6 rounded-xl font-bold text-sm hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2 shadow-sm cursor-pointer"
+                disabled={isSubmitting}
+                className="w-full bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 py-3.5 px-6 rounded-xl font-bold text-sm hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2 shadow-sm cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                <Send size={16} /> Submit Message
+                <Send size={16} className={isSubmitting ? "animate-pulse" : ""} /> {isSubmitting ? 'Sending...' : 'Submit Message'}
               </button>
             </form>
           )}

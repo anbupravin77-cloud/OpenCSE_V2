@@ -294,8 +294,8 @@ function StudentDashboard() {
                 aria-selected={isSelected}
                 className={`rounded-lg px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold uppercase tracking-wider whitespace-nowrap transition-all duration-150 cursor-pointer min-h-[44px] flex items-center justify-center focus-visible:ring-2 focus-visible:ring-zinc-950 dark:focus-visible:ring-white focus-visible:outline-none ${
                   isSelected 
-                    ? 'bg-white dark:bg-zinc-800 text-zinc-950 dark:text-white shadow-xs border border-zinc-300/80 dark:border-zinc-700 font-bold' 
-                    : 'text-zinc-600 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-100 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 border border-transparent font-medium'
+                    ? 'bg-white dark:bg-zinc-800 text-zinc-950 dark:text-white shadow-sm border border-zinc-300/80 dark:border-zinc-600 font-bold' 
+                    : 'text-zinc-600 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-100 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 border border-transparent font-medium active:scale-95'
                 }`}
               >
                 {isSelected && (
@@ -959,6 +959,7 @@ function StudentTopicView({ topic, subjectCode, coCode, onBack }: { topic: any, 
         description={topicDesc.slice(0, 160)}
         canonicalPath={`/subject/${subjectCode}`}
         type="article"
+        loadAdsense={true}
       />
 
       {/* Topic Breadcrumbs */}
@@ -1127,8 +1128,12 @@ function StudentTopicView({ topic, subjectCode, coCode, onBack }: { topic: any, 
           TOPIC LECTURE NOTES & RICH CONTENT
          ========================================================================= */}
       {topic.content ? (
-        <article 
-          className="prose dark:prose-invert prose-base sm:prose-lg max-w-none text-zinc-800 dark:text-zinc-300 prose-headings:font-serif prose-headings:tracking-tight prose-headings:font-bold prose-headings:text-zinc-950 dark:prose-headings:text-white prose-a:text-zinc-950 dark:prose-a:text-white prose-a:font-bold hover:prose-a:text-zinc-600 dark:hover:prose-a:text-zinc-300 prose-img:border prose-img:border-zinc-200 dark:prose-img:border-zinc-800 prose-img:rounded-2xl prose-blockquote:border-zinc-950 dark:prose-blockquote:border-white prose-blockquote:font-serif prose-blockquote:italic" 
+        <motion.article 
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: shouldReduceMotion ? 0 : 0.4, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="prose dark:prose-invert prose-base sm:prose-lg max-w-[65ch] mx-auto text-zinc-800 dark:text-zinc-300 prose-headings:font-serif prose-headings:tracking-tight prose-headings:font-bold prose-headings:text-zinc-950 dark:prose-headings:text-white prose-a:text-zinc-950 dark:prose-a:text-white prose-a:font-bold hover:prose-a:text-zinc-600 dark:hover:prose-a:text-zinc-300 prose-img:border prose-img:border-zinc-200 dark:prose-img:border-zinc-800 prose-img:rounded-2xl prose-blockquote:border-zinc-950 dark:prose-blockquote:border-white prose-blockquote:font-serif prose-blockquote:italic prose-p:leading-relaxed" 
           dangerouslySetInnerHTML={{ __html: topic.content }} 
         />
       ) : (
@@ -1391,7 +1396,7 @@ function AdminDashboard({ onEditSubject }: { onEditSubject: (id: string) => void
               <div className="sm:col-span-2 flex items-center justify-between sm:block">
                 <span className="font-mono text-sm font-bold text-zinc-700 dark:text-zinc-300">{subject.code}</span>
                 <div className="sm:hidden flex gap-3">
-                  <button onClick={() => onEditSubject(subject.id)} className="p-2 bg-zinc-200 dark:bg-zinc-800 rounded-lg text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors cursor-pointer" title="Edit">
+                  <button onClick={() => onEditSubject(subject.id)} className="p-2 bg-zinc-200 dark:bg-zinc-800 rounded-lg text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors cursor-pointer" title="Edit" aria-label="Edit subject">
                     <Edit2 size={16} />
                   </button>
                   <button 
@@ -1401,7 +1406,7 @@ function AdminDashboard({ onEditSubject }: { onEditSubject: (id: string) => void
                         setSubjects(subjects.filter(s => s.id !== subject.id));
                       }
                     }} 
-                    className="p-2 bg-zinc-200 dark:bg-zinc-800 rounded-lg text-zinc-700 dark:text-zinc-300 hover:text-red-500 dark:hover:text-red-400 hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors cursor-pointer" title="Delete"
+                    className="p-2 bg-zinc-200 dark:bg-zinc-800 rounded-lg text-zinc-700 dark:text-zinc-300 hover:text-red-500 dark:hover:text-red-400 hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors cursor-pointer" title="Delete" aria-label="Delete subject"
                   >
                     <Trash2 size={16} />
                   </button>
@@ -1417,7 +1422,7 @@ function AdminDashboard({ onEditSubject }: { onEditSubject: (id: string) => void
                 </span>
               </div>
               <div className="hidden sm:flex col-span-2 justify-end gap-3">
-                <button onClick={() => onEditSubject(subject.id)} className="p-2 bg-zinc-200 dark:bg-zinc-800 rounded-lg text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors cursor-pointer" title="Edit">
+                <button onClick={() => onEditSubject(subject.id)} className="p-2 bg-zinc-200 dark:bg-zinc-800 rounded-lg text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors cursor-pointer" title="Edit" aria-label="Edit subject">
                   <Edit2 size={18} />
                 </button>
                 <button 
@@ -1427,7 +1432,7 @@ function AdminDashboard({ onEditSubject }: { onEditSubject: (id: string) => void
                       setSubjects(subjects.filter(s => s.id !== subject.id));
                     }
                   }} 
-                  className="p-2 bg-zinc-200 dark:bg-zinc-800 rounded-lg text-zinc-700 dark:text-zinc-300 hover:text-red-500 dark:hover:text-red-400 hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors cursor-pointer" title="Delete"
+                  className="p-2 bg-zinc-200 dark:bg-zinc-800 rounded-lg text-zinc-700 dark:text-zinc-300 hover:text-red-500 dark:hover:text-red-400 hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors cursor-pointer" title="Delete" aria-label="Delete subject"
                 >
                   <Trash2 size={18} />
                 </button>
