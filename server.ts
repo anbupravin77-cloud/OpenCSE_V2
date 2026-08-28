@@ -232,7 +232,7 @@ ${allPages.map(page => `  <url>
 
   // --- ADS.TXT ---
   app.get('/ads.txt', (req, res) => {
-    const content = process.env.ADS_TXT_CONTENT || '# ads.txt - OpenCSE';
+    const content = process.env.ADS_TXT_CONTENT || 'google.com, pub-9179183326125387, DIRECT, f08c47fec0942fa0';
     res.type('text/plain').send(content);
   });
 
