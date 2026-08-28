@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useParams } from 'react-router-dom';
 import { ArrowRight, ArrowLeft, Settings, Edit2, Plus, Trash2, FileText, Download } from 'lucide-react';
-import { motion, useReducedMotion } from 'motion/react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
 import { FullSubject, Subject, CO, Topic, Resource } from './types';
 import { SEO } from './components/SEO';
 import { ThemeProvider } from './context/ThemeContext';
@@ -113,50 +113,85 @@ function StudentLayout({ children }: { children: React.ReactNode }) {
 }
 
 function HeroAmbience() {
+  const shouldReduceMotion = useReducedMotion();
+  const { scrollY } = useScroll();
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const mq = window.matchMedia('(max-width: 640px)');
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+
+  // Restrained, hardware-composited parallax ranges
+  // Desktop: 14-24px max, Mobile: 4-6px max, Reduced motion: 0px
+  const maxRangeGlow = shouldReduceMotion ? 0 : isMobile ? 6 : 22;
+  const maxRangeGrid = shouldReduceMotion ? 0 : isMobile ? 4 : 14;
+  const maxRangeMarkers = shouldReduceMotion ? 0 : isMobile ? 6 : 26;
+
+  const glowY = useTransform(scrollY, [0, 500], [0, maxRangeGlow]);
+  const gridY = useTransform(scrollY, [0, 500], [0, maxRangeGrid]);
+  const markersY = useTransform(scrollY, [0, 500], [0, maxRangeMarkers]);
+
   return (
     <div 
       aria-hidden="true" 
       className="absolute -top-12 sm:-top-16 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[420px] sm:h-[460px] pointer-events-none select-none overflow-hidden -z-10"
     >
-      {/* LAYER 1: Base Atmosphere (Pure static CSS radial glow - zero blur filter overhead) */}
-      <div className="absolute inset-0 academic-hero-glow" />
+      {/* LAYER 1: Base Atmosphere (Restrained scroll parallax) */}
+      <motion.div 
+        style={{ y: glowY }}
+        className="absolute inset-0 academic-hero-glow" 
+      />
 
-      {/* LAYER 2: Technical Grid Matrix (Low-contrast, masked to hero area) */}
-      <div className="absolute inset-0 academic-grid-pattern opacity-50 dark:opacity-45 sm:opacity-75 sm:dark:opacity-60" />
+      {/* LAYER 2: Technical Grid Matrix (Restrained scroll parallax) */}
+      <motion.div 
+        style={{ y: gridY }}
+        className="absolute inset-0 academic-grid-pattern opacity-50 dark:opacity-45 sm:opacity-75 sm:dark:opacity-60" 
+      />
 
-      {/* LAYER 3: Static Technical Depth Markers */}
-      {/* Marker 1: Top-Left Crosshair & Coordinate */}
-      <div className="absolute top-8 sm:top-10 left-3 sm:left-6 flex items-center gap-2">
-        <span className="font-mono text-xs text-zinc-400/60 dark:text-zinc-500/70">+</span>
-        <span className="hidden sm:inline-block font-mono text-[9px] text-zinc-400/50 dark:text-zinc-600/60 tracking-wider">[42.36° N]</span>
-      </div>
+      {/* LAYER 3: Static Technical Depth Markers (Restrained scroll parallax) */}
+      <motion.div 
+        style={{ y: markersY }}
+        className="absolute inset-0 pointer-events-none"
+      >
+        {/* Marker 1: Top-Left Crosshair & Coordinate */}
+        <div className="absolute top-8 sm:top-10 left-3 sm:left-6 flex items-center gap-2">
+          <span className="font-mono text-xs text-zinc-400/60 dark:text-zinc-500/70">+</span>
+          <span className="hidden sm:inline-block font-mono text-[9px] text-zinc-400/50 dark:text-zinc-600/60 tracking-wider">[42.36° N]</span>
+        </div>
 
-      {/* Marker 2: Top-Right OBE Curriculum Badge */}
-      <div className="absolute top-6 sm:top-8 right-3 sm:right-6 flex items-center gap-2 px-2.5 py-1 rounded-full border border-zinc-200/70 dark:border-zinc-800/80 bg-zinc-50/70 dark:bg-zinc-900/70 text-[10px] font-mono text-zinc-600 dark:text-zinc-400 shadow-sm">
-        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-        <span className="tracking-wider">OBE CURRICULUM</span>
-      </div>
+        {/* Marker 2: Top-Right OBE Curriculum Badge */}
+        <div className="absolute top-6 sm:top-8 right-3 sm:right-6 flex items-center gap-2 px-2.5 py-1 rounded-full border border-zinc-200/70 dark:border-zinc-800/80 bg-zinc-50/70 dark:bg-zinc-900/70 text-[10px] font-mono text-zinc-600 dark:text-zinc-400 shadow-sm">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+          <span className="tracking-wider">OBE CURRICULUM</span>
+        </div>
 
-      {/* Marker 3: Mid-Left Hairline Accent */}
-      <div className="hidden md:flex absolute top-32 left-4 items-center gap-2.5">
-        <div className="w-6 h-[1px] bg-zinc-300/60 dark:bg-zinc-700/60" />
-        <span className="font-mono text-[9px] text-zinc-400/50 dark:text-zinc-600/60 tracking-widest uppercase">ACAD.V2</span>
-      </div>
+        {/* Marker 3: Mid-Left Hairline Accent */}
+        <div className="hidden md:flex absolute top-32 left-4 items-center gap-2.5">
+          <div className="w-6 h-[1px] bg-zinc-300/60 dark:bg-zinc-700/60" />
+          <span className="font-mono text-[9px] text-zinc-400/50 dark:text-zinc-600/60 tracking-widest uppercase">ACAD.V2</span>
+        </div>
 
-      {/* Marker 4: Top-Right Crosshair Accent */}
-      <div className="hidden lg:block absolute top-14 right-36 font-mono text-xs text-zinc-400/40 dark:text-zinc-600/50 select-none">
-        +
-      </div>
+        {/* Marker 4: Top-Right Crosshair Accent */}
+        <div className="hidden lg:block absolute top-14 right-36 font-mono text-xs text-zinc-400/40 dark:text-zinc-600/50 select-none">
+          +
+        </div>
 
-      {/* Marker 5: Bottom-Right Technical Index */}
-      <div className="hidden md:block absolute bottom-10 right-6 text-[9px] font-mono text-zinc-400/50 dark:text-zinc-600/50 tracking-widest uppercase select-none">
-        [CS-ENG // 2026]
-      </div>
+        {/* Marker 5: Bottom-Right Technical Index */}
+        <div className="hidden md:block absolute bottom-10 right-6 text-[9px] font-mono text-zinc-400/50 dark:text-zinc-600/50 tracking-widest uppercase select-none">
+          [CS-ENG // 2026]
+        </div>
 
-      {/* Marker 6: Bottom-Left Course Outcome Index */}
-      <div className="hidden sm:block absolute bottom-10 left-6 text-[9px] font-mono text-zinc-400/50 dark:text-zinc-600/50 tracking-widest uppercase select-none">
-        [01-04] ACCREDITED OUTCOMES
-      </div>
+        {/* Marker 6: Bottom-Left Course Outcome Index */}
+        <div className="hidden sm:block absolute bottom-10 left-6 text-[9px] font-mono text-zinc-400/50 dark:text-zinc-600/50 tracking-widest uppercase select-none">
+          [01-04] ACCREDITED OUTCOMES
+        </div>
+      </motion.div>
     </div>
   );
 }
@@ -219,7 +254,7 @@ function StudentDashboard() {
         canonicalPath="/"
       />
 
-      {/* Decorative layered ambient hero background */}
+      {/* Decorative layered ambient hero background with restrained parallax */}
       <HeroAmbience />
 
       {/* Hero Header with subtle entrance animation (CLS protected) */}
@@ -244,8 +279,18 @@ function StudentDashboard() {
         </p>
       </motion.header>
 
-      {/* Year Navigation with Accessibility and 44px+ touch targets */}
-      <nav aria-label="Academic Year Filter" className="flex gap-8 sm:gap-12 border-b border-zinc-200 dark:border-zinc-800 mb-12 overflow-x-auto hide-scrollbar">
+      {/* Year Navigation with Accessibility, 44px+ touch targets, and coordinated entry */}
+      <motion.nav 
+        aria-label="Academic Year Filter" 
+        initial={shouldReduceMotion ? false : { opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ 
+          duration: shouldReduceMotion ? 0 : 0.45, 
+          delay: shouldReduceMotion ? 0 : 0.08,
+          ease: [0.21, 0.47, 0.32, 0.98] 
+        }}
+        className="flex gap-8 sm:gap-12 border-b border-zinc-200 dark:border-zinc-800 mb-12 overflow-x-auto hide-scrollbar"
+      >
         {years.map(y => (
           <button 
             key={y} 
@@ -261,7 +306,7 @@ function StudentDashboard() {
             {y} Year
           </button>
         ))}
-      </nav>
+      </motion.nav>
 
       {/* Subject Cards or Stable Skeleton */}
       <div className="relative min-h-[300px]">
@@ -402,16 +447,24 @@ function StudentSubjectView({ subject, onBack }: { subject: FullSubject, onBack:
         type="article"
       />
 
-      <button 
+      <motion.button 
+        initial={shouldReduceMotion ? false : { opacity: 0, x: -6 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: shouldReduceMotion ? 0 : 0.4, ease: [0.21, 0.47, 0.32, 0.98] }}
         onClick={onBack} 
         className="flex items-center gap-3 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white mb-12 font-medium transition-colors group cursor-pointer" 
         aria-label="Back to curriculum list"
       >
         <ArrowLeft size={18} className="transform group-hover:-translate-x-1.5 transition-transform duration-200" /> 
         <span>Back to Curriculum</span>
-      </button>
+      </motion.button>
 
-      <header className="mb-16">
+      <motion.header 
+        initial={shouldReduceMotion ? false : { opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: shouldReduceMotion ? 0 : 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
+        className="mb-16"
+      >
         <div className="flex items-center gap-3 mb-4">
           <span className="text-xs font-bold tracking-widest text-zinc-700 dark:text-zinc-300 uppercase font-mono px-2.5 py-1 rounded bg-zinc-200/70 dark:bg-zinc-800/70 border border-zinc-300/60 dark:border-zinc-700/60">
             {subject.code}
@@ -429,7 +482,7 @@ function StudentSubjectView({ subject, onBack }: { subject: FullSubject, onBack:
         {subject.description && (
           <div className="prose dark:prose-invert max-w-none text-zinc-700 dark:text-zinc-300 font-light text-base sm:text-lg leading-relaxed" dangerouslySetInnerHTML={{ __html: subject.description }} />
         )}
-      </header>
+      </motion.header>
 
       <div className="space-y-12 sm:space-y-16">
         {subject.cos.map((co, coIndex) => (
@@ -529,16 +582,24 @@ function StudentTopicView({ topic, subjectCode, onBack }: { topic: any, subjectC
         type="article"
       />
 
-      <button 
+      <motion.button 
+        initial={shouldReduceMotion ? false : { opacity: 0, x: -6 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: shouldReduceMotion ? 0 : 0.4, ease: [0.21, 0.47, 0.32, 0.98] }}
         onClick={onBack} 
         className="flex items-center gap-3 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white mb-12 font-medium transition-colors group cursor-pointer" 
         aria-label="Back to Subject"
       >
         <ArrowLeft size={18} className="transform group-hover:-translate-x-1.5 transition-transform duration-200" /> 
         <span>Back to Subject</span>
-      </button>
+      </motion.button>
 
-      <header className="mb-14">
+      <motion.header 
+        initial={shouldReduceMotion ? false : { opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: shouldReduceMotion ? 0 : 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
+        className="mb-14"
+      >
         <span className="text-xs font-bold tracking-widest text-zinc-700 dark:text-zinc-300 uppercase mb-3 block font-mono px-2.5 py-0.5 rounded bg-zinc-200/70 dark:bg-zinc-800/70 border border-zinc-300/60 dark:border-zinc-700/60 w-fit">
           {subjectCode}
         </span>
@@ -550,7 +611,7 @@ function StudentTopicView({ topic, subjectCode, onBack }: { topic: any, subjectC
             {topic.description}
           </p>
         )}
-      </header>
+      </motion.header>
 
       {topic.resources && topic.resources.length > 0 && (
         <motion.section 
