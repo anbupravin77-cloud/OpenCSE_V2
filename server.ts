@@ -31,7 +31,7 @@ const upload = multer({
 
 async function startServer() {
   const app = express();
-  const PORT = 3000;
+  const PORT = Number(process.env.PORT) || 3000;
 
   initDb();
 
@@ -46,6 +46,103 @@ async function startServer() {
   });
 
   app.use('/uploads', express.static(UPLOADS_DIR));
+
+  // --- ROBOTS.TXT ---
+  app.get('/robots.txt', (req, res) => {
+    const host = req.get('host') || 'opencse.org';
+    const proto = req.headers['x-forwarded-proto'] || req.protocol || 'https';
+    const baseUrl = `${proto}://${host}`;
+    const robotsTxt = [
+      'User-agent: *',
+      'Allow: /',
+      'Allow: /about',
+      'Allow: /contact',
+      'Allow: /privacy',
+      'Allow: /terms',
+      'Allow: /content-policy',
+      'Allow: /subject/',
+      'Allow: /uploads/',
+      'Disallow: /admin',
+      'Disallow: /admin/*',
+      'Disallow: /api/*',
+      'Disallow: /db.json',
+      '',
+      `Sitemap: ${baseUrl}/sitemap.xml`
+    ].join('\n');
+    res.type('text/plain').send(robotsTxt);
+  });
+
+  // --- SITEMAP.XML ---
+  app.get('/sitemap.xml', (req, res) => {
+    const host = req.get('host') || 'opencse.org';
+    const proto = req.headers['x-forwarded-proto'] || req.protocol || 'https';
+    const baseUrl = process.env.APP_URL && !process.env.APP_URL.includes('localhost') 
+      ? process.env.APP_URL.replace(/\/$/, '') 
+      : `${proto}://${host}`;
+
+    const db = getDb();
+    const activeSubjects = (db.subjects || []).filter(s => s.is_active);
+
+    interface SitemapItem {
+      url: string;
+      priority: string;
+      changefreq: string;
+      lastmod?: string;
+    }
+
+    const staticPages: SitemapItem[] = [
+      { url: '/', priority: '1.0', changefreq: 'daily' },
+      { url: '/about', priority: '0.8', changefreq: 'monthly' },
+      { url: '/contact', priority: '0.7', changefreq: 'monthly' },
+      { url: '/privacy', priority: '0.5', changefreq: 'yearly' },
+      { url: '/terms', priority: '0.5', changefreq: 'yearly' },
+      { url: '/content-policy', priority: '0.6', changefreq: 'yearly' },
+    ];
+
+    const subjectPages: SitemapItem[] = activeSubjects.map(s => ({
+      url: `/subject/${encodeURIComponent(s.id)}`,
+      priority: '0.9',
+      changefreq: 'weekly',
+      lastmod: s.updated_at ? s.updated_at.split('T')[0] : (s.created_at ? s.created_at.split('T')[0] : new Date().toISOString().split('T')[0])
+    }));
+
+    const allPages = [...staticPages, ...subjectPages];
+
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${allPages.map(page => `  <url>
+    <loc>${baseUrl}${page.url}</loc>
+    <changefreq>${page.changefreq}</changefreq>
+    <priority>${page.priority}</priority>${page.lastmod ? `\n    <lastmod>${page.lastmod}</lastmod>` : ''}
+  </url>`).join('\n')}
+</urlset>`;
+
+    res.type('application/xml').send(xml);
+  });
+
+  // --- ADS.TXT ---
+  app.get('/ads.txt', (req, res) => {
+    const content = process.env.ADS_TXT_CONTENT || '# ads.txt - OpenCSE';
+    res.type('text/plain').send(content);
+  });
+
+  // --- PUBLIC SAFE CONFIG ---
+  app.get('/api/config', (req, res) => {
+    res.json({
+      contactEmail: process.env.CONTACT_EMAIL || process.env.VITE_CONTACT_EMAIL || '',
+      appUrl: process.env.APP_URL || ''
+    });
+  });
+
+  // --- ADMIN AUTH VERIFY ---
+  app.post('/api/admin/verify', (req, res) => {
+    const { password } = req.body || {};
+    const adminPassword = process.env.ADMIN_PASSWORD || 'admin';
+    if (password && password === adminPassword) {
+      return res.json({ success: true });
+    }
+    return res.status(401).json({ success: false, error: 'Incorrect password' });
+  });
 
   // --- SUBJECTS ---
   app.get('/api/subjects', (req, res) => {
@@ -181,12 +278,13 @@ async function startServer() {
     const db = getDb();
     const id = req.params.id;
     
-    // Optionally delete file from disk
+    // Optionally delete file from disk securely
     const resource = db.resources.find(r => r.id === id);
-    if (resource && resource.file_url.startsWith('/uploads/')) {
-       const filePath = path.join(DATA_DIR, resource.file_url);
-       if (fs.existsSync(filePath)) {
-          try { fs.unlinkSync(filePath); } catch (e) {}
+    if (resource && resource.file_url && resource.file_url.startsWith('/uploads/')) {
+       const fileNameOnly = path.basename(resource.file_url);
+       const safeFilePath = path.join(UPLOADS_DIR, fileNameOnly);
+       if (fs.existsSync(safeFilePath) && safeFilePath.startsWith(UPLOADS_DIR)) {
+          try { fs.unlinkSync(safeFilePath); } catch (e) {}
        }
     }
 

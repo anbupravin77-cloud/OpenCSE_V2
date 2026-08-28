@@ -2,16 +2,104 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans: 'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif;
   --font-serif: 'Outfit', 'Georgia', serif;
 }
 
-body {
+:root {
+  color-scheme: dark;
+}
+
+html.dark body {
   background-color: #09090b;
   color: #fafafa;
+}
+
+html.light body {
+  background-color: #fafafa;
+  color: #09090b;
+}
+
+body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   Apple Liquid Glass & Frosted Glass Styling
+   ========================================================================== */
+
+/* Dark Mode Liquid Glass Card */
+.dark .liquid-glass-card {
+  background: rgba(18, 18, 22, 0.52);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.25),
+    0 12px 32px -8px rgba(0, 0, 0, 0.5);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dark .liquid-glass-card:hover {
+  background: rgba(26, 26, 32, 0.7);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.3),
+    0 20px 44px -10px rgba(0, 0, 0, 0.7);
+  transform: translateY(-2px);
+}
+
+/* Light Mode Liquid Glass Card */
+.light .liquid-glass-card {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(228, 228, 231, 0.95);
+  box-shadow: 
+    inset 0 1px 1.5px 0 rgba(255, 255, 255, 1),
+    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.02),
+    0 10px 30px -4px rgba(0, 0, 0, 0.04),
+    0 4px 12px -2px rgba(0, 0, 0, 0.02);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.light .liquid-glass-card:hover {
+  background: rgba(255, 255, 255, 0.94);
+  border-color: rgba(161, 161, 170, 0.8);
+  box-shadow: 
+    inset 0 1px 2px 0 rgba(255, 255, 255, 1),
+    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.03),
+    0 16px 36px -6px rgba(0, 0, 0, 0.08),
+    0 6px 16px -2px rgba(0, 0, 0, 0.04);
+  transform: translateY(-2px);
+}
+
+/* Static Glass Panel (Non-hovering container) */
+.dark .liquid-glass-panel {
+  background: rgba(18, 18, 22, 0.45);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.1),
+    0 16px 36px -10px rgba(0, 0, 0, 0.5);
+}
+
+.light .liquid-glass-panel {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(228, 228, 231, 0.95);
+  box-shadow: 
+    inset 0 1px 1.5px 0 rgba(255, 255, 255, 1),
+    0 12px 32px -4px rgba(0, 0, 0, 0.04);
 }
 
 /* Minimalist Scrollbar */
@@ -22,12 +110,19 @@ body {
 ::-webkit-scrollbar-track {
   background: transparent;
 }
-::-webkit-scrollbar-thumb {
+.dark ::-webkit-scrollbar-thumb {
   background: #27272a;
   border-radius: 4px;
 }
-::-webkit-scrollbar-thumb:hover {
+.dark ::-webkit-scrollbar-thumb:hover {
   background: #3f3f46;
+}
+.light ::-webkit-scrollbar-thumb {
+  background: #e4e4e7;
+  border-radius: 4px;
+}
+.light ::-webkit-scrollbar-thumb:hover {
+  background: #d4d4d8;
 }
 
 .hide-scrollbar::-webkit-scrollbar {
@@ -42,10 +137,18 @@ body {
 .ProseMirror {
   outline: none;
 }
-.ProseMirror p.is-editor-empty:first-child::before {
-  color: #adb5bd;
+.dark .ProseMirror p.is-editor-empty:first-child::before {
+  color: #71717a;
   content: attr(data-placeholder);
   float: left;
   height: 0;
   pointer-events: none;
 }
+.light .ProseMirror p.is-editor-empty:first-child::before {
+  color: #a1a1aa;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+

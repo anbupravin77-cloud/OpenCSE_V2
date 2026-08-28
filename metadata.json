@@ -1,6 +1,6 @@
 {
-  "name": "Remix Open Access CSE",
-  "description": "A minimalist, distraction-free eLearning platform for Computer Science students.",
+  "name": "OpenCSE",
+  "description": "Knowledge Without Barriers. Academic resources, curriculum guides, and course materials for Computer Science students.",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
