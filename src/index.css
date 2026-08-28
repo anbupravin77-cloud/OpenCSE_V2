@@ -207,57 +207,7 @@ body {
     0 8px 24px -4px rgba(0, 0, 0, 0.03);
 }
 
-/* Academic Hero Ambience (Pure CSS compositor animations - single transform ownership) */
-@keyframes ambient-glow-drift-primary {
-  0% {
-    transform: translate3d(-50%, -50%, 0) scale(1);
-    opacity: 0.7;
-  }
-  50% {
-    transform: translate3d(calc(-50% + 14px), calc(-50% - 10px), 0) scale(1.06);
-    opacity: 0.95;
-  }
-  100% {
-    transform: translate3d(-50%, -50%, 0) scale(1);
-    opacity: 0.7;
-  }
-}
-
-@keyframes ambient-glow-drift-secondary {
-  0% {
-    transform: translate3d(-50%, -50%, 0) scale(1);
-    opacity: 0.5;
-  }
-  50% {
-    transform: translate3d(calc(-50% - 12px), calc(-50% + 8px), 0) scale(0.95);
-    opacity: 0.75;
-  }
-  100% {
-    transform: translate3d(-50%, -50%, 0) scale(1);
-    opacity: 0.5;
-  }
-}
-
-@keyframes ambient-spark-pulse {
-  0%, 100% {
-    opacity: 0.35;
-    transform: scale(0.92);
-  }
-  50% {
-    opacity: 0.9;
-    transform: scale(1.08);
-  }
-}
-
-@keyframes ambient-marker-drift {
-  0%, 100% {
-    opacity: 0.45;
-  }
-  50% {
-    opacity: 0.75;
-  }
-}
-
+/* Academic Hero Ambience (Pure static CSS gradients and grid - zero continuous animation cost) */
 .academic-grid-pattern {
   background-size: 28px 28px;
   mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 25%, transparent 80%);
@@ -272,24 +222,12 @@ body {
   background-image: radial-gradient(rgba(0, 0, 0, 0.055) 1px, transparent 1px);
 }
 
-.ambient-drift-primary {
-  animation: ambient-glow-drift-primary 24s ease-in-out infinite;
-  will-change: transform, opacity;
+.academic-hero-glow {
+  background: radial-gradient(ellipse 65% 55% at 50% 35%, rgba(0, 0, 0, 0.035) 0%, rgba(0, 0, 0, 0.01) 45%, transparent 75%);
 }
 
-.ambient-drift-secondary {
-  animation: ambient-glow-drift-secondary 30s ease-in-out infinite;
-  will-change: transform, opacity;
-}
-
-.ambient-spark {
-  animation: ambient-spark-pulse 4s ease-in-out infinite;
-  will-change: opacity, transform;
-}
-
-.ambient-marker {
-  animation: ambient-marker-drift 8s ease-in-out infinite;
-  will-change: opacity;
+.dark .academic-hero-glow {
+  background: radial-gradient(ellipse 65% 55% at 50% 35%, rgba(148, 163, 184, 0.10) 0%, rgba(100, 116, 139, 0.03) 45%, transparent 75%);
 }
 
 /* Skeleton Loading Shimmer without Layout Shift */

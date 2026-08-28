@@ -118,54 +118,43 @@ function HeroAmbience() {
       aria-hidden="true" 
       className="absolute -top-12 sm:-top-16 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[420px] sm:h-[460px] pointer-events-none select-none overflow-hidden -z-10"
     >
-      {/* LAYER 1: Base Atmosphere (Composited CSS slow-drift radial glows with single transform ownership) */}
-      <div 
-        className="absolute top-[35%] left-1/2 w-[520px] sm:w-[720px] h-[300px] sm:h-[380px] rounded-full ambient-drift-primary blur-3xl pointer-events-none opacity-60 dark:opacity-45"
-        style={{
-          background: 'radial-gradient(ellipse 65% 55% at center, rgba(148, 163, 184, 0.22) 0%, rgba(100, 116, 139, 0.06) 45%, transparent 75%)'
-        }}
-      />
-      <div 
-        className="hidden sm:block absolute top-[28%] left-[58%] w-[420px] sm:w-[560px] h-[240px] sm:h-[300px] rounded-full ambient-drift-secondary blur-3xl pointer-events-none opacity-40 dark:opacity-30"
-        style={{
-          background: 'radial-gradient(circle 260px at center, rgba(120, 113, 108, 0.16) 0%, rgba(82, 82, 91, 0.04) 50%, transparent 70%)'
-        }}
-      />
+      {/* LAYER 1: Base Atmosphere (Pure static CSS radial glow - zero blur filter overhead) */}
+      <div className="absolute inset-0 academic-hero-glow" />
 
-      {/* LAYER 2: Technical Grid Matrix (Refined, low-contrast, masked to hero area) */}
+      {/* LAYER 2: Technical Grid Matrix (Low-contrast, masked to hero area) */}
       <div className="absolute inset-0 academic-grid-pattern opacity-50 dark:opacity-45 sm:opacity-75 sm:dark:opacity-60" />
 
-      {/* LAYER 3: Depth Markers (6 carefully balanced academic-technical markers) */}
+      {/* LAYER 3: Static Technical Depth Markers */}
       {/* Marker 1: Top-Left Crosshair & Coordinate */}
-      <div className="absolute top-8 sm:top-10 left-3 sm:left-6 flex items-center gap-2 ambient-marker">
+      <div className="absolute top-8 sm:top-10 left-3 sm:left-6 flex items-center gap-2">
         <span className="font-mono text-xs text-zinc-400/60 dark:text-zinc-500/70">+</span>
         <span className="hidden sm:inline-block font-mono text-[9px] text-zinc-400/50 dark:text-zinc-600/60 tracking-wider">[42.36° N]</span>
       </div>
 
       {/* Marker 2: Top-Right OBE Curriculum Badge */}
       <div className="absolute top-6 sm:top-8 right-3 sm:right-6 flex items-center gap-2 px-2.5 py-1 rounded-full border border-zinc-200/70 dark:border-zinc-800/80 bg-zinc-50/70 dark:bg-zinc-900/70 text-[10px] font-mono text-zinc-600 dark:text-zinc-400 shadow-sm">
-        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 ambient-spark"></span>
+        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
         <span className="tracking-wider">OBE CURRICULUM</span>
       </div>
 
       {/* Marker 3: Mid-Left Hairline Accent */}
-      <div className="hidden md:flex absolute top-32 left-4 items-center gap-2.5 ambient-marker">
+      <div className="hidden md:flex absolute top-32 left-4 items-center gap-2.5">
         <div className="w-6 h-[1px] bg-zinc-300/60 dark:bg-zinc-700/60" />
         <span className="font-mono text-[9px] text-zinc-400/50 dark:text-zinc-600/60 tracking-widest uppercase">ACAD.V2</span>
       </div>
 
       {/* Marker 4: Top-Right Crosshair Accent */}
-      <div className="hidden lg:block absolute top-14 right-36 font-mono text-xs text-zinc-400/40 dark:text-zinc-600/50 select-none ambient-marker">
+      <div className="hidden lg:block absolute top-14 right-36 font-mono text-xs text-zinc-400/40 dark:text-zinc-600/50 select-none">
         +
       </div>
 
       {/* Marker 5: Bottom-Right Technical Index */}
-      <div className="hidden md:block absolute bottom-10 right-6 text-[9px] font-mono text-zinc-400/50 dark:text-zinc-600/50 tracking-widest uppercase select-none ambient-marker">
+      <div className="hidden md:block absolute bottom-10 right-6 text-[9px] font-mono text-zinc-400/50 dark:text-zinc-600/50 tracking-widest uppercase select-none">
         [CS-ENG // 2026]
       </div>
 
       {/* Marker 6: Bottom-Left Course Outcome Index */}
-      <div className="hidden sm:block absolute bottom-10 left-6 text-[9px] font-mono text-zinc-400/50 dark:text-zinc-600/50 tracking-widest uppercase select-none ambient-marker">
+      <div className="hidden sm:block absolute bottom-10 left-6 text-[9px] font-mono text-zinc-400/50 dark:text-zinc-600/50 tracking-widest uppercase select-none">
         [01-04] ACCREDITED OUTCOMES
       </div>
     </div>
