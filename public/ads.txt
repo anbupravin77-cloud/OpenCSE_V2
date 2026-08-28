@@ -1,10 +1,1 @@
-// --- ADS.TXT ---
-app.get('/ads.txt', (req, res) => {
-  const adsTxtPath = path.join(process.cwd(), 'public', 'ads.txt');
-
-  if (fs.existsSync(adsTxtPath)) {
-    res.type('text/plain').send(fs.readFileSync(adsTxtPath, 'utf8'));
-  } else {
-    res.status(404).type('text/plain').send('ads.txt not found');
-  }
-});
+google.com, pub-9179183326125387, DIRECT, f08c47fec0942fa0
