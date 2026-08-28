@@ -47,6 +47,116 @@ async function startServer() {
 
   app.use('/uploads', express.static(UPLOADS_DIR));
 
+  // --- LLMS.TXT (Agentic Browsing & AI Agent Discovery) ---
+  app.get('/llms.txt', (req, res) => {
+    const host = req.get('host') || 'opencse.org';
+    const proto = req.headers['x-forwarded-proto'] || req.protocol || 'https';
+    const baseUrl = process.env.APP_URL && !process.env.APP_URL.includes('localhost') 
+      ? process.env.APP_URL.replace(/\/$/, '') 
+      : `${proto}://${host}`;
+
+    const db = getDb();
+    const activeSubjects = (db.subjects || []).filter(s => s.is_active);
+
+    const lines = [
+      '# OpenCSE',
+      '',
+      '> Distraction-free academic resources, curriculum guides, course outcomes, and verified study materials for Computer Science & Engineering students.',
+      '',
+      'OpenCSE is an open, structured academic platform organizing Computer Science curricula into Outcome-Based Education (OBE) course outcomes (CO1-CO5), comprehensive topic study notes, and supplemental slide decks.',
+      '',
+      '## Academic Curricula & Subjects',
+      ''
+    ];
+
+    activeSubjects.forEach(s => {
+      const cleanDesc = (s.description || 'Core Computer Science curriculum course')
+        .replace(/<[^>]*>?/gm, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+      lines.push(`- [${s.name} (${s.code})](${baseUrl}/subject/${encodeURIComponent(s.id)}): ${cleanDesc.slice(0, 140)} (Credits: ${s.credits}, Year: ${s.academic_year})`);
+    });
+
+    lines.push('');
+    lines.push('## Institutional & Editorial Pages');
+    lines.push('');
+    lines.push(`- [About OpenCSE](${baseUrl}/about): Educational mission, curriculum standards, and editorial review processes.`);
+    lines.push(`- [Contact & Errata](${baseUrl}/contact): Direct academic inquiry channel, error reporting, and curriculum suggestions.`);
+    lines.push(`- [Privacy Policy](${baseUrl}/privacy): Zero student telemetry data collection and Google AdSense compliance disclosures.`);
+    lines.push(`- [Terms of Service](${baseUrl}/terms): Non-commercial academic usage terms and intellectual property rights.`);
+    lines.push(`- [Content & Copyright Policy](${baseUrl}/content-policy): Human-in-the-loop review disclosures, DMCA copyright takedown procedure, and academic errata guidelines.`);
+    lines.push('');
+    lines.push('## Machine-Readable Data Feeds');
+    lines.push('');
+    lines.push(`- [Full Curriculum Text (llms-full.txt)](${baseUrl}/llms-full.txt): Complete syllabus text and topic breakdowns for AI agents.`);
+    lines.push(`- [Sitemap XML](${baseUrl}/sitemap.xml): XML sitemap of all indexed courses and pages.`);
+    lines.push(`- [Curriculum API JSON](${baseUrl}/api/full-subjects): Real-time JSON dataset of active courses, COs, and study materials.`);
+    lines.push(`- [Platform Configuration](${baseUrl}/api/config): Public platform settings and contact routing.`);
+
+    res.type('text/plain; charset=utf-8').send(lines.join('\n'));
+  });
+
+  // --- LLMS-FULL.TXT ---
+  app.get('/llms-full.txt', (req, res) => {
+    const host = req.get('host') || 'opencse.org';
+    const proto = req.headers['x-forwarded-proto'] || req.protocol || 'https';
+    const baseUrl = process.env.APP_URL && !process.env.APP_URL.includes('localhost') 
+      ? process.env.APP_URL.replace(/\/$/, '') 
+      : `${proto}://${host}`;
+
+    const db = getDb();
+    const activeSubjects = (db.subjects || []).filter(s => s.is_active);
+
+    const lines = [
+      '# OpenCSE — Complete Academic Curriculum Repository',
+      '',
+      `URL: ${baseUrl}`,
+      'Platform: OpenCSE (Knowledge Without Barriers)',
+      'Audience: Computer Science & Engineering Students and Faculty',
+      'Format: Outcome-Based Education (OBE) Curriculum Mapping',
+      ''
+    ];
+
+    activeSubjects.forEach(subject => {
+      lines.push(`================================================================================`);
+      lines.push(`## ${subject.name} [${subject.code}]`);
+      lines.push(`Year: ${subject.academic_year} Year | Credits: ${subject.credits} | Department: ${subject.department || 'Computer Science'}`);
+      lines.push(`URL: ${baseUrl}/subject/${encodeURIComponent(subject.id)}`);
+      if (subject.description) {
+        const cleanDesc = subject.description.replace(/<[^>]*>?/gm, ' ').replace(/\s+/g, ' ').trim();
+        lines.push(`Overview: ${cleanDesc}`);
+      }
+      lines.push('');
+
+      const cos = db.cos.filter(co => co.subject_id === subject.id).sort((a, b) => a.display_order - b.display_order);
+      cos.forEach(co => {
+        lines.push(`### Course Outcome: ${co.code} — ${co.name}`);
+        if (co.description) lines.push(`Description: ${co.description}`);
+        lines.push('');
+
+        const topics = db.topics.filter(t => t.co_id === co.id).sort((a, b) => a.display_order - b.display_order);
+        topics.forEach(topic => {
+          lines.push(`#### Topic: ${topic.title}`);
+          if (topic.description) lines.push(`Summary: ${topic.description}`);
+          if (topic.content) {
+            const cleanContent = topic.content.replace(/<[^>]*>?/gm, ' ').replace(/\s+/g, ' ').trim();
+            lines.push(`Notes: ${cleanContent.slice(0, 500)}...`);
+          }
+          const resources = db.resources.filter(r => r.topic_id === topic.id);
+          if (resources.length > 0) {
+            lines.push(`Resources:`);
+            resources.forEach(r => {
+              lines.push(`  - [${r.file_type}] ${r.title}: ${baseUrl}${r.file_url}`);
+            });
+          }
+          lines.push('');
+        });
+      });
+    });
+
+    res.type('text/plain; charset=utf-8').send(lines.join('\n'));
+  });
+
   // --- ROBOTS.TXT ---
   app.get('/robots.txt', (req, res) => {
     const host = req.get('host') || 'opencse.org';

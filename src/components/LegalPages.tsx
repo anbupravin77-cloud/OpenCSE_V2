@@ -38,9 +38,10 @@ export function AboutPage() {
           </p>
         </section>
 
-        <section className="grid sm:grid-cols-2 gap-6 pt-4">
+        <section aria-labelledby="platform-scope" className="grid sm:grid-cols-2 gap-6 pt-4">
+          <h2 id="platform-scope" className="sr-only">Platform Scope and Audience</h2>
           <div className="p-6 sm:p-8 liquid-glass-panel rounded-2xl">
-            <div className="w-10 h-10 bg-zinc-200 dark:bg-zinc-800 rounded-xl flex items-center justify-center text-zinc-950 dark:text-white mb-4 shadow-sm">
+            <div className="w-10 h-10 bg-zinc-200 dark:bg-zinc-800 rounded-xl flex items-center justify-center text-zinc-950 dark:text-white mb-4 shadow-sm shrink-0">
               <BookOpen size={20} />
             </div>
             <h3 className="text-xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white mb-2">Who It Is For</h3>
@@ -50,7 +51,7 @@ export function AboutPage() {
           </div>
 
           <div className="p-6 sm:p-8 liquid-glass-panel rounded-2xl">
-            <div className="w-10 h-10 bg-zinc-200 dark:bg-zinc-800 rounded-xl flex items-center justify-center text-zinc-950 dark:text-white mb-4 shadow-sm">
+            <div className="w-10 h-10 bg-zinc-200 dark:bg-zinc-800 rounded-xl flex items-center justify-center text-zinc-950 dark:text-white mb-4 shadow-sm shrink-0">
               <Sparkles size={20} />
             </div>
             <h3 className="text-xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white mb-2">What You Will Find</h3>
@@ -85,7 +86,7 @@ export function AboutPage() {
         </section>
 
         <section className="p-8 liquid-glass-panel rounded-2xl">
-          <h3 className="text-xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white mb-3">Commitment to Free Academic Access</h3>
+          <h2 className="text-xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white mb-3">Commitment to Free Academic Access</h2>
           <p className="text-zinc-600 dark:text-zinc-400 font-light text-sm sm:text-base leading-relaxed">
             We believe that university-level technical knowledge should be universally accessible. OpenCSE requires no paywalls, accounts, or mandatory sign-ups for students to access study notes and topic materials.
           </p>
@@ -158,31 +159,31 @@ export function ContactPage() {
       <div className="grid md:grid-cols-12 gap-8 items-start">
         <div className="md:col-span-5 space-y-6">
           <div className="p-6 liquid-glass-panel rounded-2xl space-y-4">
-            <h3 className="text-lg font-serif font-bold tracking-tight text-zinc-950 dark:text-white">How We Can Help</h3>
+            <h2 className="text-lg font-serif font-bold tracking-tight text-zinc-950 dark:text-white">How We Can Help</h2>
             <ul className="space-y-3 text-sm text-zinc-600 dark:text-zinc-400 font-light">
               <li className="flex items-start gap-2">
-                <span className="text-zinc-400 dark:text-zinc-600 font-mono">•</span>
-                <span><strong className="text-zinc-900 dark:text-zinc-200">Content Corrections:</strong> Report errors in topic descriptions, code snippets, or notes.</span>
+                <span className="text-zinc-400 dark:text-zinc-500 font-mono">•</span>
+                <span><strong className="text-zinc-950 dark:text-zinc-100 font-medium">Content Corrections:</strong> Report errors in topic descriptions, code snippets, or notes.</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-zinc-400 dark:text-zinc-600 font-mono">•</span>
-                <span><strong className="text-zinc-900 dark:text-zinc-200">Broken Resources:</strong> Notify us of missing slides or corrupted PDF links.</span>
+                <span className="text-zinc-400 dark:text-zinc-500 font-mono">•</span>
+                <span><strong className="text-zinc-950 dark:text-zinc-100 font-medium">Broken Resources:</strong> Notify us of missing slides or corrupted PDF links.</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-zinc-400 dark:text-zinc-600 font-mono">•</span>
-                <span><strong className="text-zinc-900 dark:text-zinc-200">Curriculum Suggestions:</strong> Propose additional subjects, electives, or topics.</span>
+                <span className="text-zinc-400 dark:text-zinc-500 font-mono">•</span>
+                <span><strong className="text-zinc-950 dark:text-zinc-100 font-medium">Curriculum Suggestions:</strong> Propose additional subjects, electives, or topics.</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-zinc-400 dark:text-zinc-600 font-mono">•</span>
-                <span><strong className="text-zinc-900 dark:text-zinc-200">Copyright Inquiries:</strong> Takedown or intellectual property verification requests.</span>
+                <span className="text-zinc-400 dark:text-zinc-500 font-mono">•</span>
+                <span><strong className="text-zinc-950 dark:text-zinc-100 font-medium">Copyright Inquiries:</strong> Takedown or intellectual property verification requests.</span>
               </li>
             </ul>
           </div>
 
           <div className="p-6 liquid-glass-panel rounded-2xl">
             <div className="flex items-center gap-3 text-zinc-600 dark:text-zinc-400 mb-2">
-              <Mail size={18} className="text-zinc-950 dark:text-white" />
-              <span className="text-xs font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">Direct Email</span>
+              <Mail size={18} className="text-zinc-950 dark:text-white shrink-0" />
+              <span className="text-xs font-bold uppercase tracking-widest text-zinc-600 dark:text-zinc-400">Direct Email</span>
             </div>
             {contactEmail ? (
               <a 
@@ -192,7 +193,7 @@ export function ContactPage() {
                 {contactEmail}
               </a>
             ) : (
-              <div className="text-xs text-zinc-500 font-light leading-relaxed">
+              <div className="text-xs text-zinc-600 dark:text-zinc-400 font-light leading-relaxed">
                 Contact inquiries can be submitted directly via the inquiry form.
               </div>
             )}
@@ -205,13 +206,13 @@ export function ContactPage() {
               <div className="w-12 h-12 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-full flex items-center justify-center mx-auto mb-4">
                 <CheckCircle2 size={24} />
               </div>
-              <h3 className="text-2xl font-serif font-bold text-zinc-950 dark:text-white">Thank You</h3>
+              <h2 className="text-2xl font-serif font-bold text-zinc-950 dark:text-white">Thank You</h2>
               <p className="text-zinc-600 dark:text-zinc-400 text-sm max-w-md mx-auto leading-relaxed">
                 Your message has been processed. If you submitted via email client, our academic team will review your submission shortly.
               </p>
               <button 
                 onClick={() => { setFormSubmitted(false); setMessage(''); }}
-                className="mt-6 text-sm font-bold text-zinc-950 dark:text-white bg-zinc-200 dark:bg-zinc-800 px-6 py-2.5 rounded-xl hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors"
+                className="mt-6 text-sm font-bold text-zinc-950 dark:text-white bg-zinc-200 dark:bg-zinc-800 px-6 py-2.5 rounded-xl hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors cursor-pointer"
               >
                 Send Another Message
               </button>
@@ -219,8 +220,9 @@ export function ContactPage() {
           ) : (
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label className="block text-xs font-bold uppercase tracking-widest text-zinc-600 dark:text-zinc-400 mb-2">Inquiry Category</label>
+                <label htmlFor="inquiry-category" className="block text-xs font-bold uppercase tracking-widest text-zinc-700 dark:text-zinc-300 mb-2">Inquiry Category</label>
                 <select 
+                  id="inquiry-category"
                   value={category} 
                   onChange={e => setCategory(e.target.value)}
                   className="w-full bg-white dark:bg-zinc-950 border border-zinc-300 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-950 dark:text-white focus:outline-none focus:border-zinc-900 dark:focus:border-zinc-500 transition-colors"
@@ -236,8 +238,9 @@ export function ContactPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-widest text-zinc-600 dark:text-zinc-400 mb-2">Your Name</label>
+                  <label htmlFor="contact-name" className="block text-xs font-bold uppercase tracking-widest text-zinc-700 dark:text-zinc-300 mb-2">Your Name</label>
                   <input 
+                    id="contact-name"
                     type="text" 
                     value={name} 
                     onChange={e => setName(e.target.value)}
@@ -246,8 +249,9 @@ export function ContactPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-widest text-zinc-600 dark:text-zinc-400 mb-2">Your Email</label>
+                  <label htmlFor="contact-email" className="block text-xs font-bold uppercase tracking-widest text-zinc-700 dark:text-zinc-300 mb-2">Your Email</label>
                   <input 
+                    id="contact-email"
                     type="email" 
                     value={userEmail} 
                     onChange={e => setUserEmail(e.target.value)}
@@ -258,8 +262,9 @@ export function ContactPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-widest text-zinc-600 dark:text-zinc-400 mb-2">Message</label>
+                <label htmlFor="contact-message" className="block text-xs font-bold uppercase tracking-widest text-zinc-700 dark:text-zinc-300 mb-2">Message</label>
                 <textarea 
+                  id="contact-message"
                   rows={5} 
                   required
                   value={message} 
@@ -271,7 +276,7 @@ export function ContactPage() {
 
               <button 
                 type="submit" 
-                className="w-full bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 py-3.5 px-6 rounded-xl font-bold text-sm hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2 shadow-sm"
+                className="w-full bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 py-3.5 px-6 rounded-xl font-bold text-sm hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2 shadow-sm cursor-pointer"
               >
                 <Send size={16} /> Submit Message
               </button>
