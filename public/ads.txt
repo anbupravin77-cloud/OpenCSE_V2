@@ -1,1 +1,2 @@
+# ads.txt - OpenCSE
 google.com, pub-9179183326125387, DIRECT, f08c47fec0942fa0
