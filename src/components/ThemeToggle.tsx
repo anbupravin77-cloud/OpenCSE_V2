@@ -11,7 +11,7 @@ export function ThemeToggle({ className = '' }: { className?: string }) {
       onClick={toggleTheme}
       aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
       title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-      className={`relative p-2.5 rounded-xl transition-all flex items-center justify-center 
+      className={`relative min-w-[44px] min-h-[44px] p-2.5 rounded-xl transition-all flex items-center justify-center cursor-pointer 
         ${theme === 'dark' 
           ? 'bg-zinc-900/80 text-zinc-300 hover:text-white hover:bg-zinc-800 border border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]' 
           : 'bg-zinc-100/90 text-zinc-700 hover:text-zinc-950 hover:bg-zinc-200/80 border border-zinc-200/80 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)]'

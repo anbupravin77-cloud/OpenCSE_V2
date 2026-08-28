@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useParams } from 'react-router-dom';
 import { ArrowRight, ArrowLeft, Settings, Edit2, Plus, Trash2, FileText, Download } from 'lucide-react';
-import { motion } from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
 import { FullSubject, Subject, CO, Topic, Resource } from './types';
 import { SEO } from './components/SEO';
 import { ThemeProvider } from './context/ThemeContext';
@@ -112,6 +112,66 @@ function StudentLayout({ children }: { children: React.ReactNode }) {
   );
 }
 
+function HeroAmbience() {
+  return (
+    <div 
+      aria-hidden="true" 
+      className="absolute -top-12 sm:-top-16 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[420px] sm:h-[460px] pointer-events-none select-none overflow-hidden -z-10"
+    >
+      {/* LAYER 1: Base Atmosphere (Composited CSS slow-drift radial glows with single transform ownership) */}
+      <div 
+        className="absolute top-[35%] left-1/2 w-[520px] sm:w-[720px] h-[300px] sm:h-[380px] rounded-full ambient-drift-primary blur-3xl pointer-events-none opacity-60 dark:opacity-45"
+        style={{
+          background: 'radial-gradient(ellipse 65% 55% at center, rgba(148, 163, 184, 0.22) 0%, rgba(100, 116, 139, 0.06) 45%, transparent 75%)'
+        }}
+      />
+      <div 
+        className="hidden sm:block absolute top-[28%] left-[58%] w-[420px] sm:w-[560px] h-[240px] sm:h-[300px] rounded-full ambient-drift-secondary blur-3xl pointer-events-none opacity-40 dark:opacity-30"
+        style={{
+          background: 'radial-gradient(circle 260px at center, rgba(120, 113, 108, 0.16) 0%, rgba(82, 82, 91, 0.04) 50%, transparent 70%)'
+        }}
+      />
+
+      {/* LAYER 2: Technical Grid Matrix (Refined, low-contrast, masked to hero area) */}
+      <div className="absolute inset-0 academic-grid-pattern opacity-50 dark:opacity-45 sm:opacity-75 sm:dark:opacity-60" />
+
+      {/* LAYER 3: Depth Markers (6 carefully balanced academic-technical markers) */}
+      {/* Marker 1: Top-Left Crosshair & Coordinate */}
+      <div className="absolute top-8 sm:top-10 left-3 sm:left-6 flex items-center gap-2 ambient-marker">
+        <span className="font-mono text-xs text-zinc-400/60 dark:text-zinc-500/70">+</span>
+        <span className="hidden sm:inline-block font-mono text-[9px] text-zinc-400/50 dark:text-zinc-600/60 tracking-wider">[42.36° N]</span>
+      </div>
+
+      {/* Marker 2: Top-Right OBE Curriculum Badge */}
+      <div className="absolute top-6 sm:top-8 right-3 sm:right-6 flex items-center gap-2 px-2.5 py-1 rounded-full border border-zinc-200/70 dark:border-zinc-800/80 bg-zinc-50/70 dark:bg-zinc-900/70 text-[10px] font-mono text-zinc-600 dark:text-zinc-400 shadow-sm">
+        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 ambient-spark"></span>
+        <span className="tracking-wider">OBE CURRICULUM</span>
+      </div>
+
+      {/* Marker 3: Mid-Left Hairline Accent */}
+      <div className="hidden md:flex absolute top-32 left-4 items-center gap-2.5 ambient-marker">
+        <div className="w-6 h-[1px] bg-zinc-300/60 dark:bg-zinc-700/60" />
+        <span className="font-mono text-[9px] text-zinc-400/50 dark:text-zinc-600/60 tracking-widest uppercase">ACAD.V2</span>
+      </div>
+
+      {/* Marker 4: Top-Right Crosshair Accent */}
+      <div className="hidden lg:block absolute top-14 right-36 font-mono text-xs text-zinc-400/40 dark:text-zinc-600/50 select-none ambient-marker">
+        +
+      </div>
+
+      {/* Marker 5: Bottom-Right Technical Index */}
+      <div className="hidden md:block absolute bottom-10 right-6 text-[9px] font-mono text-zinc-400/50 dark:text-zinc-600/50 tracking-widest uppercase select-none ambient-marker">
+        [CS-ENG // 2026]
+      </div>
+
+      {/* Marker 6: Bottom-Left Course Outcome Index */}
+      <div className="hidden sm:block absolute bottom-10 left-6 text-[9px] font-mono text-zinc-400/50 dark:text-zinc-600/50 tracking-widest uppercase select-none ambient-marker">
+        [01-04] ACCREDITED OUTCOMES
+      </div>
+    </div>
+  );
+}
+
 function SubjectCardSkeleton() {
   return (
     <div className="grid gap-6">
@@ -140,6 +200,7 @@ function StudentDashboard() {
   const [selectedSubjectId, setSelectedSubjectId] = useState<string | null>(null);
   const [selectedYear, setSelectedYear] = useState<YearType>('2nd');
   const navigate = useNavigate();
+  const shouldReduceMotion = useReducedMotion();
 
   const years: YearType[] = ['1st', '2nd', '3rd', '4th'];
 
@@ -162,24 +223,39 @@ function StudentDashboard() {
   const currentYearSubjects = subjects.filter(s => s.academic_year === selectedYear);
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="relative max-w-4xl mx-auto">
       <SEO 
         title="OpenCSE — Knowledge Without Barriers | Academic Resources for Computer Science"
         description="Distraction-free academic resources, curriculum guides, course outcomes, and verified study materials for Computer Science & Engineering students."
         canonicalPath="/"
       />
 
-      {/* Static Header and Title (Eliminates CLS shift) */}
-      <header className="mb-12 sm:mb-16">
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white mb-4 sm:mb-6">
+      {/* Decorative layered ambient hero background */}
+      <HeroAmbience />
+
+      {/* Hero Header with subtle entrance animation (CLS protected) */}
+      <motion.header 
+        initial={shouldReduceMotion ? false : { opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ 
+          duration: shouldReduceMotion ? 0 : 0.5, 
+          ease: [0.21, 0.47, 0.32, 0.98] 
+        }}
+        className="mb-12 sm:mb-16"
+      >
+        <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-100/80 dark:bg-zinc-900/80 text-xs font-mono font-medium text-zinc-600 dark:text-zinc-400">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+          <span>Computer Science & Engineering</span>
+        </div>
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white mb-4 sm:mb-6 leading-[1.1]">
           Knowledge Without Barriers.
         </h1>
         <p className="text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl font-light leading-relaxed">
           Everything you need to learn, organized in one place.
         </p>
-      </header>
+      </motion.header>
 
-      {/* Year Navigation with Accessibility */}
+      {/* Year Navigation with Accessibility and 44px+ touch targets */}
       <nav aria-label="Academic Year Filter" className="flex gap-8 sm:gap-12 border-b border-zinc-200 dark:border-zinc-800 mb-12 overflow-x-auto hide-scrollbar">
         {years.map(y => (
           <button 
@@ -187,9 +263,9 @@ function StudentDashboard() {
             onClick={() => setSelectedYear(y)} 
             aria-label={`${y} Year Curriculum`}
             aria-pressed={selectedYear === y}
-            className={`pb-4 text-sm uppercase tracking-widest whitespace-nowrap transition-colors cursor-pointer ${
+            className={`pb-4 pt-2 text-sm uppercase tracking-widest whitespace-nowrap transition-colors cursor-pointer min-h-[44px] flex items-center ${
               selectedYear === y 
-                ? 'border-b-2 border-zinc-950 dark:border-white font-bold text-zinc-950 dark:text-white' 
+                ? 'border-b-2 border-zinc-950 dark:border-white font-bold text-zinc-950 dark:text-white -mb-[1px]' 
                 : 'text-zinc-600 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-200 border-b-2 border-transparent'
             }`}
           >
@@ -211,28 +287,51 @@ function StudentDashboard() {
           <div className="grid gap-6">
             {currentYearSubjects.map((subject, index) => (
               <motion.button
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.25, delay: index * 0.04 }}
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ 
+                  duration: shouldReduceMotion ? 0 : 0.48, 
+                  delay: shouldReduceMotion ? 0 : Math.min(index * 0.045, 0.22), 
+                  ease: [0.21, 0.47, 0.32, 0.98] 
+                }}
                 key={subject.id}
                 onClick={() => {
                   navigate(`/subject/${encodeURIComponent(subject.id)}`);
                 }}
-                className="group flex flex-col sm:flex-row sm:items-center justify-between p-8 liquid-glass-card rounded-2xl text-left cursor-pointer transform-gpu"
+                className="group relative flex flex-col sm:flex-row sm:items-center justify-between p-7 sm:p-8 liquid-glass-card subject-card rounded-2xl text-left cursor-pointer transform-gpu overflow-hidden"
                 aria-label={`View ${subject.name} curriculum and topics`}
               >
-                <div>
-                  <div className="flex items-center gap-4 mb-4">
-                    <span className="text-xs font-bold tracking-widest text-zinc-600 dark:text-zinc-400 uppercase font-mono">{subject.code}</span>
-                    <span className="text-xs px-3 py-1 bg-zinc-200/80 text-zinc-800 dark:bg-zinc-800/80 dark:text-zinc-300 rounded-full font-medium shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)]">
+                {/* Subtle Specular Light Sweep */}
+                <div aria-hidden="true" className="subject-card-sweep" />
+
+                <div className="relative z-10 pr-0 sm:pr-6">
+                  <div className="flex items-center gap-3 mb-3.5">
+                    <span className="text-xs font-bold tracking-widest text-zinc-700 dark:text-zinc-300 uppercase font-mono px-2 py-0.5 rounded bg-zinc-200/70 dark:bg-zinc-800/70 border border-zinc-300/60 dark:border-zinc-700/60">
+                      {subject.code}
+                    </span>
+                    <span className="text-xs px-3 py-0.5 bg-zinc-200/80 text-zinc-800 dark:bg-zinc-800/80 dark:text-zinc-300 rounded-full font-medium shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)] border border-zinc-300/40 dark:border-white/10">
                       {subject.credits} Credits
                     </span>
+                    {subject.department && (
+                      <span className="hidden sm:inline text-xs text-zinc-500 dark:text-zinc-400 font-light truncate max-w-[200px]">
+                        • {subject.department}
+                      </span>
+                    )}
                   </div>
-                  <h2 className="text-2xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
+                  <h2 className="text-2xl sm:text-3xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white group-hover:text-zinc-700 dark:group-hover:text-zinc-200 transition-colors duration-200">
                     {subject.name}
                   </h2>
                 </div>
-                <ArrowRight className="text-zinc-400 dark:text-zinc-600 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors mt-6 sm:mt-0 transform group-hover:translate-x-2 shrink-0" size={24} />
+                
+                <div className="relative z-10 flex items-center gap-3 mt-6 sm:mt-0 shrink-0">
+                  <span className="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors duration-200 hidden sm:inline">
+                    Explore
+                  </span>
+                  <div className="w-10 h-10 rounded-xl bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center text-zinc-400 dark:text-zinc-500 group-hover:text-zinc-950 dark:group-hover:text-white group-hover:bg-zinc-200 dark:group-hover:bg-zinc-800 transition-all duration-200 shadow-sm">
+                    <ArrowRight className="transform group-hover:translate-x-1 transition-transform duration-200" size={18} />
+                  </div>
+                </div>
               </motion.button>
             ))}
           </div>
@@ -293,6 +392,7 @@ function StudentSubjectRoute() {
 
 function StudentSubjectView({ subject, onBack }: { subject: FullSubject, onBack: () => void }) {
   const [activeTopicId, setActiveTopicId] = useState<string | null>(null);
+  const shouldReduceMotion = useReducedMotion();
 
   if (activeTopicId) {
     const topic = subject.cos.flatMap(co => co.topics).find(t => t.id === activeTopicId);
@@ -313,64 +413,114 @@ function StudentSubjectView({ subject, onBack }: { subject: FullSubject, onBack:
         type="article"
       />
 
-      <button onClick={onBack} className="flex items-center gap-3 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white mb-12 font-medium transition-colors group cursor-pointer" aria-label="Back to curriculum list">
-        <ArrowLeft size={18} className="transform group-hover:-translate-x-2 transition-transform" /> Back to Curriculum
+      <button 
+        onClick={onBack} 
+        className="flex items-center gap-3 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white mb-12 font-medium transition-colors group cursor-pointer" 
+        aria-label="Back to curriculum list"
+      >
+        <ArrowLeft size={18} className="transform group-hover:-translate-x-1.5 transition-transform duration-200" /> 
+        <span>Back to Curriculum</span>
       </button>
 
-      <div className="mb-16">
-        <div className="flex items-center gap-4 mb-6">
-          <span className="text-sm font-bold tracking-widest text-zinc-600 dark:text-zinc-400 uppercase font-mono">{subject.code}</span>
-          <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 dark:bg-zinc-700"></span>
-          <span className="text-sm text-zinc-600 dark:text-zinc-400">{subject.department || 'Computer Science & Engineering'}</span>
+      <header className="mb-16">
+        <div className="flex items-center gap-3 mb-4">
+          <span className="text-xs font-bold tracking-widest text-zinc-700 dark:text-zinc-300 uppercase font-mono px-2.5 py-1 rounded bg-zinc-200/70 dark:bg-zinc-800/70 border border-zinc-300/60 dark:border-zinc-700/60">
+            {subject.code}
+          </span>
+          <span className="text-xs px-3 py-1 bg-zinc-200/80 text-zinc-800 dark:bg-zinc-800/80 dark:text-zinc-300 rounded-full font-medium shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)] border border-zinc-300/40 dark:border-white/10">
+            {subject.credits} Credits
+          </span>
+          <span className="text-xs text-zinc-500 dark:text-zinc-400 font-light truncate">
+            • {subject.department || 'Computer Science & Engineering'}
+          </span>
         </div>
-        <h1 className="text-5xl sm:text-6xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white mb-8 leading-tight">{subject.name}</h1>
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white mb-6 leading-tight">
+          {subject.name}
+        </h1>
         {subject.description && (
-          <div className="prose dark:prose-invert max-w-none text-zinc-700 dark:text-zinc-300 font-light text-lg leading-relaxed" dangerouslySetInnerHTML={{ __html: subject.description }} />
+          <div className="prose dark:prose-invert max-w-none text-zinc-700 dark:text-zinc-300 font-light text-base sm:text-lg leading-relaxed" dangerouslySetInnerHTML={{ __html: subject.description }} />
         )}
-      </div>
+      </header>
 
       <div className="space-y-12 sm:space-y-16">
-        {subject.cos.map((co) => (
-          <section key={co.id} aria-labelledby={`co-${co.id}`} className="border-t border-zinc-200 dark:border-zinc-800 pt-12">
+        {subject.cos.map((co, coIndex) => (
+          <motion.section 
+            key={co.id} 
+            aria-labelledby={`co-${co.id}`} 
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{
+              duration: shouldReduceMotion ? 0 : 0.48,
+              delay: shouldReduceMotion ? 0 : Math.min(coIndex * 0.04, 0.18),
+              ease: [0.21, 0.47, 0.32, 0.98],
+            }}
+            className="border-t border-zinc-200 dark:border-zinc-800 pt-12"
+          >
             <div className="mb-8">
-              <span className="text-xs font-bold tracking-widest text-zinc-600 dark:text-zinc-400 uppercase mb-3 block font-mono">{co.code}</span>
-              <h2 id={`co-${co.id}`} className="text-3xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white">{co.name}</h2>
-              {co.description && <p className="text-zinc-600 dark:text-zinc-400 mt-3 text-base font-light leading-relaxed">{co.description}</p>}
+              <div className="inline-block text-xs font-bold tracking-widest text-zinc-700 dark:text-zinc-300 uppercase font-mono px-2 py-0.5 rounded bg-zinc-200/60 dark:bg-zinc-800/60 border border-zinc-300/40 dark:border-zinc-700/40 mb-3">
+                {co.code}
+              </div>
+              <h2 id={`co-${co.id}`} className="text-2xl sm:text-3xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white">
+                {co.name}
+              </h2>
+              {co.description && (
+                <p className="text-zinc-600 dark:text-zinc-400 mt-3 text-base font-light leading-relaxed">
+                  {co.description}
+                </p>
+              )}
             </div>
 
             <div className="grid gap-4">
-              {co.topics.map((topic, index) => (
+              {co.topics.map((topic, topicIndex) => (
                 <motion.button
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.25, delay: index * 0.04 }}
+                  initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{ 
+                    duration: shouldReduceMotion ? 0 : 0.46, 
+                    delay: shouldReduceMotion ? 0 : Math.min(topicIndex * 0.035, 0.20), 
+                    ease: [0.21, 0.47, 0.32, 0.98] 
+                  }}
                   key={topic.id}
                   onClick={() => setActiveTopicId(topic.id)}
-                  className="group flex flex-col sm:flex-row sm:items-center justify-between p-6 sm:p-8 liquid-glass-card rounded-2xl text-left cursor-pointer transform-gpu"
+                  className="group relative flex flex-col sm:flex-row sm:items-center justify-between p-6 sm:p-7 liquid-glass-card topic-card rounded-2xl text-left cursor-pointer transform-gpu overflow-hidden"
                   aria-label={`Open topic ${topic.title}`}
                 >
-                  <div>
-                    <h3 className="text-xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">{topic.title}</h3>
-                    {topic.description && <p className="text-base text-zinc-600 dark:text-zinc-400 mt-2 line-clamp-1 font-light">{topic.description}</p>}
+                  <div className="pr-0 sm:pr-6">
+                    <h3 className="text-lg sm:text-xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white group-hover:text-zinc-700 dark:group-hover:text-zinc-200 transition-colors duration-200">
+                      {topic.title}
+                    </h3>
+                    {topic.description && (
+                      <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 mt-2 line-clamp-2 font-light leading-relaxed">
+                        {topic.description}
+                      </p>
+                    )}
                   </div>
-                  <div className="flex items-center gap-6 mt-4 sm:mt-0 shrink-0">
+                  <div className="flex items-center gap-4 mt-5 sm:mt-0 shrink-0">
                     {topic.resources && topic.resources.length > 0 && (
-                      <span className="text-xs px-3 py-1 bg-zinc-200/80 dark:bg-zinc-800/80 text-zinc-800 dark:text-zinc-300 rounded-full font-medium flex items-center gap-2">
-                        <FileText size={14} /> {topic.resources.length}
+                      <span className="text-xs px-3 py-1 bg-zinc-200/80 dark:bg-zinc-800/80 text-zinc-800 dark:text-zinc-300 rounded-full font-medium flex items-center gap-1.5 border border-zinc-300/40 dark:border-white/10">
+                        <FileText size={13} /> {topic.resources.length} {topic.resources.length === 1 ? 'Resource' : 'Resources'}
                       </span>
                     )}
-                    <ArrowRight className="text-zinc-400 dark:text-zinc-600 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors transform group-hover:translate-x-2" size={20} />
+                    <div className="w-9 h-9 rounded-xl bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center text-zinc-400 dark:text-zinc-500 group-hover:text-zinc-950 dark:group-hover:text-white group-hover:bg-zinc-200 dark:group-hover:bg-zinc-800 transition-all duration-200 shadow-sm">
+                      <ArrowRight className="transform group-hover:translate-x-1 transition-transform duration-200" size={16} />
+                    </div>
                   </div>
                 </motion.button>
               ))}
               {co.topics.length === 0 && (
-                <div className="p-6 text-sm text-zinc-500 italic">No topics available yet.</div>
+                <div className="p-6 text-sm text-zinc-500 italic border border-dashed border-zinc-200 dark:border-zinc-800 rounded-2xl">
+                  No topics available for this outcome yet.
+                </div>
               )}
             </div>
-          </section>
+          </motion.section>
         ))}
         {subject.cos.length === 0 && (
-          <div className="py-16 text-center text-zinc-500 font-serif italic border-t border-zinc-200 dark:border-zinc-800">Course outcomes and topics are being prepared.</div>
+          <div className="py-16 text-center text-zinc-500 font-serif italic border-t border-zinc-200 dark:border-zinc-800">
+            Course outcomes and topics are being prepared.
+          </div>
         )}
       </div>
     </div>
@@ -378,6 +528,7 @@ function StudentSubjectView({ subject, onBack }: { subject: FullSubject, onBack:
 }
 
 function StudentTopicView({ topic, subjectCode, onBack }: { topic: any, subjectCode: string, onBack: () => void }) {
+  const shouldReduceMotion = useReducedMotion();
   const topicDesc = topic.description || `Study notes and resources for ${topic.title} (${subjectCode}) on OpenCSE.`;
 
   return (
@@ -389,53 +540,89 @@ function StudentTopicView({ topic, subjectCode, onBack }: { topic: any, subjectC
         type="article"
       />
 
-      <button onClick={onBack} className="flex items-center gap-3 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white mb-12 font-medium transition-colors group cursor-pointer" aria-label="Back to Subject">
-        <ArrowLeft size={18} className="transform group-hover:-translate-x-2 transition-transform" /> Back to Subject
+      <button 
+        onClick={onBack} 
+        className="flex items-center gap-3 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white mb-12 font-medium transition-colors group cursor-pointer" 
+        aria-label="Back to Subject"
+      >
+        <ArrowLeft size={18} className="transform group-hover:-translate-x-1.5 transition-transform duration-200" /> 
+        <span>Back to Subject</span>
       </button>
 
-      <header className="mb-16">
-        <span className="text-xs font-bold tracking-widest text-zinc-600 dark:text-zinc-400 uppercase mb-4 block font-mono">{subjectCode}</span>
-        <h1 className="text-4xl sm:text-5xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white mb-6 leading-tight">{topic.title}</h1>
+      <header className="mb-14">
+        <span className="text-xs font-bold tracking-widest text-zinc-700 dark:text-zinc-300 uppercase mb-3 block font-mono px-2.5 py-0.5 rounded bg-zinc-200/70 dark:bg-zinc-800/70 border border-zinc-300/60 dark:border-zinc-700/60 w-fit">
+          {subjectCode}
+        </span>
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white mb-5 leading-tight">
+          {topic.title}
+        </h1>
         {topic.description && (
-          <p className="text-xl text-zinc-600 dark:text-zinc-400 font-light leading-relaxed">{topic.description}</p>
+          <p className="text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 font-light leading-relaxed">
+            {topic.description}
+          </p>
         )}
       </header>
 
       {topic.resources && topic.resources.length > 0 && (
-        <section aria-labelledby="resources-heading" className="mb-16 liquid-glass-panel p-8 rounded-3xl">
-          <h2 id="resources-heading" className="text-xs font-bold tracking-widest text-zinc-600 dark:text-zinc-400 uppercase mb-6 font-mono">Study Resources</h2>
-          <div className="grid gap-4">
+        <motion.section 
+          aria-labelledby="resources-heading" 
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{
+            duration: shouldReduceMotion ? 0 : 0.48,
+            ease: [0.21, 0.47, 0.32, 0.98],
+          }}
+          className="mb-14 liquid-glass-panel p-6 sm:p-8 rounded-3xl"
+        >
+          <div className="flex items-center justify-between mb-6">
+            <h2 id="resources-heading" className="text-xs font-bold tracking-widest text-zinc-700 dark:text-zinc-300 uppercase font-mono">
+              Study Resources & Materials
+            </h2>
+            <span className="text-xs text-zinc-500 font-mono">
+              {topic.resources.length} {topic.resources.length === 1 ? 'FILE' : 'FILES'}
+            </span>
+          </div>
+          <div className="grid gap-3.5">
             {topic.resources.map((res: any) => (
               <a
                 key={res.id}
                 href={res.file_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between p-5 bg-white/90 dark:bg-zinc-950/90 border border-zinc-200/90 dark:border-zinc-800/90 hover:border-zinc-400 dark:hover:border-zinc-500 rounded-2xl transition-all shadow-sm hover:shadow group cursor-pointer"
+                className="flex items-center justify-between p-4 sm:p-5 bg-white/90 dark:bg-zinc-950/90 border border-zinc-200/90 dark:border-zinc-800/90 hover:border-zinc-400 dark:hover:border-zinc-500 rounded-2xl transition-all shadow-sm hover:shadow-md group cursor-pointer"
               >
-                <div className="flex items-center gap-5 overflow-hidden">
-                  <div className="w-10 h-10 shrink-0 bg-zinc-100 dark:bg-zinc-900 rounded-xl flex items-center justify-center text-zinc-600 dark:text-zinc-400">
+                <div className="flex items-center gap-4 overflow-hidden">
+                  <div className="w-10 h-10 shrink-0 bg-zinc-100 dark:bg-zinc-900 rounded-xl flex items-center justify-center text-zinc-600 dark:text-zinc-400 group-hover:bg-zinc-200 dark:group-hover:bg-zinc-800 transition-colors">
                     <FileText size={18} />
                   </div>
                   <div className="min-w-0">
-                    <div className="font-bold text-base text-zinc-950 dark:text-white truncate">{res.title}</div>
-                    <div className="text-xs text-zinc-500 uppercase mt-1 tracking-widest">{res.file_type}</div>
+                    <div className="font-bold text-sm sm:text-base text-zinc-950 dark:text-white truncate group-hover:text-zinc-700 dark:group-hover:text-zinc-200 transition-colors">
+                      {res.title}
+                    </div>
+                    <div className="text-[11px] text-zinc-500 uppercase mt-0.5 tracking-wider font-mono">
+                      {res.file_type || 'DOCUMENT'}
+                    </div>
                   </div>
                 </div>
-                <div className="shrink-0 ml-6 flex items-center gap-4 text-sm font-medium text-zinc-500 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors">
-                  <span className="hidden sm:inline">Open</span>
-                  <Download size={18} />
+                <div className="shrink-0 ml-4 flex items-center gap-2 text-xs sm:text-sm font-medium text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors">
+                  <span className="hidden sm:inline font-medium">Open</span>
+                  <div className="w-8 h-8 rounded-lg bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center text-zinc-500 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors">
+                    <Download size={15} />
+                  </div>
                 </div>
               </a>
             ))}
           </div>
-        </section>
+        </motion.section>
       )}
 
       {topic.content ? (
-        <div className="prose dark:prose-invert prose-lg max-w-none text-zinc-800 dark:text-zinc-300 prose-headings:font-serif prose-headings:tracking-tight prose-headings:font-bold prose-headings:text-zinc-950 dark:prose-headings:text-white prose-a:text-zinc-950 dark:prose-a:text-white prose-a:font-bold hover:prose-a:text-zinc-600 dark:hover:prose-a:text-zinc-300 prose-img:border prose-img:border-zinc-200 dark:prose-img:border-zinc-800 prose-img:rounded-3xl prose-blockquote:border-zinc-950 dark:prose-blockquote:border-white prose-blockquote:font-serif prose-blockquote:italic" dangerouslySetInnerHTML={{ __html: topic.content }} />
+        <article className="prose dark:prose-invert prose-lg max-w-none text-zinc-800 dark:text-zinc-300 prose-headings:font-serif prose-headings:tracking-tight prose-headings:font-bold prose-headings:text-zinc-950 dark:prose-headings:text-white prose-a:text-zinc-950 dark:prose-a:text-white prose-a:font-bold hover:prose-a:text-zinc-600 dark:hover:prose-a:text-zinc-300 prose-img:border prose-img:border-zinc-200 dark:prose-img:border-zinc-800 prose-img:rounded-3xl prose-blockquote:border-zinc-950 dark:prose-blockquote:border-white prose-blockquote:font-serif prose-blockquote:italic" dangerouslySetInnerHTML={{ __html: topic.content }} />
       ) : (
-        <div className="py-20 text-center text-zinc-500 font-serif italic border border-zinc-200 dark:border-zinc-800 border-dashed rounded-3xl">Content is being prepared for this topic.</div>
+        <div className="py-20 text-center text-zinc-500 font-serif italic border border-zinc-200 dark:border-zinc-800 border-dashed rounded-3xl">
+          Content is being prepared for this topic.
+        </div>
       )}
     </div>
   );
