@@ -43,7 +43,7 @@ export function AdminSubjectEditor({ subjectId, onBack }: { subjectId: string, o
     setSaving(false);
   };
 
-  if (!subject) return <div className="py-20 text-center text-sm text-zinc-500">Loading editor...</div>;
+  if (!subject) return <div className="py-20 text-center text-sm text-zinc-600">Loading editor...</div>;
 
   if (activeTopicId) {
     return <AdminTopicEditor topicId={activeTopicId} onBack={() => setActiveTopicId(null)} />;
@@ -53,7 +53,7 @@ export function AdminSubjectEditor({ subjectId, onBack }: { subjectId: string, o
     <div className="max-w-6xl mx-auto pb-20">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
         <div>
-          <button onClick={onBack} className="flex items-center gap-2 text-xs font-bold tracking-widest text-zinc-500 hover:text-white mb-4 uppercase transition-colors">
+          <button onClick={onBack} className="flex items-center gap-2 text-xs font-bold tracking-widest text-zinc-600 hover:text-white mb-4 uppercase transition-colors">
             <ArrowLeft size={14} /> Back
           </button>
           <h2 className="text-3xl font-serif font-bold tracking-tighter text-white">Edit Subject</h2>
@@ -108,7 +108,7 @@ export function AdminSubjectEditor({ subjectId, onBack }: { subjectId: string, o
                     setActiveTab('CONTENT');
                     setMobileMenuOpen(false);
                   }}
-                  className="p-4 text-left text-sm text-zinc-500 hover:text-white hover:bg-zinc-900 font-bold flex items-center gap-2 border-l-2 border-transparent mt-2"
+                  className="p-4 text-left text-sm text-zinc-600 hover:text-white hover:bg-zinc-900 font-bold flex items-center gap-2 border-l-2 border-transparent mt-2"
                 >
                   <Plus size={16} /> Add Outcome
                 </button>
@@ -136,7 +136,7 @@ export function AdminSubjectEditor({ subjectId, onBack }: { subjectId: string, o
               setActiveCoId(newCo.id);
               setActiveTab('CONTENT');
             }}
-            className="p-4 text-left text-sm text-zinc-500 hover:text-white hover:bg-zinc-800/50 font-bold flex items-center gap-2 border-l-2 border-transparent mt-2"
+            className="p-4 text-left text-sm text-zinc-600 hover:text-white hover:bg-zinc-800/50 font-bold flex items-center gap-2 border-l-2 border-transparent mt-2"
           >
             <Plus size={16} /> Add Outcome
           </button>
@@ -148,11 +148,11 @@ export function AdminSubjectEditor({ subjectId, onBack }: { subjectId: string, o
             <div className="space-y-6 max-w-2xl">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div>
-                  <label className="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-2">Subject Code</label>
+                  <label className="block text-xs font-bold text-zinc-600 uppercase tracking-widest mb-2">Subject Code</label>
                   <input type="text" value={subject.code} onChange={e => setSubject({ ...subject, code: e.target.value })} className="w-full bg-zinc-950 px-4 py-3 border border-zinc-800 rounded-xl focus:outline-none focus:border-zinc-500 text-sm text-white" />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-2">Status</label>
+                  <label className="block text-xs font-bold text-zinc-600 uppercase tracking-widest mb-2">Status</label>
                   <select value={subject.is_active ? 'true' : 'false'} onChange={e => setSubject({ ...subject, is_active: e.target.value === 'true' })} className="w-full bg-zinc-950 px-4 py-3 border border-zinc-800 rounded-xl focus:outline-none focus:border-zinc-500 text-sm text-white">
                     <option value="true">Active (Published)</option>
                     <option value="false">Draft (Hidden)</option>
@@ -160,12 +160,12 @@ export function AdminSubjectEditor({ subjectId, onBack }: { subjectId: string, o
                 </div>
               </div>
               <div>
-                <label className="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-2">Subject Name</label>
+                <label className="block text-xs font-bold text-zinc-600 uppercase tracking-widest mb-2">Subject Name</label>
                 <input type="text" value={subject.name} onChange={e => setSubject({ ...subject, name: e.target.value })} className="w-full bg-zinc-950 px-4 py-3 border border-zinc-800 rounded-xl focus:outline-none focus:border-zinc-500 text-sm text-white" />
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 <div>
-                  <label className="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-2">Academic Year</label>
+                  <label className="block text-xs font-bold text-zinc-600 uppercase tracking-widest mb-2">Academic Year</label>
                   <select value={subject.academic_year || '2nd'} onChange={e => setSubject({ ...subject, academic_year: e.target.value })} className="w-full bg-zinc-950 px-4 py-3 border border-zinc-800 rounded-xl focus:outline-none focus:border-zinc-500 text-sm text-white">
                     <option value="1st">1st Year</option>
                     <option value="2nd">2nd Year</option>
@@ -174,16 +174,16 @@ export function AdminSubjectEditor({ subjectId, onBack }: { subjectId: string, o
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-2">Department</label>
+                  <label className="block text-xs font-bold text-zinc-600 uppercase tracking-widest mb-2">Department</label>
                   <input type="text" value={subject.department || ''} onChange={e => setSubject({ ...subject, department: e.target.value })} className="w-full bg-zinc-950 px-4 py-3 border border-zinc-800 rounded-xl focus:outline-none focus:border-zinc-500 text-sm text-white" />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-2">Semester</label>
+                  <label className="block text-xs font-bold text-zinc-600 uppercase tracking-widest mb-2">Semester</label>
                   <input type="text" value={subject.semester || ''} onChange={e => setSubject({ ...subject, semester: e.target.value })} className="w-full bg-zinc-950 px-4 py-3 border border-zinc-800 rounded-xl focus:outline-none focus:border-zinc-500 text-sm text-white" />
                 </div>
               </div>
               <div>
-                <label className="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-2">Description</label>
+                <label className="block text-xs font-bold text-zinc-600 uppercase tracking-widest mb-2">Description</label>
                 <div className="border border-zinc-800 rounded-xl overflow-hidden focus-within:border-zinc-500 transition-colors">
                   <RichTextEditor content={subject.description} onChange={content => setSubject({ ...subject, description: content })} />
                 </div>
@@ -231,7 +231,7 @@ function AdminCOEditor({ coId, topics, onTopicsChange, onEditTopic, onCoDeleted,
     });
   }, [coId]);
 
-  if (!co) return <div className="text-sm text-zinc-500">Loading outcome...</div>;
+  if (!co) return <div className="text-sm text-zinc-600">Loading outcome...</div>;
 
   const handleUpdate = async (field: keyof CO, value: string) => {
     const updated = { ...co, [field]: value };
@@ -262,17 +262,17 @@ function AdminCOEditor({ coId, topics, onTopicsChange, onEditTopic, onCoDeleted,
       <div>
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-xl font-serif font-bold tracking-tighter text-white">Outcome Settings</h3>
-          <button onClick={handleDelete} className="text-xs font-bold text-zinc-500 hover:text-red-400 transition-colors flex items-center gap-1">
+          <button onClick={handleDelete} className="text-xs font-bold text-zinc-600 hover:text-red-400 transition-colors flex items-center gap-1">
             <Trash2 size={14} /> Delete CO
           </button>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 sm:gap-6">
           <div className="sm:col-span-1">
-            <label className="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-2">Code</label>
+            <label className="block text-xs font-bold text-zinc-600 uppercase tracking-widest mb-2">Code</label>
             <input type="text" value={co.code} onChange={e => handleUpdate('code', e.target.value)} className="w-full bg-zinc-950 px-4 py-3 border border-zinc-800 rounded-xl focus:outline-none focus:border-zinc-500 text-sm text-white" />
           </div>
           <div className="sm:col-span-3">
-            <label className="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-2">Name / Description</label>
+            <label className="block text-xs font-bold text-zinc-600 uppercase tracking-widest mb-2">Name / Description</label>
             <input type="text" value={co.name} onChange={e => handleUpdate('name', e.target.value)} className="w-full bg-zinc-950 px-4 py-3 border border-zinc-800 rounded-xl focus:outline-none focus:border-zinc-500 text-sm text-white" />
           </div>
         </div>
@@ -290,7 +290,7 @@ function AdminCOEditor({ coId, topics, onTopicsChange, onEditTopic, onCoDeleted,
           {topics.map(topic => (
             <div key={topic.id} className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-zinc-900/50 border border-zinc-800 rounded-xl hover:border-zinc-600 transition-colors gap-4">
               <div className="font-bold text-white text-sm truncate">{topic.title}</div>
-              <button onClick={() => onEditTopic(topic.id)} className="flex items-center gap-2 text-zinc-400 hover:text-white font-bold text-sm transition-colors w-fit">
+              <button onClick={() => onEditTopic(topic.id)} className="flex items-center gap-2 text-zinc-600 hover:text-white font-bold text-sm transition-colors w-fit">
                 Edit Content <ArrowRight size={16} />
               </button>
             </div>
@@ -326,11 +326,10 @@ function AdminTopicEditor({ topicId, onBack }: { topicId: string, onBack: () => 
   }, [topicId]);
 
   useEffect(() => {
+    if (!hasUnsavedChanges) return;
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
-      if (hasUnsavedChanges) {
-        e.preventDefault();
-        e.returnValue = '';
-      }
+      e.preventDefault();
+      e.returnValue = '';
     };
     window.addEventListener('beforeunload', handleBeforeUnload);
     return () => window.removeEventListener('beforeunload', handleBeforeUnload);
@@ -368,13 +367,13 @@ function AdminTopicEditor({ topicId, onBack }: { topicId: string, onBack: () => 
     setHasUnsavedChanges(true);
   };
 
-  if (!topic) return <div className="py-20 text-center text-sm text-zinc-500">Loading topic...</div>;
+  if (!topic) return <div className="py-20 text-center text-sm text-zinc-600">Loading topic...</div>;
 
   return (
     <div className="max-w-4xl mx-auto pb-24">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
         <div>
-          <button onClick={handleBack} className="flex items-center gap-2 text-xs font-bold tracking-widest text-zinc-500 hover:text-white mb-4 uppercase transition-colors">
+          <button onClick={handleBack} className="flex items-center gap-2 text-xs font-bold tracking-widest text-zinc-600 hover:text-white mb-4 uppercase transition-colors">
             <ArrowLeft size={14} /> Back to Subject
           </button>
           <h2 className="text-3xl font-serif font-bold tracking-tighter text-white">Edit Topic</h2>
@@ -391,7 +390,7 @@ function AdminTopicEditor({ topicId, onBack }: { topicId: string, onBack: () => 
 
       <div className="space-y-8">
         <div>
-          <label className="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-2">Topic Title</label>
+          <label className="block text-xs font-bold text-zinc-600 uppercase tracking-widest mb-2">Topic Title</label>
           <input 
             type="text" 
             value={topic.title} 
@@ -401,7 +400,7 @@ function AdminTopicEditor({ topicId, onBack }: { topicId: string, onBack: () => 
         </div>
 
         <div>
-          <label className="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-2">Short Description (Optional)</label>
+          <label className="block text-xs font-bold text-zinc-600 uppercase tracking-widest mb-2">Short Description (Optional)</label>
           <input 
             type="text" 
             value={topic.description || ''} 
@@ -437,7 +436,7 @@ function AdminTopicEditor({ topicId, onBack }: { topicId: string, onBack: () => 
                     dangerouslySetInnerHTML={{ __html: topic.content }} 
                   />
                 ) : (
-                  <div className="py-14 text-center text-zinc-500 font-serif italic border border-zinc-200 dark:border-zinc-800 border-dashed rounded-2xl p-6">
+                  <div className="py-14 text-center text-zinc-600 font-serif italic border border-zinc-200 dark:border-zinc-800 border-dashed rounded-2xl p-6">
                     <p className="text-sm sm:text-base">No content provided yet.</p>
                   </div>
                 )}
@@ -447,8 +446,8 @@ function AdminTopicEditor({ topicId, onBack }: { topicId: string, onBack: () => 
         </div>
 
         <div className="border-t border-zinc-800 pt-8 mt-12">
-          <label className="block text-sm font-sans font-bold tracking-widest uppercase text-zinc-400 mb-2">Learning Resources</label>
-          <p className="text-sm text-zinc-500 mb-6">Upload PDFs, Presentations, and Documents related to this topic.</p>
+          <label className="block text-sm font-sans font-bold tracking-widest uppercase text-zinc-600 mb-2">Learning Resources</label>
+          <p className="text-sm text-zinc-600 mb-6">Upload PDFs, Presentations, and Documents related to this topic.</p>
           <ResourceUploader 
             resources={resources} 
             onUpload={async (fileUrl, fileName, fileType, mimeType, fileSize) => {

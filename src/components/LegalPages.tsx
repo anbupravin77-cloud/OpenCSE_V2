@@ -18,8 +18,8 @@ export function AboutPage() {
 
       <header className="mb-12">
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-8 h-8 bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 flex items-center justify-center font-serif text-sm font-bold rounded-lg shadow-sm">O</div>
-          <span className="text-xs font-bold tracking-widest text-zinc-500 dark:text-zinc-400 uppercase">Platform Overview</span>
+          <svg className="w-8 h-8 text-zinc-950 dark:text-white shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" fill="currentColor" aria-label="OpenCSE Logo"><path d="M 181.37 65.65 A 90 90 0 0 0 62.77 172.18 L 87.56 269.69 L 161.29 142 L 137.29 142 Z" /><path d="M 118.63 234.35 A 90 90 0 0 0 237.23 127.82 L 212.44 30.31 L 138.71 158 L 162.71 158 Z" /></svg>
+          <span className="text-xs font-bold tracking-widest text-zinc-600 dark:text-zinc-400 uppercase">Platform Overview</span>
         </div>
         <h1 className="text-4xl sm:text-5xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white mb-6">About OpenCSE</h1>
         <p className="text-xl text-zinc-600 dark:text-zinc-400 font-light leading-relaxed">
@@ -157,8 +157,8 @@ export function ContactPage() {
 
       <header className="mb-12">
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-8 h-8 bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 flex items-center justify-center font-serif text-sm font-bold rounded-lg shadow-sm">O</div>
-          <span className="text-xs font-bold tracking-widest text-zinc-500 dark:text-zinc-400 uppercase">Support & Communication</span>
+          <svg className="w-8 h-8 text-zinc-950 dark:text-white shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" fill="currentColor" aria-label="OpenCSE Logo"><path d="M 181.37 65.65 A 90 90 0 0 0 62.77 172.18 L 87.56 269.69 L 161.29 142 L 137.29 142 Z" /><path d="M 118.63 234.35 A 90 90 0 0 0 237.23 127.82 L 212.44 30.31 L 138.71 158 L 162.71 158 Z" /></svg>
+          <span className="text-xs font-bold tracking-widest text-zinc-600 dark:text-zinc-400 uppercase">Support & Communication</span>
         </div>
         <h1 className="text-4xl sm:text-5xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white mb-6">Contact Us</h1>
         <p className="text-xl text-zinc-600 dark:text-zinc-400 font-light leading-relaxed">
@@ -324,11 +324,11 @@ export function PrivacyPage() {
 
       <header className="mb-12">
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-8 h-8 bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 flex items-center justify-center font-serif text-sm font-bold rounded-lg shadow-sm">O</div>
-          <span className="text-xs font-bold tracking-widest text-zinc-500 dark:text-zinc-400 uppercase">Legal & Compliance</span>
+          <svg className="w-8 h-8 text-zinc-950 dark:text-white shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" fill="currentColor" aria-label="OpenCSE Logo"><path d="M 181.37 65.65 A 90 90 0 0 0 62.77 172.18 L 87.56 269.69 L 161.29 142 L 137.29 142 Z" /><path d="M 118.63 234.35 A 90 90 0 0 0 237.23 127.82 L 212.44 30.31 L 138.71 158 L 162.71 158 Z" /></svg>
+          <span className="text-xs font-bold tracking-widest text-zinc-600 dark:text-zinc-400 uppercase">Legal & Compliance</span>
         </div>
         <h1 className="text-4xl sm:text-5xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white mb-4">Privacy Policy</h1>
-        <p className="text-sm text-zinc-500 font-mono">Last Updated: August 2026</p>
+        <p className="text-sm text-zinc-600 font-mono">Last Updated: August 2026</p>
       </header>
 
       <div className="space-y-10 text-zinc-600 dark:text-zinc-400 font-light text-base leading-relaxed">
@@ -409,11 +409,11 @@ export function TermsPage() {
 
       <header className="mb-12">
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-8 h-8 bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 flex items-center justify-center font-serif text-sm font-bold rounded-lg shadow-sm">O</div>
-          <span className="text-xs font-bold tracking-widest text-zinc-500 dark:text-zinc-400 uppercase">Legal Agreement</span>
+          <svg className="w-8 h-8 text-zinc-950 dark:text-white shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" fill="currentColor" aria-label="OpenCSE Logo"><path d="M 181.37 65.65 A 90 90 0 0 0 62.77 172.18 L 87.56 269.69 L 161.29 142 L 137.29 142 Z" /><path d="M 118.63 234.35 A 90 90 0 0 0 237.23 127.82 L 212.44 30.31 L 138.71 158 L 162.71 158 Z" /></svg>
+          <span className="text-xs font-bold tracking-widest text-zinc-600 dark:text-zinc-400 uppercase">Legal Agreement</span>
         </div>
         <h1 className="text-4xl sm:text-5xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white mb-4">Terms of Service</h1>
-        <p className="text-sm text-zinc-500 font-mono">Last Updated: August 2026</p>
+        <p className="text-sm text-zinc-600 font-mono">Last Updated: August 2026</p>
       </header>
 
       <div className="space-y-10 text-zinc-600 dark:text-zinc-400 font-light text-base leading-relaxed">
@@ -491,11 +491,11 @@ export function ContentPolicyPage() {
 
       <header className="mb-12">
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-8 h-8 bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 flex items-center justify-center font-serif text-sm font-bold rounded-lg shadow-sm">O</div>
-          <span className="text-xs font-bold tracking-widest text-zinc-500 dark:text-zinc-400 uppercase">Editorial Standards</span>
+          <svg className="w-8 h-8 text-zinc-950 dark:text-white shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" fill="currentColor" aria-label="OpenCSE Logo"><path d="M 181.37 65.65 A 90 90 0 0 0 62.77 172.18 L 87.56 269.69 L 161.29 142 L 137.29 142 Z" /><path d="M 118.63 234.35 A 90 90 0 0 0 237.23 127.82 L 212.44 30.31 L 138.71 158 L 162.71 158 Z" /></svg>
+          <span className="text-xs font-bold tracking-widest text-zinc-600 dark:text-zinc-400 uppercase">Editorial Standards</span>
         </div>
         <h1 className="text-4xl sm:text-5xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white mb-4">Content & Copyright Policy</h1>
-        <p className="text-sm text-zinc-500 font-mono">Last Updated: August 2026</p>
+        <p className="text-sm text-zinc-600 font-mono">Last Updated: August 2026</p>
       </header>
 
       <div className="space-y-10 text-zinc-600 dark:text-zinc-400 font-light text-base leading-relaxed">
@@ -541,7 +541,7 @@ export function ContentPolicyPage() {
             <li>A statement of good faith belief that the disputed use is not authorized by the copyright owner, its agent, or the law.</li>
             <li>A statement confirming the accuracy of the notice under penalty of perjury.</li>
           </ul>
-          <p className="text-sm text-zinc-500 pt-2">
+          <p className="text-sm text-zinc-600 pt-2">
             Upon receipt of a verified request, our administration will promptly disable access to or remove the identified material within 48 business hours.
           </p>
         </section>

@@ -27,7 +27,8 @@ import { FullSubject, Subject, CO, Topic, Resource, FullCO, FullTopic } from './
 import { SEO } from './components/SEO';
 import { ThemeProvider } from './context/ThemeContext';
 import { ThemeToggle } from './components/ThemeToggle';
-import { ResourcesPage, ResourceArticlePage } from './components/Resources';
+const ResourcesPage = lazy(() => import('./components/Resources').then(m => ({ default: m.ResourcesPage })));
+const ResourceArticlePage = lazy(() => import('./components/Resources').then(m => ({ default: m.ResourceArticlePage })));
 
 // Code-split non-critical legal pages and admin modules to keep student bundle lightweight (~194 KiB savings)
 const AboutPage = lazy(() => import('./components/LegalPages').then(m => ({ default: m.AboutPage })));
@@ -85,18 +86,19 @@ function StudentHeader() {
           className="flex items-center gap-3.5 group min-h-[44px] focus-visible:ring-2 focus-visible:ring-zinc-950 dark:focus-visible:ring-white focus-visible:outline-none rounded-xl" 
           aria-label="OpenCSE Home"
         >
-          <div className="w-10 h-10 bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 flex items-center justify-center font-serif text-xl font-bold rounded-xl shadow-sm border border-zinc-800/50 dark:border-zinc-200/50 transition-transform duration-200 group-hover:scale-105 shrink-0">
-            O
-          </div>
+          <svg className="w-8 h-8 sm:w-10 sm:h-10 text-zinc-950 dark:text-white transition-transform duration-200 group-hover:scale-105 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" fill="currentColor" aria-label="OpenCSE Logo">
+            <path d="M 181.37 65.65 A 90 90 0 0 0 62.77 172.18 L 87.56 269.69 L 161.29 142 L 137.29 142 Z" />
+            <path d="M 118.63 234.35 A 90 90 0 0 0 237.23 127.82 L 212.44 30.31 L 138.71 158 L 162.71 158 Z" />
+          </svg>
           <div className="flex flex-col">
             <span className="font-serif font-bold tracking-tight text-2xl text-zinc-950 dark:text-white leading-none">OpenCSE</span>
-            <span className="font-mono text-[9px] text-zinc-500 dark:text-zinc-400 tracking-wider uppercase mt-1 hidden sm:block">CURRICULUM ARCHIVE</span>
+            <span className="font-mono text-[9px] text-zinc-600 dark:text-zinc-400 tracking-wider uppercase mt-1 hidden sm:block">CURRICULUM ARCHIVE</span>
           </div>
         </Link>
         <nav aria-label="Main Navigation" className="flex items-center gap-1 sm:gap-2">
           <Link 
             to="/resources"
-            className={`text-sm font-medium px-3.5 py-2 rounded-xl transition-all duration-200 min-h-[44px] flex items-center hidden sm:flex focus-visible:ring-2 focus-visible:ring-zinc-950 dark:focus-visible:ring-white focus-visible:outline-none ${
+            className={`text-sm font-medium px-3.5 py-2 rounded-xl transition duration-200 min-h-[44px] flex items-center hidden sm:flex focus-visible:ring-2 focus-visible:ring-zinc-950 dark:focus-visible:ring-white focus-visible:outline-none ${
               isResourcesActive
                 ? 'bg-zinc-200/80 dark:bg-zinc-800 text-zinc-950 dark:text-white font-semibold border border-zinc-300/80 dark:border-zinc-700/80 shadow-xs'
                 : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-900 border border-transparent'
@@ -106,7 +108,7 @@ function StudentHeader() {
           </Link>
           <Link 
             to="/about"
-            className={`text-sm font-medium px-3.5 py-2 rounded-xl transition-all duration-200 min-h-[44px] flex items-center hidden sm:flex focus-visible:ring-2 focus-visible:ring-zinc-950 dark:focus-visible:ring-white focus-visible:outline-none ${
+            className={`text-sm font-medium px-3.5 py-2 rounded-xl transition duration-200 min-h-[44px] flex items-center hidden sm:flex focus-visible:ring-2 focus-visible:ring-zinc-950 dark:focus-visible:ring-white focus-visible:outline-none ${
               isAboutActive
                 ? 'bg-zinc-200/80 dark:bg-zinc-800 text-zinc-950 dark:text-white font-semibold border border-zinc-300/80 dark:border-zinc-700/80 shadow-xs'
                 : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-900 border border-transparent'
@@ -116,7 +118,7 @@ function StudentHeader() {
           </Link>
           <Link 
             to="/contact"
-            className={`text-sm font-medium px-3.5 py-2 rounded-xl transition-all duration-200 min-h-[44px] flex items-center hidden sm:flex focus-visible:ring-2 focus-visible:ring-zinc-950 dark:focus-visible:ring-white focus-visible:outline-none ${
+            className={`text-sm font-medium px-3.5 py-2 rounded-xl transition duration-200 min-h-[44px] flex items-center hidden sm:flex focus-visible:ring-2 focus-visible:ring-zinc-950 dark:focus-visible:ring-white focus-visible:outline-none ${
               isContactActive
                 ? 'bg-zinc-200/80 dark:bg-zinc-800 text-zinc-950 dark:text-white font-semibold border border-zinc-300/80 dark:border-zinc-700/80 shadow-xs'
                 : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-900 border border-transparent'
@@ -126,7 +128,7 @@ function StudentHeader() {
           </Link>
           <Link 
             to="/admin"
-            className={`flex items-center gap-2 text-sm font-medium px-3.5 py-2 rounded-xl transition-all duration-200 min-h-[44px] focus-visible:ring-2 focus-visible:ring-zinc-950 dark:focus-visible:ring-white focus-visible:outline-none ${
+            className={`flex items-center gap-2 text-sm font-medium px-3.5 py-2 rounded-xl transition duration-200 min-h-[44px] focus-visible:ring-2 focus-visible:ring-zinc-950 dark:focus-visible:ring-white focus-visible:outline-none ${
               isAdminActive
                 ? 'bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 font-semibold shadow-sm border border-zinc-950 dark:border-white'
                 : 'text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800/80'
@@ -150,9 +152,10 @@ function StudentFooter() {
     <footer className="border-t border-zinc-200/90 dark:border-zinc-800/90 bg-zinc-100/70 dark:bg-zinc-950/70 py-12 px-4 sm:px-6 lg:px-8 mt-20 transition-colors duration-200">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 flex items-center justify-center font-serif text-sm font-bold rounded-lg shadow-sm shrink-0">
-            O
-          </div>
+          <svg className="w-8 h-8 text-zinc-950 dark:text-white shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" fill="currentColor" aria-label="OpenCSE Logo">
+            <path d="M 181.37 65.65 A 90 90 0 0 0 62.77 172.18 L 87.56 269.69 L 161.29 142 L 137.29 142 Z" />
+            <path d="M 118.63 234.35 A 90 90 0 0 0 237.23 127.82 L 212.44 30.31 L 138.71 158 L 162.71 158 Z" />
+          </svg>
           <div>
             <span className="font-serif font-bold text-zinc-950 dark:text-white text-base">OpenCSE</span>
             <span className="text-xs text-zinc-600 dark:text-zinc-400 ml-3 hidden sm:inline font-light">Outcome-Based Academic Resources for Computer Science</span>
@@ -311,7 +314,7 @@ function StudentDashboard() {
       {/* Global Curriculum Search Bar */}
       <div className="mb-8">
         <div className="relative">
-          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-zinc-400">
+          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-zinc-600">
             <Search className="w-5 h-5" />
           </div>
           <input
@@ -320,20 +323,20 @@ function StudentDashboard() {
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search all subjects, course codes, or lecture topics (e.g. Operating Systems, TCP/IP)..."
             aria-label="Search curriculum subjects and topics"
-            className="w-full pl-11 pr-11 py-3.5 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl text-zinc-950 dark:text-zinc-100 placeholder-zinc-400 text-sm sm:text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-zinc-950 dark:focus:ring-zinc-100 transition-all"
+            className="w-full pl-11 pr-11 py-3.5 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl text-zinc-950 dark:text-zinc-100 placeholder-zinc-600 text-sm sm:text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-zinc-950 dark:focus:ring-zinc-100 transition"
           />
           {searchQuery && (
             <button
               onClick={() => setSearchQuery('')}
               aria-label="Clear search"
-              className="absolute inset-y-0 right-0 pr-4 flex items-center text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 cursor-pointer"
+              className="absolute inset-y-0 right-0 pr-4 flex items-center text-zinc-600 hover:text-zinc-700 dark:hover:text-zinc-200 cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
           )}
         </div>
         {isSearching && (
-          <div className="mt-2 text-xs font-mono text-zinc-500 dark:text-zinc-400 flex items-center justify-between px-1">
+          <div className="mt-2 text-xs font-mono text-zinc-600 dark:text-zinc-400 flex items-center justify-between px-1">
             <span>Global search results for &ldquo;{searchQuery}&rdquo;</span>
             <button 
               onClick={() => setSearchQuery('')}
@@ -361,7 +364,7 @@ function StudentDashboard() {
                   onClick={() => setSelectedYear(y)} 
                   aria-label={`${y} Year Curriculum`}
                   aria-selected={isSelected}
-                  className={`rounded-lg px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold uppercase tracking-wider whitespace-nowrap transition-all duration-150 cursor-pointer min-h-[44px] flex items-center justify-center focus-visible:ring-2 focus-visible:ring-zinc-950 dark:focus-visible:ring-white focus-visible:outline-none ${
+                  className={`rounded-lg px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold uppercase tracking-wider whitespace-nowrap transition duration-150 cursor-pointer min-h-[44px] flex items-center justify-center focus-visible:ring-2 focus-visible:ring-zinc-950 dark:focus-visible:ring-white focus-visible:outline-none ${
                     isSelected 
                       ? 'bg-white dark:bg-zinc-800 text-zinc-950 dark:text-white shadow-sm border border-zinc-300/80 dark:border-zinc-600 font-bold' 
                       : 'text-zinc-600 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-100 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 border border-transparent font-medium active:scale-95'
@@ -388,7 +391,7 @@ function StudentDashboard() {
             {displayedSubjects.length} {displayedSubjects.length === 1 ? 'Course' : 'Courses'}
           </span>
         </div>
-        <div className="hidden sm:flex items-center gap-2 text-xs font-mono text-zinc-500 dark:text-zinc-400">
+        <div className="hidden sm:flex items-center gap-2 text-xs font-mono text-zinc-600 dark:text-zinc-400">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
           <span>OUTCOME-BASED EDUCATION (OBE)</span>
         </div>
@@ -400,7 +403,7 @@ function StudentDashboard() {
           <SubjectCardSkeleton />
         ) : displayedSubjects.length === 0 ? (
           <div className="py-20 text-center">
-            <h3 className="text-2xl font-serif font-bold tracking-tight text-zinc-400 dark:text-zinc-600">
+            <h3 className="text-2xl font-serif font-bold tracking-tight text-zinc-600 dark:text-zinc-600">
               {isSearching ? 'No Matching Subjects or Topics' : 'Curriculum in Progress'}
             </h3>
             <p className="text-zinc-600 dark:text-zinc-400 mt-2 text-sm font-light">
@@ -436,17 +439,17 @@ function StudentDashboard() {
                       <span className="text-xs font-bold tracking-wider text-zinc-900 dark:text-zinc-100 uppercase font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700">
                         {subject.code}
                       </span>
-                      <span className="text-xs text-zinc-500 dark:text-zinc-400 font-mono">
+                      <span className="text-xs text-zinc-600 dark:text-zinc-400 font-mono">
                         · {subject.credits} Credits
                       </span>
-                      <span className="text-xs text-zinc-500 dark:text-zinc-400 font-mono">
+                      <span className="text-xs text-zinc-600 dark:text-zinc-400 font-mono">
                         · {subject.cos?.length || 0} Outcomes
                       </span>
-                      <span className="text-xs text-zinc-500 dark:text-zinc-400 font-mono">
+                      <span className="text-xs text-zinc-600 dark:text-zinc-400 font-mono">
                         · {totalTopics} Topics
                       </span>
                       {subject.department && (
-                        <span className="hidden md:inline text-xs text-zinc-400 dark:text-zinc-500 font-mono">
+                        <span className="hidden md:inline text-xs text-zinc-600 dark:text-zinc-500 font-mono">
                           · {subject.department}
                         </span>
                       )}
@@ -470,7 +473,7 @@ function StudentDashboard() {
                     <span className="text-xs font-semibold uppercase tracking-wider text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors duration-150 font-mono">
                       Explore Course
                     </span>
-                    <div className="w-11 h-11 rounded-lg bg-zinc-100 dark:bg-zinc-850 border border-zinc-200 dark:border-zinc-700/80 flex items-center justify-center text-zinc-500 group-hover:bg-zinc-950 group-hover:text-white dark:group-hover:bg-white dark:group-hover:text-zinc-950 transition-all duration-150 shrink-0">
+                    <div className="w-11 h-11 rounded-lg bg-zinc-100 dark:bg-zinc-850 border border-zinc-200 dark:border-zinc-700/80 flex items-center justify-center text-zinc-600 group-hover:bg-zinc-950 group-hover:text-white dark:group-hover:bg-white dark:group-hover:text-zinc-950 transition duration-150 shrink-0">
                       <ArrowRight className="transform group-hover:translate-x-1 transition-transform duration-150" size={16} />
                     </div>
                   </div>
@@ -484,7 +487,7 @@ function StudentDashboard() {
       {/* Comprehensive Academic Curriculum & Outcome-Based Education Overview (SEO & AdSense Compliance Content) */}
       <section aria-labelledby="academic-overview-heading" className="mt-16 sm:mt-24 pt-12 border-t border-zinc-200 dark:border-zinc-800 space-y-8">
         <div>
-          <span className="text-xs font-mono font-bold tracking-widest text-zinc-500 uppercase">Academic Repository & Standards</span>
+          <span className="text-xs font-mono font-bold tracking-widest text-zinc-600 uppercase">Academic Repository & Standards</span>
           <h2 id="academic-overview-heading" className="text-2xl sm:text-3xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white mt-2 mb-4">
             Computer Science & Engineering Curriculum Architecture
           </h2>
@@ -657,7 +660,7 @@ function StudentSubjectRoute() {
   if (!subject) {
     return (
       <div className="max-w-xl mx-auto py-20 text-center">
-        <div className="w-12 h-12 rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 flex items-center justify-center mx-auto mb-4 text-zinc-500">
+        <div className="w-12 h-12 rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 flex items-center justify-center mx-auto mb-4 text-zinc-600">
           <BookOpen size={22} />
         </div>
         <h1 className="text-2xl sm:text-3xl font-serif font-bold text-zinc-950 dark:text-white mb-2">Subject Not Found</h1>
@@ -705,7 +708,7 @@ function StudentCOTopicsView({
 
       {/* Structured Breadcrumb */}
       <nav aria-label="Breadcrumb" className="mb-4">
-        <ol className="flex items-center flex-wrap gap-2 text-xs sm:text-sm font-mono text-zinc-500 dark:text-zinc-400">
+        <ol className="flex items-center flex-wrap gap-2 text-xs sm:text-sm font-mono text-zinc-600 dark:text-zinc-400">
           <li>
             <Link 
               to="/" 
@@ -763,7 +766,7 @@ function StudentCOTopicsView({
           <span className="text-xs font-mono font-bold px-2 py-0.5 bg-zinc-100 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200 rounded border border-zinc-200 dark:border-zinc-700">
             {coCode}
           </span>
-          <span className="text-xs text-zinc-500 dark:text-zinc-400 font-mono">
+          <span className="text-xs text-zinc-600 dark:text-zinc-400 font-mono">
             · {topics.length} {topics.length === 1 ? 'Topic Mapped' : 'Topics Mapped'}
           </span>
         </div>
@@ -786,7 +789,7 @@ function StudentCOTopicsView({
             <Layers size={14} className="text-zinc-600 dark:text-zinc-400" />
             <span>Topics Mapped to {coCode}</span>
           </h2>
-          <span className="text-xs font-mono text-zinc-500 dark:text-zinc-400">
+          <span className="text-xs font-mono text-zinc-600 dark:text-zinc-400">
             {topics.length} {topics.length === 1 ? 'Topic' : 'Topics'}
           </span>
         </div>
@@ -834,7 +837,7 @@ function StudentCOTopicsView({
 
                   {/* Fixed Action Column (Right Column) */}
                   <div className="shrink-0 flex items-center justify-center">
-                    <div className="w-11 h-11 rounded-lg bg-zinc-100 dark:bg-zinc-850 border border-zinc-200 dark:border-zinc-700/80 flex items-center justify-center text-zinc-500 group-hover:bg-zinc-950 group-hover:text-white dark:group-hover:bg-white dark:group-hover:text-zinc-950 transition-all duration-150">
+                    <div className="w-11 h-11 rounded-lg bg-zinc-100 dark:bg-zinc-850 border border-zinc-200 dark:border-zinc-700/80 flex items-center justify-center text-zinc-600 group-hover:bg-zinc-950 group-hover:text-white dark:group-hover:bg-white dark:group-hover:text-zinc-950 transition duration-150">
                       <ArrowRight className="transform group-hover:translate-x-1 transition-transform duration-150" size={16} />
                     </div>
                   </div>
@@ -843,7 +846,7 @@ function StudentCOTopicsView({
             })}
           </div>
         ) : (
-          <div className="p-8 text-center text-zinc-500 font-serif italic border border-dashed border-zinc-200 dark:border-zinc-800 rounded-xl">
+          <div className="p-8 text-center text-zinc-600 font-serif italic border border-dashed border-zinc-200 dark:border-zinc-800 rounded-xl">
             <BookOpen size={22} className="mx-auto mb-2 opacity-50" />
             <p className="text-sm">Topics for this Course Outcome are being cataloged.</p>
           </div>
@@ -914,7 +917,7 @@ function StudentSubjectView({ subject, onBack }: { subject: FullSubject, onBack:
 
       {/* Structured Breadcrumbs Navigation */}
       <nav aria-label="Breadcrumb" className="mb-4">
-        <ol className="flex items-center flex-wrap gap-2 text-xs sm:text-sm font-mono text-zinc-500 dark:text-zinc-400">
+        <ol className="flex items-center flex-wrap gap-2 text-xs sm:text-sm font-mono text-zinc-600 dark:text-zinc-400">
           <li>
             <Link 
               to="/" 
@@ -967,21 +970,21 @@ function StudentSubjectView({ subject, onBack }: { subject: FullSubject, onBack:
           <span className="text-xs font-bold tracking-wider text-zinc-950 dark:text-white uppercase font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700">
             {subject.code}
           </span>
-          <span className="text-xs text-zinc-500 dark:text-zinc-400 font-mono">
+          <span className="text-xs text-zinc-600 dark:text-zinc-400 font-mono">
             · {subject.credits} Credits
           </span>
           {subject.academic_year && (
-            <span className="text-xs text-zinc-500 dark:text-zinc-400 font-mono">
+            <span className="text-xs text-zinc-600 dark:text-zinc-400 font-mono">
               · {subject.academic_year} Year
             </span>
           )}
           {subject.semester && (
-            <span className="text-xs text-zinc-500 dark:text-zinc-400 font-mono">
+            <span className="text-xs text-zinc-600 dark:text-zinc-400 font-mono">
               · Sem {subject.semester}
             </span>
           )}
           {subject.department && (
-            <span className="hidden md:inline text-xs text-zinc-400 dark:text-zinc-500 font-mono">
+            <span className="hidden md:inline text-xs text-zinc-600 dark:text-zinc-500 font-mono">
               · {subject.department}
             </span>
           )}
@@ -1017,7 +1020,7 @@ function StudentSubjectView({ subject, onBack }: { subject: FullSubject, onBack:
               <GraduationCap size={22} className="text-zinc-700 dark:text-zinc-300 shrink-0" />
               <span>Course Outcomes</span>
             </h2>
-            <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 font-light mt-1">
+            <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 font-light mt-1">
               Select an outcome to view mapped topics and study resources.
             </p>
           </div>
@@ -1053,7 +1056,7 @@ function StudentSubjectView({ subject, onBack }: { subject: FullSubject, onBack:
                           {co.description}
                         </p>
                       )}
-                      <div className="mt-2.5 flex items-center gap-2 text-xs font-mono text-zinc-500 dark:text-zinc-400">
+                      <div className="mt-2.5 flex items-center gap-2 text-xs font-mono text-zinc-600 dark:text-zinc-400">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
                         <span>
                           {topicCount} {topicCount === 1 ? 'Topic mapped' : 'Topics mapped'}
@@ -1067,7 +1070,7 @@ function StudentSubjectView({ subject, onBack }: { subject: FullSubject, onBack:
                     <span className="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors duration-150 hidden md:inline">
                       View Topics
                     </span>
-                    <div className="w-11 h-11 rounded-lg bg-zinc-100 dark:bg-zinc-850 border border-zinc-200 dark:border-zinc-700/80 flex items-center justify-center text-zinc-500 group-hover:bg-zinc-950 group-hover:text-white dark:group-hover:bg-white dark:group-hover:text-zinc-950 transition-all duration-150">
+                    <div className="w-11 h-11 rounded-lg bg-zinc-100 dark:bg-zinc-850 border border-zinc-200 dark:border-zinc-700/80 flex items-center justify-center text-zinc-600 group-hover:bg-zinc-950 group-hover:text-white dark:group-hover:bg-white dark:group-hover:text-zinc-950 transition duration-150">
                       <ArrowRight className="transform group-hover:translate-x-1 transition-transform duration-150" size={16} />
                     </div>
                   </div>
@@ -1076,7 +1079,7 @@ function StudentSubjectView({ subject, onBack }: { subject: FullSubject, onBack:
             })}
           </div>
         ) : (
-          <div className="p-8 text-center rounded-xl border border-dashed border-zinc-200 dark:border-zinc-800 text-zinc-500 dark:text-zinc-400 font-light">
+          <div className="p-8 text-center rounded-xl border border-dashed border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 font-light">
             <GraduationCap size={24} className="mx-auto mb-2 opacity-50" />
             <p className="font-serif text-sm italic">No Course Outcomes cataloged for this syllabus yet.</p>
           </div>
@@ -1102,7 +1105,7 @@ function StudentTopicView({ topic, subjectCode, coCode, onBack }: { topic: any, 
 
       {/* Topic Breadcrumbs */}
       <nav aria-label="Topic Breadcrumb" className="mb-4">
-        <ol className="flex items-center flex-wrap gap-2 text-xs sm:text-sm font-mono text-zinc-500 dark:text-zinc-400">
+        <ol className="flex items-center flex-wrap gap-2 text-xs sm:text-sm font-mono text-zinc-600 dark:text-zinc-400">
           <li>
             <Link 
               to="/" 
@@ -1177,7 +1180,7 @@ function StudentTopicView({ topic, subjectCode, coCode, onBack }: { topic: any, 
               {coCode}
             </span>
           )}
-          <span className="text-xs text-zinc-500 dark:text-zinc-400 font-mono">
+          <span className="text-xs text-zinc-600 dark:text-zinc-400 font-mono">
             · Topic Study Workspace
           </span>
         </div>
@@ -1208,7 +1211,7 @@ function StudentTopicView({ topic, subjectCode, coCode, onBack }: { topic: any, 
               <FolderOpen size={14} className="text-zinc-600 dark:text-zinc-400" />
               <span>Study Resources & Learning Materials</span>
             </h2>
-            <span className="text-xs text-zinc-500 dark:text-zinc-400 font-mono">
+            <span className="text-xs text-zinc-600 dark:text-zinc-400 font-mono">
               {topic.resources.length} {topic.resources.length === 1 ? 'FILE' : 'FILES'}
             </span>
           </div>
@@ -1241,7 +1244,7 @@ function StudentTopicView({ topic, subjectCode, coCode, onBack }: { topic: any, 
                         <span className={`text-[10px] font-mono font-bold uppercase tracking-wider px-1.5 py-0.5 rounded border ${meta.badgeClass}`}>
                           {meta.badge}
                         </span>
-                        <span className="text-xs text-zinc-500 dark:text-zinc-400 font-mono">
+                        <span className="text-xs text-zinc-600 dark:text-zinc-400 font-mono">
                           {meta.typeLabel} {formattedSize ? `· ${formattedSize}` : ''}
                         </span>
                       </div>
@@ -1251,7 +1254,7 @@ function StudentTopicView({ topic, subjectCode, coCode, onBack }: { topic: any, 
                   {/* Immediate Download / Open Action */}
                   <div className="shrink-0 flex items-center gap-2 text-xs font-semibold text-zinc-700 dark:text-zinc-300 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors">
                     <span className="hidden sm:inline font-mono text-xs">{meta.actionText}</span>
-                    <div className="w-8 h-8 rounded-lg bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 flex items-center justify-center text-zinc-600 dark:text-zinc-300 group-hover:bg-zinc-950 group-hover:text-white dark:group-hover:bg-white dark:group-hover:text-zinc-950 transition-all duration-150">
+                    <div className="w-8 h-8 rounded-lg bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 flex items-center justify-center text-zinc-600 dark:text-zinc-300 group-hover:bg-zinc-950 group-hover:text-white dark:group-hover:bg-white dark:group-hover:text-zinc-950 transition duration-150">
                       <Download size={14} className="transform group-hover:translate-y-0.5 transition-transform duration-150" />
                     </div>
                   </div>
@@ -1275,7 +1278,7 @@ function StudentTopicView({ topic, subjectCode, coCode, onBack }: { topic: any, 
           dangerouslySetInnerHTML={{ __html: topic.content }} 
         />
       ) : (
-        <div className="py-14 text-center text-zinc-500 font-serif italic border border-zinc-200 dark:border-zinc-800 border-dashed rounded-2xl p-6">
+        <div className="py-14 text-center text-zinc-600 font-serif italic border border-zinc-200 dark:border-zinc-800 border-dashed rounded-2xl p-6">
           <BookOpen size={24} className="mx-auto mb-2 opacity-50" />
           <p className="text-sm sm:text-base">Comprehensive lecture notes and module guides are currently being prepared for this topic.</p>
         </div>
@@ -1608,7 +1611,7 @@ function AdminDashboard({ onEditSubject }: { onEditSubject: (id: string) => void
             </div>
           ))}
           {subjects.length === 0 && (
-            <div className="p-16 text-center text-zinc-500 text-sm italic">No subjects found.</div>
+            <div className="p-16 text-center text-zinc-600 text-sm italic">No subjects found.</div>
           )}
         </div>
       </div>

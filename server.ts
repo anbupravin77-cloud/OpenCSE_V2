@@ -45,7 +45,7 @@ async function startServer() {
     next();
   });
 
-  app.use('/uploads', express.static(UPLOADS_DIR));
+  app.use('/uploads', express.static(UPLOADS_DIR, { maxAge: '1y' }));
 
   // --- LLMS.TXT (Agentic Browsing & AI Agent Discovery) ---
   app.get('/llms.txt', (req, res) => {
@@ -508,7 +508,14 @@ ${allPages.map(page => `  <url>
     app.use(vite.middlewares);
   } else {
     const distPath = path.join(process.cwd(), 'dist');
-    app.use(express.static(distPath));
+    app.use(express.static(distPath, {
+      maxAge: '1y',
+      setHeaders: (res, filepath) => {
+        if (filepath.endsWith('.html')) {
+          res.setHeader('Cache-Control', 'no-cache');
+        }
+      }
+    }));
     app.get('*', (req, res) => {
       res.sendFile(path.join(distPath, 'index.html'));
     });

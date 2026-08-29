@@ -93,7 +93,7 @@ export function AdminResources() {
       <div className="bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
           <table className="w-full text-sm text-left">
-            <thead className="bg-zinc-50 dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 text-zinc-500 font-medium uppercase tracking-wider">
+            <thead className="bg-zinc-50 dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 text-zinc-600 font-medium uppercase tracking-wider">
               <tr>
                 <th className="px-6 py-4">Title</th>
                 <th className="px-6 py-4">Category</th>
@@ -104,7 +104,7 @@ export function AdminResources() {
             <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
               {resources.length === 0 ? (
                 <tr>
-                  <td colSpan={4} className="px-6 py-8 text-center text-zinc-500">
+                  <td colSpan={4} className="px-6 py-8 text-center text-zinc-600">
                     No resources found. Create one to get started.
                   </td>
                 </tr>
@@ -134,21 +134,21 @@ export function AdminResources() {
                         href={`/resources/${resource.slug}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-2 text-zinc-400 hover:text-emerald-600 dark:hover:text-emerald-400 bg-zinc-100 dark:bg-zinc-800 rounded-lg transition-colors"
+                        className="p-2 text-zinc-600 hover:text-emerald-600 dark:hover:text-emerald-400 bg-zinc-100 dark:bg-zinc-800 rounded-lg transition-colors"
                         title="Preview"
                       >
                         <ExternalLink size={16} />
                       </a>
                       <button 
                         onClick={() => { setIsCreating(false); setEditingResource(resource); }}
-                        className="p-2 text-zinc-400 hover:text-blue-600 dark:hover:text-blue-400 bg-zinc-100 dark:bg-zinc-800 rounded-lg transition-colors"
+                        className="p-2 text-zinc-600 hover:text-blue-600 dark:hover:text-blue-400 bg-zinc-100 dark:bg-zinc-800 rounded-lg transition-colors"
                         title="Edit"
                       >
                         <Edit2 size={16} />
                       </button>
                       <button 
                         onClick={() => handleDelete(resource.id)}
-                        className="p-2 text-zinc-400 hover:text-red-600 dark:hover:text-red-400 bg-zinc-100 dark:bg-zinc-800 rounded-lg transition-colors"
+                        className="p-2 text-zinc-600 hover:text-red-600 dark:hover:text-red-400 bg-zinc-100 dark:bg-zinc-800 rounded-lg transition-colors"
                         title="Delete"
                       >
                         <Trash2 size={16} />
@@ -202,7 +202,7 @@ function ResourceEditor({ resource, subjects, onSave, onCancel }: { resource: Ac
             name="title"
             value={formData.title}
             onChange={handleChange}
-            className="w-full px-4 py-2 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl focus:ring-2 focus:ring-zinc-950 dark:focus:ring-white outline-none transition-all"
+            className="w-full px-4 py-2 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl focus:ring-2 focus:ring-zinc-950 dark:focus:ring-white outline-none transition"
             required
           />
         </div>
@@ -216,7 +216,7 @@ function ResourceEditor({ resource, subjects, onSave, onCancel }: { resource: Ac
             name="slug"
             value={formData.slug}
             onChange={handleChange}
-            className="w-full px-4 py-2 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl focus:ring-2 focus:ring-zinc-950 dark:focus:ring-white outline-none transition-all"
+            className="w-full px-4 py-2 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl focus:ring-2 focus:ring-zinc-950 dark:focus:ring-white outline-none transition"
             required
           />
         </div>
@@ -229,7 +229,7 @@ function ResourceEditor({ resource, subjects, onSave, onCancel }: { resource: Ac
           value={formData.description}
           onChange={handleChange}
           rows={3}
-          className="w-full px-4 py-2 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl focus:ring-2 focus:ring-zinc-950 dark:focus:ring-white outline-none transition-all"
+          className="w-full px-4 py-2 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl focus:ring-2 focus:ring-zinc-950 dark:focus:ring-white outline-none transition"
           required
         />
       </div>
@@ -242,7 +242,7 @@ function ResourceEditor({ resource, subjects, onSave, onCancel }: { resource: Ac
             name="category"
             value={formData.category}
             onChange={handleChange}
-            className="w-full px-4 py-2 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl focus:ring-2 focus:ring-zinc-950 dark:focus:ring-white outline-none transition-all"
+            className="w-full px-4 py-2 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl focus:ring-2 focus:ring-zinc-950 dark:focus:ring-white outline-none transition"
             placeholder="e.g., Guide, Tutorial, Reference"
             required
           />
@@ -256,7 +256,7 @@ function ResourceEditor({ resource, subjects, onSave, onCancel }: { resource: Ac
             value={formData.reading_time_minutes}
             onChange={handleChange}
             min={1}
-            className="w-full px-4 py-2 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl focus:ring-2 focus:ring-zinc-950 dark:focus:ring-white outline-none transition-all"
+            className="w-full px-4 py-2 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl focus:ring-2 focus:ring-zinc-950 dark:focus:ring-white outline-none transition"
           />
         </div>
 
@@ -266,7 +266,7 @@ function ResourceEditor({ resource, subjects, onSave, onCancel }: { resource: Ac
             name="status"
             value={formData.status}
             onChange={handleChange}
-            className="w-full px-4 py-2 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl focus:ring-2 focus:ring-zinc-950 dark:focus:ring-white outline-none transition-all"
+            className="w-full px-4 py-2 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl focus:ring-2 focus:ring-zinc-950 dark:focus:ring-white outline-none transition"
           >
             <option value="DRAFT">Draft</option>
             <option value="PUBLISHED">Published</option>
@@ -279,7 +279,7 @@ function ResourceEditor({ resource, subjects, onSave, onCancel }: { resource: Ac
             name="related_subject_id"
             value={formData.related_subject_id || ''}
             onChange={handleChange}
-            className="w-full px-4 py-2 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl focus:ring-2 focus:ring-zinc-950 dark:focus:ring-white outline-none transition-all"
+            className="w-full px-4 py-2 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl focus:ring-2 focus:ring-zinc-950 dark:focus:ring-white outline-none transition"
           >
             <option value="">None</option>
             {subjects.map(s => (

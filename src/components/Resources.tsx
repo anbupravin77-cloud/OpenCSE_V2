@@ -52,12 +52,12 @@ export function ResourcesPage() {
 
       <div className="flex flex-col sm:flex-row gap-4 mb-10">
         <div className="relative flex-1">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-zinc-400">
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-zinc-600">
             <Search size={18} />
           </div>
           <input
             type="text"
-            className="w-full pl-10 pr-4 py-3 bg-zinc-100/80 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 rounded-xl focus:ring-2 focus:ring-zinc-950 dark:focus:ring-white focus:border-transparent text-sm transition-all"
+            className="w-full pl-10 pr-4 py-3 bg-zinc-100/80 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 rounded-xl focus:ring-2 focus:ring-zinc-950 dark:focus:ring-white focus:border-transparent text-sm transition"
             placeholder="Search resources, topics, or guides..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -92,9 +92,9 @@ export function ResourcesPage() {
         </div>
       ) : filteredResources.length === 0 ? (
         <div className="text-center py-20 border border-zinc-200 dark:border-zinc-800 border-dashed rounded-2xl">
-          <BookOpen className="mx-auto h-12 w-12 text-zinc-400 mb-4" />
+          <BookOpen className="mx-auto h-12 w-12 text-zinc-600 mb-4" />
           <h3 className="text-lg font-medium text-zinc-900 dark:text-zinc-100">No resources found</h3>
-          <p className="mt-2 text-sm text-zinc-500">Try adjusting your search or category filter.</p>
+          <p className="mt-2 text-sm text-zinc-600">Try adjusting your search or category filter.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -104,15 +104,15 @@ export function ResourcesPage() {
               <Link 
                 to={`/resources/${resource.slug}`}
                 key={resource.id} 
-                className="group flex flex-col bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden hover:shadow-xl hover:border-zinc-300 dark:hover:border-zinc-700 transition-all duration-300"
+                className="group flex flex-col bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden hover:shadow-xl hover:border-zinc-300 dark:hover:border-zinc-700 transition duration-300"
               >
                 <div className="p-6 flex-1 flex flex-col">
                   <div className="flex items-center gap-2 mb-4">
-                    <span className="text-xs font-mono font-bold tracking-wider uppercase text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-900 px-2 py-1 rounded">
+                    <span className="text-xs font-mono font-bold tracking-wider uppercase text-zinc-600 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-900 px-2 py-1 rounded">
                       {resource.category}
                     </span>
                     {subject && (
-                      <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500 truncate">
+                      <span className="text-xs font-mono text-zinc-600 dark:text-zinc-500 truncate">
                         • {subject.code}
                       </span>
                     )}
@@ -127,11 +127,11 @@ export function ResourcesPage() {
                   </p>
                   
                   <div className="flex items-center justify-between pt-4 border-t border-zinc-100 dark:border-zinc-800/80 mt-auto">
-                    <div className="flex items-center gap-1.5 text-xs font-medium text-zinc-500">
+                    <div className="flex items-center gap-1.5 text-xs font-medium text-zinc-600">
                       <Clock size={14} />
                       {resource.reading_time_minutes} min read
                     </div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-zinc-950 dark:text-white flex items-center gap-1 group-hover:gap-2 transition-all">
+                    <span className="text-xs font-bold uppercase tracking-wider text-zinc-950 dark:text-white flex items-center gap-1 group-hover:gap-2 transition">
                       Read Guide <ChevronRight size={14} />
                     </span>
                   </div>
@@ -221,7 +221,7 @@ export function ResourceArticlePage() {
       </script>
 
       <nav aria-label="Breadcrumb" className="mb-8">
-        <ol className="flex items-center space-x-2 text-sm text-zinc-500">
+        <ol className="flex items-center space-x-2 text-sm text-zinc-600">
           <li>
             <Link to="/resources" className="hover:text-zinc-950 dark:hover:text-white transition-colors">Resources</Link>
           </li>
@@ -237,7 +237,7 @@ export function ResourceArticlePage() {
           <span className="text-xs font-mono font-bold tracking-wider uppercase text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20 px-2.5 py-1 rounded-md border border-emerald-200 dark:border-emerald-800/30">
             {resource.category}
           </span>
-          <span className="text-xs font-medium text-zinc-500 flex items-center gap-1.5">
+          <span className="text-xs font-medium text-zinc-600 flex items-center gap-1.5">
             <Clock size={14} /> {resource.reading_time_minutes} min read
           </span>
         </div>
@@ -252,11 +252,11 @@ export function ResourceArticlePage() {
 
         {subject && (
           <div className="mt-8 inline-flex items-center gap-3 p-3 pr-5 bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 rounded-xl">
-            <div className="w-10 h-10 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg flex items-center justify-center text-zinc-500">
+            <div className="w-10 h-10 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg flex items-center justify-center text-zinc-600">
               <FileText size={18} />
             </div>
             <div>
-              <div className="text-xs font-semibold uppercase tracking-wider text-zinc-500 mb-0.5">Related Course</div>
+              <div className="text-xs font-semibold uppercase tracking-wider text-zinc-600 mb-0.5">Related Course</div>
               <Link to={`/subject/${subject.id}`} className="text-sm font-medium text-zinc-950 dark:text-white hover:underline decoration-zinc-300 dark:decoration-zinc-700 underline-offset-4">
                 {subject.code} — {subject.name}
               </Link>
