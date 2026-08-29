@@ -78,3 +78,63 @@ export type YearType = '1st' | '2nd' | '3rd' | '4th';
 export type FullTopic = Topic & { resources: Resource[] };
 export type FullCO = CO & { topics: FullTopic[] };
 export type FullSubject = Subject & { cos: FullCO[] };
+
+// --- 54-Point Diagnostic Audit Engine Types ---
+export type AuditStatus = 'PASS' | 'WARNING' | 'FAIL' | 'NOT_VERIFIED' | 'NOT_APPLICABLE';
+
+export type AuditCategory = 'technical' | 'content' | 'legal' | 'seo' | 'ux';
+
+export interface AuditCheckpoint {
+  id: string;
+  pointNumber: number;
+  category: AuditCategory;
+  title: string;
+  status: AuditStatus;
+  evidence: string;
+  whyItMatters: string;
+  whatWeDetected: string;
+  recommendation: string;
+  scoreWeight: number; // 1 to 3
+  isCriticalRoadblock?: boolean;
+}
+
+export interface ContentMetrics {
+  homepageWordCount: number;
+  indexablePagesCount: number;
+  totalMeaningfulWords: number;
+  averageArticleDepth: number;
+  legalPageWordCount: number;
+  thinPagesCount: number;
+}
+
+export interface InternalLinkStats {
+  totalLinksFound: number;
+  uniqueDestinations: number;
+  brokenLinks: number;
+  internalList: string[];
+}
+
+export interface AuditReport {
+  url: string;
+  timestamp: string;
+  readinessScore: number; // 0 - 100%
+  categoryScores: {
+    technical: number;
+    content: number;
+    legal: number;
+    seo: number;
+    ux: number;
+  };
+  summary: {
+    totalPoints: number;
+    passedPoints: number;
+    warningPoints: number;
+    failedPoints: number;
+    notVerifiedPoints: number;
+    criticalRoadblocks: number;
+  };
+  contentMetrics: ContentMetrics;
+  linkStats: InternalLinkStats;
+  checkpoints: AuditCheckpoint[];
+  disclaimer: string;
+}

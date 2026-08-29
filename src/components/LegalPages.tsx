@@ -557,6 +557,296 @@ export function ContentPolicyPage() {
   );
 }
 
+export function DisclaimerPage() {
+  return (
+    <div className="max-w-4xl mx-auto py-8">
+      <SEO 
+        title="Disclaimer & Non-Affiliation Notice — OpenCSE" 
+        description="Official disclaimer and non-affiliation statements regarding Google LLC, academic course materials, and diagnostic tools on OpenCSE."
+        canonicalPath="/disclaimer"
+        breadcrumbs={[
+          { name: 'Home', path: '/' },
+          { name: 'Disclaimer', path: '/disclaimer' }
+        ]}
+      />
+
+      <div className="border-b border-zinc-200 dark:border-zinc-800 pb-8 mb-10">
+        <h1 className="text-3xl sm:text-4xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white mb-4">
+          Disclaimer & Trademark Notice
+        </h1>
+        <p className="text-sm font-mono uppercase tracking-widest text-zinc-500">
+          Last Updated: March 2026 • Legal Notice & Non-Affiliation
+        </p>
+      </div>
+
+      <div className="space-y-10 text-zinc-600 dark:text-zinc-400 font-light text-base leading-relaxed">
+        <section className="space-y-3 p-6 bg-zinc-100 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 rounded-2xl">
+          <h2 className="text-xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white">
+            1. Official Non-Affiliation Statement (Google LLC)
+          </h2>
+          <p className="text-sm leading-relaxed text-zinc-700 dark:text-zinc-300 font-normal">
+            <strong>OpenCSE is an independent academic resource platform and developer diagnostic suite.</strong> OpenCSE, its website analyzer, revenue calculator, eligibility checklists, and related tools are <strong>not affiliated with, endorsed by, sponsored by, or in any way officially connected with Google LLC, Alphabet Inc., or any of their subsidiaries or affiliates.</strong>
+          </p>
+          <p className="text-xs text-zinc-500">
+            Google, Google AdSense, Google Search Console, YouTube, and the Google logo are trademarks or registered trademarks of Google LLC. Any references to these marks on this site are made strictly for descriptive, identification, and technical compliance educational purposes only under fair use principles.
+          </p>
+        </section>
+
+        <section className="space-y-3">
+          <h2 className="text-2xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white">
+            2. Diagnostic Tools & Readiness Audit Disclaimer
+          </h2>
+          <p>
+            The 54-point audit engine, readiness scores, policy checklists, and diagnostic estimates provided on OpenCSE are technical evaluation aids developed to help publishers identify common technical, content, and metadata requirements based on publicly available web standards and best practices.
+          </p>
+          <p>
+            <strong>These audits do NOT constitute a guarantee, promise, or warranty of Google AdSense approval or revenue generation.</strong> The ultimate approval decision for any website applying to Google AdSense rests exclusively with Google LLC and its automated and manual review teams. OpenCSE makes no representations regarding actual commercial monetization outcomes.
+          </p>
+        </section>
+
+        <section className="space-y-3 border-t border-zinc-200 dark:border-zinc-800 pt-8">
+          <h2 className="text-2xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white">
+            3. Academic Materials & Educational Nature
+          </h2>
+          <p>
+            All lecture notes, course outcome mappings, topic guides, algorithmic code samples, and slide decks published on OpenCSE are provided solely for non-commercial educational, research, and individual study purposes. While our editorial team strives for rigorous accuracy, study materials are provided on an "as is" and "as available" basis without warranties of any kind, whether express or implied.
+          </p>
+        </section>
+
+        <section className="space-y-3 border-t border-zinc-200 dark:border-zinc-800 pt-8">
+          <h2 className="text-2xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white">
+            4. External Links & Third-Party Content
+          </h2>
+          <p>
+            OpenCSE may contain links to external university websites, academic repositories, open-source documentation, or third-party web services. OpenCSE does not investigate, monitor, or endorse the accuracy or completeness of information found on external sites.
+          </p>
+        </section>
+
+        <section className="space-y-3 border-t border-zinc-200 dark:border-zinc-800 pt-8">
+          <h2 className="text-2xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white">
+            5. Inquiries & Contact
+          </h2>
+          <p>
+            For any legal, trademark, or clarification inquiries regarding this disclaimer, please visit our <Link to="/contact" className="text-zinc-950 dark:text-white underline hover:text-zinc-600 dark:hover:text-zinc-300">Contact Portal</Link> or email us directly at <span className="font-mono text-zinc-950 dark:text-white">legal@opencse.org</span>.
+          </p>
+        </section>
+      </div>
+    </div>
+  );
+}
+
+export function SitemapPage() {
+  return (
+    <div className="max-w-4xl mx-auto py-8">
+      <SEO 
+        title="HTML Sitemap & Complete Directory — OpenCSE" 
+        description="Comprehensive index of all academic curricula, AdSense diagnostic tools, publisher guides, and legal compliance pages on OpenCSE."
+        canonicalPath="/sitemap"
+        breadcrumbs={[
+          { name: 'Home', path: '/' },
+          { name: 'Sitemap', path: '/sitemap' }
+        ]}
+      />
+
+      <div className="border-b border-zinc-200 dark:border-zinc-800 pb-8 mb-10">
+        <h1 className="text-3xl sm:text-4xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white mb-4">
+          Complete Site Directory & Index
+        </h1>
+        <p className="text-sm font-mono uppercase tracking-widest text-zinc-500">
+          Structured Navigation Index for Students, Publishers & Web Crawlers
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Section 1: AdSense Diagnostic Suite */}
+        <div className="p-6 bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 rounded-2xl space-y-4">
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+            <h2 className="text-lg font-serif font-bold text-zinc-950 dark:text-white">Diagnostic & Audit Suite</h2>
+          </div>
+          <p className="text-xs text-zinc-500 leading-relaxed">
+            Automated tools to verify website health, technical criteria, and readiness benchmarks.
+          </p>
+          <ul className="space-y-2 text-sm">
+            <li>
+              <Link to="/analyzer" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
+                <span>54-Point Website Analyzer</span>
+                <span className="text-xs font-mono text-zinc-400">/analyzer</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/checklist" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
+                <span>Eligibility Checklist</span>
+                <span className="text-xs font-mono text-zinc-400">/checklist</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/calculator" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
+                <span>AdSense Revenue Calculator</span>
+                <span className="text-xs font-mono text-zinc-400">/calculator</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/policy-generator" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
+                <span>Compliant Policy Generator</span>
+                <span className="text-xs font-mono text-zinc-400">/policy-generator</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/seo-checklist" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
+                <span>Technical SEO Checklist</span>
+                <span className="text-xs font-mono text-zinc-400">/seo-checklist</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/policy-checklist" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
+                <span>AdSense Policy Checklist</span>
+                <span className="text-xs font-mono text-zinc-400">/policy-checklist</span>
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        {/* Section 2: Publisher Guides */}
+        <div className="p-6 bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 rounded-2xl space-y-4">
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+            <h2 className="text-lg font-serif font-bold text-zinc-950 dark:text-white">Publisher Guides & KB</h2>
+          </div>
+          <p className="text-xs text-zinc-500 leading-relaxed">
+            In-depth documentation, approval troubleshooting, and common pitfalls.
+          </p>
+          <ul className="space-y-2 text-sm">
+            <li>
+              <Link to="/how-to-get-approved" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
+                <span>How to Get Approved (Step-by-Step)</span>
+                <span className="text-xs font-mono text-zinc-400">/how-to-get-approved</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/rejection-reasons" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
+                <span>Top AdSense Rejection Reasons & Fixes</span>
+                <span className="text-xs font-mono text-zinc-400">/rejection-reasons</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/tips-and-tricks" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
+                <span>Approval Tips & Best Practices</span>
+                <span className="text-xs font-mono text-zinc-400">/tips-and-tricks</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/faq" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
+                <span>Frequently Asked Questions</span>
+                <span className="text-xs font-mono text-zinc-400">/faq</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/resources" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
+                <span>Academic Resource Hub & Articles</span>
+                <span className="text-xs font-mono text-zinc-400">/resources</span>
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        {/* Section 3: Academic Curricula */}
+        <div className="p-6 bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 rounded-2xl space-y-4">
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+            <h2 className="text-lg font-serif font-bold text-zinc-950 dark:text-white">Academic Curriculum</h2>
+          </div>
+          <p className="text-xs text-zinc-500 leading-relaxed">
+            Distraction-free Outcome-Based Education (OBE) course structures for CSE.
+          </p>
+          <ul className="space-y-2 text-sm">
+            <li>
+              <Link to="/" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
+                <span>Curriculum Home (All Academic Years)</span>
+                <span className="text-xs font-mono text-zinc-400">/</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/subject/operating-systems" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
+                <span>Operating Systems (22CH362)</span>
+                <span className="text-xs font-mono text-zinc-400">CO1 - CO5</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/subject/data-structures" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
+                <span>Data Structures & Algorithms</span>
+                <span className="text-xs font-mono text-zinc-400">CO1 - CO5</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/subject/object-oriented-programming" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
+                <span>Object Oriented Programming</span>
+                <span className="text-xs font-mono text-zinc-400">CO1 - CO5</span>
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        {/* Section 4: Legal & Machine Feeds */}
+        <div className="p-6 bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 rounded-2xl space-y-4">
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-purple-500"></span>
+            <h2 className="text-lg font-serif font-bold text-zinc-950 dark:text-white">Legal, Trust & Feeds</h2>
+          </div>
+          <p className="text-xs text-zinc-500 leading-relaxed">
+            Mandatory compliance documentation, user rights, and machine-readable data feeds.
+          </p>
+          <ul className="space-y-2 text-sm">
+            <li>
+              <Link to="/about" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
+                <span>About Us & Editorial Mission</span>
+                <span className="text-xs font-mono text-zinc-400">/about</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
+                <span>Contact & Errata Submission</span>
+                <span className="text-xs font-mono text-zinc-400">/contact</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/privacy" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
+                <span>Privacy Policy & AdSense Disclosures</span>
+                <span className="text-xs font-mono text-zinc-400">/privacy</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/terms" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
+                <span>Terms of Service</span>
+                <span className="text-xs font-mono text-zinc-400">/terms</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/disclaimer" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
+                <span>Disclaimer & Trademark Notice</span>
+                <span className="text-xs font-mono text-zinc-400">/disclaimer</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/content-policy" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
+                <span>Content Policy & DMCA Takedown</span>
+                <span className="text-xs font-mono text-zinc-400">/content-policy</span>
+              </Link>
+            </li>
+            <li className="pt-2 border-t border-zinc-200 dark:border-zinc-800 flex items-center gap-3 text-xs font-mono text-zinc-500">
+              <a href="/sitemap.xml" target="_blank" rel="noreferrer" className="hover:underline text-zinc-950 dark:text-white">XML Sitemap</a>
+              <span>•</span>
+              <a href="/robots.txt" target="_blank" rel="noreferrer" className="hover:underline text-zinc-950 dark:text-white">Robots.txt</a>
+              <span>•</span>
+              <a href="/llms.txt" target="_blank" rel="noreferrer" className="hover:underline text-zinc-950 dark:text-white">LLMs.txt</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function NotFoundPage() {
   return (
     <div className="max-w-xl mx-auto py-20 text-center">
@@ -592,4 +882,5 @@ export function NotFoundPage() {
     </div>
   );
 }
+
 

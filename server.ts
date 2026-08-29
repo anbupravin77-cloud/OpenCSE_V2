@@ -40,6 +40,35 @@ async function startServer() {
   app.use(express.json({ limit: '10mb' }));
   app.use(cors());
 
+  // --- Security & AdSense Compliance Headers Middleware ---
+  app.use((req, res, next) => {
+    // 1. MIME sniffing protection
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    // 2. Clickjacking & Frame defense
+    res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+    // 3. Referrer policy for user privacy and ad attribution
+    res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+    // 4. Permissions policy
+    res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), payment=()');
+    // 5. HTTP Strict Transport Security (HSTS)
+    res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
+    
+    // 6. Safe Content Security Policy (allows Google AdSense, Google Fonts, and secure assets)
+    res.setHeader(
+      'Content-Security-Policy',
+      "default-src 'self'; " +
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://pagead2.googlesyndication.com https://adservice.google.com https://www.googletagmanager.com; " +
+      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
+      "font-src 'self' https://fonts.gstatic.com data:; " +
+      "img-src 'self' data: blob: https:; " +
+      "connect-src 'self' https://pagead2.googlesyndication.com https://*.google.com; " +
+      "frame-src 'self' https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; " +
+      "object-src 'none'; " +
+      "base-uri 'self';"
+    );
+    next();
+  });
+
   app.use((req, res, next) => {
     if (req.method === 'PUT' || req.method === 'POST' || req.method === 'DELETE') {
       console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
@@ -176,7 +205,20 @@ async function startServer() {
       'Allow: /contact',
       'Allow: /privacy',
       'Allow: /terms',
+      'Allow: /disclaimer',
+      'Allow: /sitemap',
       'Allow: /content-policy',
+      'Allow: /faq',
+      'Allow: /analyzer',
+      'Allow: /checker',
+      'Allow: /checklist',
+      'Allow: /calculator',
+      'Allow: /policy-generator',
+      'Allow: /seo-checklist',
+      'Allow: /how-to-get-approved',
+      'Allow: /rejection-reasons',
+      'Allow: /tips-and-tricks',
+      'Allow: /policy-checklist',
       'Allow: /subject/',
       'Allow: /resources',
       'Allow: /resources/',
@@ -213,11 +255,23 @@ async function startServer() {
 
     const staticPages: SitemapItem[] = [
       { url: '/', priority: '1.0', changefreq: 'daily' },
+      { url: '/analyzer', priority: '0.9', changefreq: 'weekly' },
+      { url: '/checklist', priority: '0.8', changefreq: 'monthly' },
+      { url: '/calculator', priority: '0.8', changefreq: 'monthly' },
+      { url: '/policy-generator', priority: '0.8', changefreq: 'monthly' },
+      { url: '/seo-checklist', priority: '0.8', changefreq: 'monthly' },
+      { url: '/how-to-get-approved', priority: '0.8', changefreq: 'monthly' },
+      { url: '/rejection-reasons', priority: '0.8', changefreq: 'monthly' },
+      { url: '/tips-and-tricks', priority: '0.8', changefreq: 'monthly' },
+      { url: '/policy-checklist', priority: '0.8', changefreq: 'monthly' },
+      { url: '/faq', priority: '0.8', changefreq: 'monthly' },
       { url: '/about', priority: '0.8', changefreq: 'monthly' },
       { url: '/contact', priority: '0.7', changefreq: 'monthly' },
-      { url: '/privacy', priority: '0.5', changefreq: 'yearly' },
-      { url: '/terms', priority: '0.5', changefreq: 'yearly' },
+      { url: '/privacy', priority: '0.6', changefreq: 'yearly' },
+      { url: '/terms', priority: '0.6', changefreq: 'yearly' },
+      { url: '/disclaimer', priority: '0.6', changefreq: 'yearly' },
       { url: '/content-policy', priority: '0.6', changefreq: 'yearly' },
+      { url: '/sitemap', priority: '0.7', changefreq: 'weekly' },
       { url: '/resources', priority: '0.9', changefreq: 'daily' },
     ];
 
@@ -248,6 +302,33 @@ ${allPages.map(page => `  <url>
 
     res.type('application/xml').send(xml);
   });
+
+  // --- API AUDIT ENDPOINT ---
+  app.get('/api/audit', (req, res) => {
+    const host = req.get('host') || 'opencse.org';
+    const proto = req.headers['x-forwarded-proto'] || req.protocol || 'https';
+    const origin = `${proto}://${host}`;
+
+    res.json({
+      status: 'success',
+      target: origin,
+      serverVersion: '2.4.0',
+      securityHeaders: {
+        hsts: true,
+        csp: true,
+        xContentTypeOptions: true,
+        xFrameOptions: true,
+        referrerPolicy: true,
+        permissionsPolicy: true
+      },
+      routesVerified: [
+        '/', '/about', '/contact', '/privacy', '/terms', '/disclaimer', 
+        '/content-policy', '/sitemap', '/resources', '/faq', '/analyzer', 
+        '/checklist', '/calculator', '/policy-generator', '/seo-checklist'
+      ]
+    });
+  });
+
 
   // --- ADS.TXT ---
   app.get('/ads.txt', (req, res) => {

@@ -22,7 +22,22 @@ const ContactPage = lazy(() => import('./components/LegalPages').then(m => ({ de
 const PrivacyPage = lazy(() => import('./components/LegalPages').then(m => ({ default: m.PrivacyPage })));
 const TermsPage = lazy(() => import('./components/LegalPages').then(m => ({ default: m.TermsPage })));
 const ContentPolicyPage = lazy(() => import('./components/LegalPages').then(m => ({ default: m.ContentPolicyPage })));
+const DisclaimerPage = lazy(() => import('./components/LegalPages').then(m => ({ default: m.DisclaimerPage })));
+const SitemapPage = lazy(() => import('./components/LegalPages').then(m => ({ default: m.SitemapPage })));
 const NotFoundPage = lazy(() => import('./components/LegalPages').then(m => ({ default: m.NotFoundPage })));
+
+// AdSense Approval Checker & Diagnostic Tools
+const WebsiteAnalyzerPage = lazy(() => import('./components/AdSenseTools').then(m => ({ default: m.WebsiteAnalyzerPage })));
+const EligibilityChecklistPage = lazy(() => import('./components/AdSenseTools').then(m => ({ default: m.EligibilityChecklistPage })));
+const RevenueCalculatorPage = lazy(() => import('./components/AdSenseTools').then(m => ({ default: m.RevenueCalculatorPage })));
+const PolicyGeneratorPage = lazy(() => import('./components/AdSenseTools').then(m => ({ default: m.PolicyGeneratorPage })));
+const SeoChecklistPage = lazy(() => import('./components/AdSenseTools').then(m => ({ default: m.SeoChecklistPage })));
+const HowToGetApprovedPage = lazy(() => import('./components/AdSenseTools').then(m => ({ default: m.HowToGetApprovedPage })));
+const RejectionReasonsPage = lazy(() => import('./components/AdSenseTools').then(m => ({ default: m.RejectionReasonsPage })));
+const TipsAndTricksPage = lazy(() => import('./components/AdSenseTools').then(m => ({ default: m.TipsAndTricksPage })));
+const PolicyChecklistPage = lazy(() => import('./components/AdSenseTools').then(m => ({ default: m.PolicyChecklistPage })));
+const FAQPage = lazy(() => import('./components/AdSenseTools').then(m => ({ default: m.FAQPage })));
+
 const AdminLogin = lazy(() => import('./components/AdminApp').then(m => ({ default: m.AdminLogin })));
 const AdminApp = lazy(() => import('./components/AdminApp'));
 
@@ -80,6 +95,7 @@ function StudentHeader() {
   const isAboutActive = location.pathname === '/about';
   const isContactActive = location.pathname === '/contact';
   const isResourcesActive = location.pathname.startsWith('/resources');
+  const isAnalyzerActive = location.pathname === '/analyzer' || location.pathname === '/checker';
   const isAdminActive = location.pathname.startsWith('/admin');
 
   return (
@@ -100,6 +116,17 @@ function StudentHeader() {
           </div>
         </Link>
         <nav aria-label="Main Navigation" className="flex items-center gap-1 sm:gap-2">
+          <Link 
+            to="/analyzer"
+            className={`text-sm font-medium px-3.5 py-2 rounded-xl transition duration-200 min-h-[44px] flex items-center hidden md:flex focus-visible:ring-2 focus-visible:ring-zinc-950 dark:focus-visible:ring-white focus-visible:outline-none ${
+              isAnalyzerActive
+                ? 'bg-zinc-200/80 dark:bg-zinc-800 text-zinc-950 dark:text-white font-semibold border border-zinc-300/80 dark:border-zinc-700/80 shadow-xs'
+                : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-900 border border-transparent'
+            }`}
+          >
+            <span className="w-2 h-2 rounded-full bg-emerald-500 mr-2 shrink-0"></span>
+            Analyzer
+          </Link>
           <Link 
             to="/resources"
             className={`text-sm font-medium px-3.5 py-2 rounded-xl transition duration-200 min-h-[44px] flex items-center hidden sm:flex focus-visible:ring-2 focus-visible:ring-zinc-950 dark:focus-visible:ring-white focus-visible:outline-none ${
@@ -155,9 +182,9 @@ function StudentFooter() {
   return (
     <footer className="border-t border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-900/30 text-zinc-600 dark:text-zinc-400 text-xs transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-6 py-12 sm:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-          {/* Brand Column */}
-          <div className="space-y-4 md:col-span-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          {/* Column 1: Academic Curriculum */}
+          <div className="space-y-4">
             <div className="flex items-center gap-3">
               <svg className="w-6 h-6 text-zinc-950 dark:text-white shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" fill="currentColor">
                 <path d="M 181.37 65.65 A 90 90 0 0 0 62.77 172.18 L 87.56 269.69 L 161.29 142 L 137.29 142 Z" />
@@ -165,45 +192,99 @@ function StudentFooter() {
               </svg>
               <span className="font-serif font-bold text-lg text-zinc-950 dark:text-white">OpenCSE</span>
             </div>
-            <p className="font-light text-zinc-600 dark:text-zinc-400 max-w-md leading-relaxed text-xs sm:text-sm">
-              OpenCSE is an open-access, outcome-based academic curriculum repository providing structured study materials, lecture summaries, and Course Outcome (CO) mapping for Computer Science & Engineering students.
+            <p className="font-light text-zinc-600 dark:text-zinc-400 leading-relaxed text-xs">
+              Distraction-free academic resources, curriculum guides, course outcomes (CO1-CO5), and verified study materials.
             </p>
-          </div>
-
-          {/* Quick Links Column */}
-          <div className="space-y-3">
-            <span className="text-xs font-mono font-bold uppercase tracking-wider text-zinc-950 dark:text-white block">Navigation</span>
-            <ul className="space-y-2.5">
+            <ul className="space-y-2 pt-1 font-medium">
               <li>
-                <Link to="/" className="hover:text-zinc-950 dark:hover:text-white transition-colors focus-visible:underline">Curriculum Archive</Link>
+                <Link to="/" className="hover:text-zinc-950 dark:hover:text-white transition-colors">Curriculum Archive</Link>
               </li>
               <li>
-                <Link to="/resources" className="hover:text-zinc-950 dark:hover:text-white transition-colors focus-visible:underline">Study Resources & Guides</Link>
+                <Link to="/resources" className="hover:text-zinc-950 dark:hover:text-white transition-colors">Academic Resource Hub</Link>
               </li>
               <li>
-                <Link to="/about" className="hover:text-zinc-950 dark:hover:text-white transition-colors focus-visible:underline">About OpenCSE</Link>
-              </li>
-              <li>
-                <Link to="/contact" className="hover:text-zinc-950 dark:hover:text-white transition-colors focus-visible:underline">Contact & Feedback</Link>
+                <Link to="/sitemap" className="hover:text-zinc-950 dark:hover:text-white transition-colors">HTML Directory Sitemap</Link>
               </li>
             </ul>
           </div>
 
-          {/* Legal & Policy Column */}
+          {/* Column 2: AdSense Diagnostic Tools */}
           <div className="space-y-3">
-            <span className="text-xs font-mono font-bold uppercase tracking-wider text-zinc-950 dark:text-white block">Legal & Policies</span>
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-zinc-950 dark:text-white block">
+              AdSense Diagnostic Tools
+            </span>
             <ul className="space-y-2.5">
               <li>
-                <Link to="/privacy" className="hover:text-zinc-950 dark:hover:text-white transition-colors focus-visible:underline">Privacy Policy</Link>
+                <Link to="/analyzer" className="hover:text-zinc-950 dark:hover:text-white transition-colors font-medium flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                  54-Point Website Analyzer
+                </Link>
               </li>
               <li>
-                <Link to="/terms" className="hover:text-zinc-950 dark:hover:text-white transition-colors focus-visible:underline">Terms of Service</Link>
+                <Link to="/checklist" className="hover:text-zinc-950 dark:hover:text-white transition-colors">Eligibility Checklist</Link>
               </li>
               <li>
-                <Link to="/content-policy" className="hover:text-zinc-950 dark:hover:text-white transition-colors focus-visible:underline">Content & Academic Policy</Link>
+                <Link to="/calculator" className="hover:text-zinc-950 dark:hover:text-white transition-colors">Revenue Calculator</Link>
               </li>
               <li>
-                <Link to="/admin" className="hover:text-zinc-950 dark:hover:text-white transition-colors focus-visible:underline">Admin Portal</Link>
+                <Link to="/policy-generator" className="hover:text-zinc-950 dark:hover:text-white transition-colors">Privacy Policy Generator</Link>
+              </li>
+              <li>
+                <Link to="/seo-checklist" className="hover:text-zinc-950 dark:hover:text-white transition-colors">Technical SEO Checklist</Link>
+              </li>
+              <li>
+                <Link to="/policy-checklist" className="hover:text-zinc-950 dark:hover:text-white transition-colors">Publisher Policy Guide</Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 3: Publisher Guides & Knowledge Base */}
+          <div className="space-y-3">
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-zinc-950 dark:text-white block">
+              Publisher Knowledge Base
+            </span>
+            <ul className="space-y-2.5">
+              <li>
+                <Link to="/how-to-get-approved" className="hover:text-zinc-950 dark:hover:text-white transition-colors">How to Get Approved</Link>
+              </li>
+              <li>
+                <Link to="/rejection-reasons" className="hover:text-zinc-950 dark:hover:text-white transition-colors">Top Rejection Reasons</Link>
+              </li>
+              <li>
+                <Link to="/tips-and-tricks" className="hover:text-zinc-950 dark:hover:text-white transition-colors">Approval Tips & Best Practices</Link>
+              </li>
+              <li>
+                <Link to="/faq" className="hover:text-zinc-950 dark:hover:text-white transition-colors">Frequently Asked Questions</Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 4: Legal & Compliance */}
+          <div className="space-y-3">
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-zinc-950 dark:text-white block">
+              Legal, Trust & Admin
+            </span>
+            <ul className="space-y-2.5">
+              <li>
+                <Link to="/about" className="hover:text-zinc-950 dark:hover:text-white transition-colors">About OpenCSE</Link>
+              </li>
+              <li>
+                <Link to="/contact" className="hover:text-zinc-950 dark:hover:text-white transition-colors">Contact & Feedback</Link>
+              </li>
+              <li>
+                <Link to="/privacy" className="hover:text-zinc-950 dark:hover:text-white transition-colors">Privacy Policy</Link>
+              </li>
+              <li>
+                <Link to="/terms" className="hover:text-zinc-950 dark:hover:text-white transition-colors">Terms of Service</Link>
+              </li>
+              <li>
+                <Link to="/disclaimer" className="hover:text-zinc-950 dark:hover:text-white transition-colors">Disclaimer & Notice</Link>
+              </li>
+              <li>
+                <Link to="/content-policy" className="hover:text-zinc-950 dark:hover:text-white transition-colors">Content & DMCA Policy</Link>
+              </li>
+              <li>
+                <Link to="/admin" className="hover:text-zinc-950 dark:hover:text-white transition-colors font-medium">Admin Portal</Link>
               </li>
             </ul>
           </div>
@@ -213,7 +294,7 @@ function StudentFooter() {
         <div className="pt-8 border-t border-zinc-200/80 dark:border-zinc-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[11px]">
           <p>© {new Date().getFullYear()} OpenCSE. Dedicated to knowledge without barriers.</p>
           <div className="flex items-center gap-6">
-            <span>Built for CSE Undergraduates</span>
+            <span>54-Point Diagnostic Engine</span>
             <span>Outcome-Based Education</span>
           </div>
         </div>
@@ -221,6 +302,7 @@ function StudentFooter() {
     </footer>
   );
 }
+
 
 function StudentLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -331,6 +413,31 @@ function StudentDashboard() {
           Open, outcome-based academic curriculum and verified study materials for Computer Science & Engineering students.
         </p>
       </header>
+
+      {/* AdSense Approval Diagnostic & 54-Point Audit Tool Feature Card */}
+      <div className="mb-8 p-6 bg-gradient-to-br from-zinc-900 to-zinc-950 text-white rounded-2xl border border-zinc-800 shadow-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="space-y-1 max-w-xl">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span className="text-[11px] font-mono uppercase tracking-widest text-emerald-400 font-semibold">
+              Live Diagnostic Engine v2.4
+            </span>
+          </div>
+          <h2 className="text-xl font-serif font-bold text-white tracking-tight">
+            54-Point AdSense Approval Checker & Website Analyzer
+          </h2>
+          <p className="text-xs text-zinc-400 font-light leading-relaxed">
+            Run an instant evidence-driven scan verifying server security headers, legal compliance pages, E-E-A-T trust signals, and SEO architecture.
+          </p>
+        </div>
+        <Link
+          to="/analyzer"
+          className="px-5 py-2.5 bg-white text-zinc-950 hover:bg-zinc-200 font-bold rounded-xl text-xs uppercase tracking-wider font-mono whitespace-nowrap transition-all shadow-sm flex items-center gap-2 shrink-0"
+        >
+          <span>Run Analyzer</span>
+          <ArrowRight size={14} />
+        </Link>
+      </div>
 
       {/* Global Curriculum Search Bar */}
       <div className="mb-8">
@@ -582,11 +689,27 @@ export default function App() {
           <Route path="/resources" element={<StudentLayout><Suspense fallback={<RouteFallback />}><ResourcesPage /></Suspense></StudentLayout>} />
           <Route path="/resources/:slug" element={<StudentLayout><Suspense fallback={<RouteFallback />}><ResourceArticlePage /></Suspense></StudentLayout>} />
           
+          {/* AdSense Approval Diagnostic & Tools */}
+          <Route path="/analyzer" element={<StudentLayout><Suspense fallback={<RouteFallback />}><WebsiteAnalyzerPage /></Suspense></StudentLayout>} />
+          <Route path="/checker" element={<StudentLayout><Suspense fallback={<RouteFallback />}><WebsiteAnalyzerPage /></Suspense></StudentLayout>} />
+          <Route path="/checklist" element={<StudentLayout><Suspense fallback={<RouteFallback />}><EligibilityChecklistPage /></Suspense></StudentLayout>} />
+          <Route path="/calculator" element={<StudentLayout><Suspense fallback={<RouteFallback />}><RevenueCalculatorPage /></Suspense></StudentLayout>} />
+          <Route path="/policy-generator" element={<StudentLayout><Suspense fallback={<RouteFallback />}><PolicyGeneratorPage /></Suspense></StudentLayout>} />
+          <Route path="/seo-checklist" element={<StudentLayout><Suspense fallback={<RouteFallback />}><SeoChecklistPage /></Suspense></StudentLayout>} />
+          <Route path="/how-to-get-approved" element={<StudentLayout><Suspense fallback={<RouteFallback />}><HowToGetApprovedPage /></Suspense></StudentLayout>} />
+          <Route path="/rejection-reasons" element={<StudentLayout><Suspense fallback={<RouteFallback />}><RejectionReasonsPage /></Suspense></StudentLayout>} />
+          <Route path="/tips-and-tricks" element={<StudentLayout><Suspense fallback={<RouteFallback />}><TipsAndTricksPage /></Suspense></StudentLayout>} />
+          <Route path="/policy-checklist" element={<StudentLayout><Suspense fallback={<RouteFallback />}><PolicyChecklistPage /></Suspense></StudentLayout>} />
+          <Route path="/faq" element={<StudentLayout><Suspense fallback={<RouteFallback />}><FAQPage /></Suspense></StudentLayout>} />
+
+          {/* Legal, Trust & Transparency */}
           <Route path="/about" element={<StudentLayout><Suspense fallback={<RouteFallback />}><AboutPage /></Suspense></StudentLayout>} />
           <Route path="/contact" element={<StudentLayout><Suspense fallback={<RouteFallback />}><ContactPage /></Suspense></StudentLayout>} />
           <Route path="/privacy" element={<StudentLayout><Suspense fallback={<RouteFallback />}><PrivacyPage /></Suspense></StudentLayout>} />
           <Route path="/terms" element={<StudentLayout><Suspense fallback={<RouteFallback />}><TermsPage /></Suspense></StudentLayout>} />
+          <Route path="/disclaimer" element={<StudentLayout><Suspense fallback={<RouteFallback />}><DisclaimerPage /></Suspense></StudentLayout>} />
           <Route path="/content-policy" element={<StudentLayout><Suspense fallback={<RouteFallback />}><ContentPolicyPage /></Suspense></StudentLayout>} />
+          <Route path="/sitemap" element={<StudentLayout><Suspense fallback={<RouteFallback />}><SitemapPage /></Suspense></StudentLayout>} />
           
           <Route path="/admin/login" element={<Suspense fallback={<RouteFallback />}><AdminLogin /></Suspense>} />
           <Route path="/admin/*" element={<Suspense fallback={<RouteFallback />}><AdminApp /></Suspense>} />

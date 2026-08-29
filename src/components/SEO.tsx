@@ -5,6 +5,7 @@ interface SEOProps {
   description?: string;
   canonicalPath?: string;
   type?: 'website' | 'article';
+  breadcrumbs?: Array<{ name: string; path: string }>;
   loadAdsense?: boolean;
 }
 
@@ -13,6 +14,7 @@ export function SEO({
   description = "Distraction-free academic resources, curriculum guides, course outcomes, and verified study materials for Computer Science & Engineering students.",
   canonicalPath = "/",
   type = "website",
+  breadcrumbs,
   loadAdsense = false
 }: SEOProps) {
   useEffect(() => {
@@ -32,16 +34,22 @@ export function SEO({
     };
 
     // 3. Set Description & Open Graph
+    const currentOrigin = window.location.origin;
+    const fullCanonicalUrl = `${currentOrigin}${canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`}`;
+
     setMetaTag('name', 'description', description);
     setMetaTag('property', 'og:title', formattedTitle);
     setMetaTag('property', 'og:description', description);
     setMetaTag('property', 'og:type', type);
+    setMetaTag('property', 'og:url', fullCanonicalUrl);
+    setMetaTag('property', 'og:site_name', 'OpenCSE');
+    
+    // Twitter Cards
+    setMetaTag('name', 'twitter:card', 'summary_large_image');
     setMetaTag('name', 'twitter:title', formattedTitle);
     setMetaTag('name', 'twitter:description', description);
 
     // 4. Set Canonical Link
-    const currentOrigin = window.location.origin;
-    const fullCanonicalUrl = `${currentOrigin}${canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`}`;
     let linkCanonical = document.querySelector('link[rel="canonical"]');
     if (!linkCanonical) {
       linkCanonical = document.createElement('link');
@@ -50,13 +58,49 @@ export function SEO({
     }
     linkCanonical.setAttribute('href', fullCanonicalUrl);
 
-    // 5. Optional Google Site Verification if configured in env
+    // 5. Dynamic JSON-LD Structured Data Schema for Route
+    let dynamicSchemaScript = document.getElementById('dynamic-page-schema');
+    if (!dynamicSchemaScript) {
+      dynamicSchemaScript = document.createElement('script');
+      dynamicSchemaScript.id = 'dynamic-page-schema';
+      dynamicSchemaScript.setAttribute('type', 'application/ld+json');
+      document.head.appendChild(dynamicSchemaScript);
+    }
+
+    const schemaData: any = {
+      '@context': 'https://schema.org',
+      '@type': type === 'article' ? 'Article' : 'WebPage',
+      'name': formattedTitle,
+      'description': description,
+      'url': fullCanonicalUrl,
+      'isPartOf': {
+        '@type': 'WebSite',
+        'name': 'OpenCSE',
+        'url': currentOrigin
+      }
+    };
+
+    if (breadcrumbs && breadcrumbs.length > 0) {
+      schemaData['breadcrumb'] = {
+        '@type': 'BreadcrumbList',
+        'itemListElement': breadcrumbs.map((b, idx) => ({
+          '@type': 'ListItem',
+          'position': idx + 1,
+          'name': b.name,
+          'item': `${currentOrigin}${b.path.startsWith('/') ? b.path : `/${b.path}`}`
+        }))
+      };
+    }
+
+    dynamicSchemaScript.textContent = JSON.stringify(schemaData);
+
+    // 6. Optional Google Site Verification if configured in env
     const googleSite = (import.meta as any).env?.VITE_GOOGLE_SITE;
     if (googleSite && typeof googleSite === 'string' && googleSite.trim().length > 0) {
       setMetaTag('name', 'google-site-verification', googleSite.trim());
     }
 
-    // 6. AdSense Loading
+    // 7. AdSense Loading
     if (loadAdsense) {
       const adsenseClient = 'ca-pub-5652255852120529';
       const existingScript = document.querySelector(`script[src*="pagead2.googlesyndication.com"]`);
@@ -68,7 +112,8 @@ export function SEO({
         document.head.appendChild(script);
       }
     }
-  }, [title, description, canonicalPath, type, loadAdsense]);
+  }, [title, description, canonicalPath, type, breadcrumbs, loadAdsense]);
 
   return null;
 }
+
