@@ -171,6 +171,8 @@ async function startServer() {
       'Allow: /terms',
       'Allow: /content-policy',
       'Allow: /subject/',
+      'Allow: /resources',
+      'Allow: /resources/',
       'Allow: /uploads/',
       'Disallow: /admin',
       'Disallow: /admin/*',
@@ -200,6 +202,8 @@ async function startServer() {
       lastmod?: string;
     }
 
+    const publishedArticles = (db.academic_resources || []).filter(a => a.status === 'PUBLISHED');
+
     const staticPages: SitemapItem[] = [
       { url: '/', priority: '1.0', changefreq: 'daily' },
       { url: '/about', priority: '0.8', changefreq: 'monthly' },
@@ -207,6 +211,7 @@ async function startServer() {
       { url: '/privacy', priority: '0.5', changefreq: 'yearly' },
       { url: '/terms', priority: '0.5', changefreq: 'yearly' },
       { url: '/content-policy', priority: '0.6', changefreq: 'yearly' },
+      { url: '/resources', priority: '0.9', changefreq: 'daily' },
     ];
 
     const subjectPages: SitemapItem[] = activeSubjects.map(s => ({
@@ -216,7 +221,14 @@ async function startServer() {
       lastmod: s.updated_at ? s.updated_at.split('T')[0] : (s.created_at ? s.created_at.split('T')[0] : new Date().toISOString().split('T')[0])
     }));
 
-    const allPages = [...staticPages, ...subjectPages];
+    const resourcePages: SitemapItem[] = publishedArticles.map(a => ({
+      url: `/resources/${a.slug}`,
+      priority: '0.8',
+      changefreq: 'monthly',
+      lastmod: a.updated_at ? a.updated_at.split('T')[0] : (a.created_at ? a.created_at.split('T')[0] : new Date().toISOString().split('T')[0])
+    }));
+
+    const allPages = [...staticPages, ...subjectPages, ...resourcePages];
 
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -232,7 +244,10 @@ ${allPages.map(page => `  <url>
 
   // --- ADS.TXT ---
   app.get('/ads.txt', (req, res) => {
-    const content = process.env.ADS_TXT_CONTENT || 'google.com, pub-5652255852120529, DIRECT, f08c47fec0942fa0';
+    let content = process.env.ADS_TXT_CONTENT;
+    if (!content || !content.includes('pub-5652255852120529')) {
+      content = 'google.com, pub-5652255852120529, DIRECT, f08c47fec0942fa0';
+    }
     res.type('text/plain').send(content);
   });
 
@@ -415,6 +430,56 @@ ${allPages.map(page => `  <url>
       mimeType: req.file.mimetype,
       fileSize: req.file.size
     });
+  });
+
+  // --- ACADEMIC RESOURCES (ARTICLES) ---
+  app.get('/api/academic-resources', (req, res) => {
+    const db = getDb();
+    res.json(db.academic_resources || []);
+  });
+
+  app.get('/api/academic-resources/:slug', (req, res) => {
+    const db = getDb();
+    const resource = (db.academic_resources || []).find(r => r.slug === req.params.slug);
+    if (!resource) return res.status(404).json({ error: 'Resource not found' });
+    res.json(resource);
+  });
+
+  app.post('/api/academic-resources', (req, res) => {
+    const db = getDb();
+    const newResource = {
+      ...req.body,
+      id: uuidv4(),
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    };
+    if (!db.academic_resources) db.academic_resources = [];
+    db.academic_resources.push(newResource);
+    saveDb(db);
+    res.status(201).json(newResource);
+  });
+
+  app.put('/api/academic-resources/:id', (req, res) => {
+    const db = getDb();
+    if (!db.academic_resources) db.academic_resources = [];
+    const index = db.academic_resources.findIndex(r => r.id === req.params.id);
+    if (index === -1) return res.status(404).json({ error: 'Resource not found' });
+    
+    db.academic_resources[index] = { 
+      ...db.academic_resources[index], 
+      ...req.body, 
+      updated_at: new Date().toISOString() 
+    };
+    saveDb(db);
+    res.json(db.academic_resources[index]);
+  });
+
+  app.delete('/api/academic-resources/:id', (req, res) => {
+    const db = getDb();
+    if (!db.academic_resources) db.academic_resources = [];
+    db.academic_resources = db.academic_resources.filter(r => r.id !== req.params.id);
+    saveDb(db);
+    res.json({ success: true });
   });
 
   // Full nested data endpoint for frontend convenience (optional but useful for initial load)

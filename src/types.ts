@@ -49,11 +49,27 @@ export type Resource = {
   created_at?: string;
 };
 
+export type AcademicResource = {
+  id: string;
+  title: string;
+  slug: string;
+  category: string;
+  description: string;
+  content: string; // Rich text HTML
+  reading_time_minutes: number;
+  related_subject_id?: string;
+  related_topic_id?: string;
+  status: 'DRAFT' | 'PUBLISHED';
+  created_at?: string;
+  updated_at?: string;
+};
+
 export type DB = {
   subjects: Subject[];
   cos: CO[];
   topics: Topic[];
   resources: Resource[];
+  academic_resources: AcademicResource[];
 };
 
 // Joined types for easy frontend usage

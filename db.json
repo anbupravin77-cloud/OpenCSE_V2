@@ -11,7 +11,7 @@
       "academic_year": "2nd",
       "is_active": true,
       "created_at": "2026-08-27T13:59:10.724Z",
-      "updated_at": "2026-08-27T13:59:10.724Z"
+      "updated_at": "2026-08-29T09:18:56.714Z"
     },
     {
       "id": "sub_dsa",
@@ -315,7 +315,7 @@
       "co_id": "22CH362_co1",
       "title": "Monolithic vs Microkernels, Dual-mode execution",
       "description": "",
-      "content": "<p>Monolithic kernels and microkernels represent two fundamentally different architectural approaches to operating system design. In a **Monolithic Kernel**, the entire operating system works in kernel space. This includes the scheduler, file system, memory management, and device drivers. Because all components share the same memory space, inter-process communication is extremely fast. However, a single bug in a device driver can crash the entire system. A **Microkernel**, on the other hand, strips the kernel down to its bare minimum—typically just IPC (Inter-Process Communication), basic scheduling, and basic memory management. All other services (like file systems and drivers) run in user space as separate servers. This provides excellent stability and modularity, as a crashing driver won't bring down the kernel. The tradeoff is performance overhead due to constant context switching and message passing between user space and kernel space. ### Dual-Mode Execution To ensure system protection, modern processors provide at least two modes of operation: User Mode and Kernel Mode. A mode bit in the hardware indicates the current mode. When a user application requests a service from the operating system (via a system call), the system transitions from user mode to kernel mode to execute the privileged instruction, returning to user mode upon completion.</p><p></p>",
+      "content": "<p><img src=\"/uploads/1787995079774-119463357.jpg\">Monolithic kernels and microkernels represent two fundamentally different architectural approaches to operating system design. In a **Monolithic Kernel**, the entire operating system works in kernel space. This includes the scheduler, file system, memory management, and device drivers. Because all components share the same memory space, inter-process communication is extremely fast. However, a single bug in a device driver can crash the entire system. A **Microkernel**, on the other hand, strips the kernel down to its bare minimum—typically just IPC (Inter-Process Communication), basic scheduling, and basic memory management. All other services (like file systems and drivers) run in user space as separate servers. This provides excellent stability and modularity, as a crashing driver won't bring down the kernel. The tradeoff is performance overhead due to constant context switching and message passing between user space and kernel space. ### Dual-Mode Execution To ensure system protection, modern processors provide at least two modes of operation: User Mode and Kernel Mode. A mode bit in the hardware indicates the current mode. When a user application requests a service from the operating system (via a system call), the system transitions from user mode to kernel mode to execute the privileged instruction, returning to user mode upon completion.</p>",
       "display_order": 1
     },
     {
@@ -944,6 +944,203 @@
       "display_order": 1,
       "id": "c2f6047f-af25-49e6-9499-87270d829f4e",
       "created_at": "2026-08-27T13:59:45.622Z"
+    }
+  ],
+  "academic_resources": [
+    {
+      "title": "What Is a System Call?",
+      "slug": "what-is-a-system-call",
+      "category": "Operating Systems",
+      "description": "A comprehensive guide to understanding system calls, how they work, and why they are essential for modern operating systems.",
+      "reading_time_minutes": 5,
+      "related_subject_id": "sub_os",
+      "status": "PUBLISHED",
+      "content": "\n      <h2>Introduction</h2>\n      <p>A <strong>system call</strong> (syscall) is the programmatic way in which a computer program requests a service from the kernel of the operating system it is executed on. This may include hardware-related services (for example, accessing a hard drive), creation and execution of new processes, and communication with integral kernel services such as process scheduling.</p>\n      \n      <h2>Why Are System Calls Needed?</h2>\n      <p>Modern operating systems operate in two distinct modes to ensure stability and security:</p>\n      <ul>\n        <li><strong>User Mode:</strong> Applications run in this mode with restricted access to system resources.</li>\n        <li><strong>Kernel Mode:</strong> The OS kernel runs in this mode with unrestricted access to all hardware and resources.</li>\n      </ul>\n      <p>When an application needs to perform an action like reading a file, it must transition from User Mode to Kernel Mode. The system call provides a safe interface for this transition.</p>\n\n      <h2>Common Types of System Calls</h2>\n      <table class=\"w-full text-sm border-collapse border border-zinc-200\">\n        <thead>\n          <tr class=\"bg-zinc-50\">\n            <th class=\"border border-zinc-200 p-2 text-left\">Category</th>\n            <th class=\"border border-zinc-200 p-2 text-left\">Windows Example</th>\n            <th class=\"border border-zinc-200 p-2 text-left\">Linux (POSIX) Example</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n            <td class=\"border border-zinc-200 p-2\">Process Control</td>\n            <td class=\"border border-zinc-200 p-2\">CreateProcess()</td>\n            <td class=\"border border-zinc-200 p-2\">fork(), exit(), wait()</td>\n          </tr>\n          <tr>\n            <td class=\"border border-zinc-200 p-2\">File Management</td>\n            <td class=\"border border-zinc-200 p-2\">ReadFile(), WriteFile()</td>\n            <td class=\"border border-zinc-200 p-2\">open(), read(), write()</td>\n          </tr>\n          <tr>\n            <td class=\"border border-zinc-200 p-2\">Device Management</td>\n            <td class=\"border border-zinc-200 p-2\">SetConsoleMode()</td>\n            <td class=\"border border-zinc-200 p-2\">ioctl(), read(), write()</td>\n          </tr>\n        </tbody>\n      </table>\n\n      <h2>How a System Call Works</h2>\n      <ol>\n        <li>The user application calls a function in the standard library (e.g., <code>printf</code> in C).</li>\n        <li>The library wrapper sets up the arguments and places a specific syscall number in a CPU register.</li>\n        <li>A software interrupt (trap) is triggered, switching the CPU to Kernel Mode.</li>\n        <li>The OS kernel looks up the syscall number in the interrupt vector table and executes the corresponding kernel routine.</li>\n        <li>Once finished, the CPU switches back to User Mode, returning control to the application.</li>\n      </ol>\n\n      <h2>Summary</h2>\n      <p>System calls act as the fundamental interface between an application and the Linux kernel. Understanding them is crucial for systems programming and understanding how operating systems maintain control over hardware.</p>\n    ",
+      "id": "4df4ab32-bb30-4fdb-a280-26b9fc08b678",
+      "created_at": "2026-08-29T09:33:02.621Z",
+      "updated_at": "2026-08-29T09:33:02.621Z"
+    },
+    {
+      "title": "Process vs Thread",
+      "slug": "process-vs-thread",
+      "category": "Operating Systems",
+      "description": "Understand the fundamental differences between processes and threads, their memory spaces, and concurrency models.",
+      "reading_time_minutes": 6,
+      "related_subject_id": "sub_os",
+      "status": "PUBLISHED",
+      "content": "\n      <h2>Overview</h2>\n      <p>In modern operating systems, <strong>processes</strong> and <strong>threads</strong> are two fundamental units of execution. While they might seem similar, their underlying architecture and resource management differ significantly.</p>\n      \n      <h2>What is a Process?</h2>\n      <p>A process is an instance of a program in execution. It represents an independent entity with its own dedicated memory space, including:</p>\n      <ul>\n        <li><strong>Text section:</strong> Compiled program code.</li>\n        <li><strong>Data section:</strong> Global and static variables.</li>\n        <li><strong>Heap:</strong> Dynamically allocated memory.</li>\n        <li><strong>Stack:</strong> Local variables and function call data.</li>\n      </ul>\n      <p>Because processes are completely isolated, a crash in one process typically does not affect others.</p>\n      \n      <h2>What is a Thread?</h2>\n      <p>A thread is the smallest sequence of programmed instructions that can be managed independently by a scheduler. It is often referred to as a \"lightweight process.\" Threads exist <em>within</em> a process and share the same memory space (Text, Data, and Heap) but maintain their own individual Stack and Registers.</p>\n\n      <h2>Key Differences</h2>\n      <table class=\"w-full text-sm border-collapse border border-zinc-200\">\n        <thead>\n          <tr class=\"bg-zinc-50\">\n            <th class=\"border border-zinc-200 p-2 text-left\">Feature</th>\n            <th class=\"border border-zinc-200 p-2 text-left\">Process</th>\n            <th class=\"border border-zinc-200 p-2 text-left\">Thread</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n            <td class=\"border border-zinc-200 p-2\"><strong>Memory</strong></td>\n            <td class=\"border border-zinc-200 p-2\">Isolated memory space</td>\n            <td class=\"border border-zinc-200 p-2\">Shared memory within the process</td>\n          </tr>\n          <tr>\n            <td class=\"border border-zinc-200 p-2\"><strong>Creation Overhead</strong></td>\n            <td class=\"border border-zinc-200 p-2\">High (heavyweight)</td>\n            <td class=\"border border-zinc-200 p-2\">Low (lightweight)</td>\n          </tr>\n          <tr>\n            <td class=\"border border-zinc-200 p-2\"><strong>Context Switching</strong></td>\n            <td class=\"border border-zinc-200 p-2\">Slower</td>\n            <td class=\"border border-zinc-200 p-2\">Faster</td>\n          </tr>\n          <tr>\n            <td class=\"border border-zinc-200 p-2\"><strong>Communication (IPC)</strong></td>\n            <td class=\"border border-zinc-200 p-2\">Requires special IPC mechanisms (pipes, sockets)</td>\n            <td class=\"border border-zinc-200 p-2\">Simple, via shared memory variables</td>\n          </tr>\n        </tbody>\n      </table>\n\n      <h2>Code Example: Multi-threading in C (pthreads)</h2>\n      <pre><code>#include &lt;pthread.h&gt;\n#include &lt;stdio.h&gt;\n\nvoid* myThreadFun(void* vargp) {\n    printf(\"Printing from Thread \\n\");\n    return NULL;\n}\n  \nint main() {\n    pthread_t thread_id;\n    printf(\"Before Thread\\n\");\n    pthread_create(&amp;thread_id, NULL, myThreadFun, NULL);\n    pthread_join(thread_id, NULL);\n    printf(\"After Thread\\n\");\n    return 0;\n}</code></pre>\n\n      <h2>Summary</h2>\n      <p>Use processes when you need strong isolation and fault tolerance (e.g., Google Chrome tabs). Use threads when you need fast, highly concurrent tasks that share data heavily (e.g., web server request handlers).</p>\n    ",
+      "id": "ebf8606c-96ff-4aee-87cb-34247bbde494",
+      "created_at": "2026-08-29T09:33:02.621Z",
+      "updated_at": "2026-08-29T09:33:02.621Z"
+    },
+    {
+      "title": "Paging vs Segmentation",
+      "slug": "paging-vs-segmentation",
+      "category": "Operating Systems",
+      "description": "A detailed comparison of memory management techniques: Paging and Segmentation.",
+      "reading_time_minutes": 7,
+      "related_subject_id": "sub_os",
+      "status": "PUBLISHED",
+      "content": "\n      <h2>Introduction</h2>\n      <p>In operating systems, memory management is crucial for executing multiple processes efficiently. <strong>Paging</strong> and <strong>Segmentation</strong> are two non-contiguous memory allocation techniques designed to eliminate external fragmentation.</p>\n\n      <h2>What is Paging?</h2>\n      <p>Paging divides logical memory into fixed-size blocks called <strong>pages</strong>, and physical memory into blocks of the same size called <strong>frames</strong>. When a process is executed, its pages are loaded into available memory frames.</p>\n      <ul>\n        <li><strong>Address Translation:</strong> Logical address is divided into a page number (used as an index into a page table) and a page offset.</li>\n        <li><strong>Advantages:</strong> Completely eliminates external fragmentation.</li>\n        <li><strong>Disadvantages:</strong> Can suffer from <em>internal fragmentation</em> if a process requires less memory than a full page at the end.</li>\n      </ul>\n\n      <h2>What is Segmentation?</h2>\n      <p>Segmentation divides logical memory into variable-sized blocks called <strong>segments</strong>, corresponding to logical units of a program (e.g., main function, variables, stack).</p>\n      <ul>\n        <li><strong>Address Translation:</strong> Logical address consists of a segment number and an offset. The segment table contains the base address and limit (size) of each segment.</li>\n        <li><strong>Advantages:</strong> Matches the programmer's view of memory. No internal fragmentation.</li>\n        <li><strong>Disadvantages:</strong> Can suffer from <em>external fragmentation</em> as memory becomes checkered with free gaps of varying sizes.</li>\n      </ul>\n\n      <h2>Comparison Table</h2>\n      <table class=\"w-full text-sm border-collapse border border-zinc-200\">\n        <thead>\n          <tr class=\"bg-zinc-50\">\n            <th class=\"border border-zinc-200 p-2 text-left\">Aspect</th>\n            <th class=\"border border-zinc-200 p-2 text-left\">Paging</th>\n            <th class=\"border border-zinc-200 p-2 text-left\">Segmentation</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n            <td class=\"border border-zinc-200 p-2\"><strong>Block Size</strong></td>\n            <td class=\"border border-zinc-200 p-2\">Fixed (Pages/Frames)</td>\n            <td class=\"border border-zinc-200 p-2\">Variable (Segments)</td>\n          </tr>\n          <tr>\n            <td class=\"border border-zinc-200 p-2\"><strong>Fragmentation</strong></td>\n            <td class=\"border border-zinc-200 p-2\">Internal</td>\n            <td class=\"border border-zinc-200 p-2\">External</td>\n          </tr>\n          <tr>\n            <td class=\"border border-zinc-200 p-2\"><strong>User View</strong></td>\n            <td class=\"border border-zinc-200 p-2\">Invisible to the programmer</td>\n            <td class=\"border border-zinc-200 p-2\">Visible (aligns with logical program units)</td>\n          </tr>\n          <tr>\n            <td class=\"border border-zinc-200 p-2\"><strong>Table Used</strong></td>\n            <td class=\"border border-zinc-200 p-2\">Page Table (Page No -> Frame Base)</td>\n            <td class=\"border border-zinc-200 p-2\">Segment Table (Segment No -> Base & Limit)</td>\n          </tr>\n        </tbody>\n      </table>\n      \n      <h2>Modern Architecture: Paged Segmentation</h2>\n      <p>Modern architectures (like x86) combine both approaches. Logical addresses are first segmented, and then the segments themselves are divided into pages. This provides the logical separation of segmentation with the memory allocation efficiency of paging.</p>\n    ",
+      "id": "7f72d817-ac11-4fe5-876b-bb4dbd0c3fe2",
+      "created_at": "2026-08-29T09:33:02.621Z",
+      "updated_at": "2026-08-29T09:33:02.621Z"
+    },
+    {
+      "title": "Deadlock in Operating Systems",
+      "slug": "deadlock-in-operating-systems",
+      "category": "Operating Systems",
+      "description": "Learn the conditions for deadlock, how to prevent it, and the Banker's algorithm.",
+      "reading_time_minutes": 8,
+      "related_subject_id": "sub_os",
+      "status": "PUBLISHED",
+      "content": "\n      <h2>What is a Deadlock?</h2>\n      <p>A <strong>deadlock</strong> is a situation in a multi-processing environment where two or more processes are unable to proceed because each is waiting for the other to release a resource.</p>\n      <blockquote><p>Imagine two trains on a single track facing each other. Neither can move forward until the other moves backward, creating a permanent standstill.</p></blockquote>\n\n      <h2>Coffman Conditions (Necessary Conditions for Deadlock)</h2>\n      <p>For a deadlock to occur, all four of the following conditions must hold simultaneously:</p>\n      <ol>\n        <li><strong>Mutual Exclusion:</strong> At least one resource must be held in a non-shareable mode.</li>\n        <li><strong>Hold and Wait:</strong> A process is holding at least one resource and waiting to acquire additional resources held by other processes.</li>\n        <li><strong>No Preemption:</strong> Resources cannot be forcibly taken from a process; they must be released voluntarily.</li>\n        <li><strong>Circular Wait:</strong> A set of processes {P0, P1, ..., Pn} exists such that P0 is waiting for a resource held by P1, P1 is waiting for P2, and Pn is waiting for P0.</li>\n      </ol>\n\n      <h2>Handling Deadlocks</h2>\n      <h3>1. Deadlock Prevention</h3>\n      <p>Involves structuring the system so that at least one of the four Coffman conditions cannot hold. For example, to break <em>Circular Wait</em>, we can assign a global ordering to resources and require processes to request resources in increasing order.</p>\n\n      <h3>2. Deadlock Avoidance (Banker's Algorithm)</h3>\n      <p>The OS dynamically assesses resource allocation state to ensure it never enters an \"unsafe\" state. The <strong>Banker's Algorithm</strong> requires processes to declare their maximum resource needs in advance.</p>\n\n      <h3>3. Deadlock Detection & Recovery</h3>\n      <p>Allow deadlocks to occur, detect them via a Wait-For Graph (WFG) or algorithm, and then recover by killing processes or preempting resources.</p>\n\n      <h3>4. The Ostrich Algorithm</h3>\n      <p>Simply ignore the problem altogether. This is highly common in end-user OS architectures (like Linux and Windows) where deadlocks are extremely rare and the cost of prevention is considered too high.</p>\n    ",
+      "id": "f2eabed8-78c0-451b-a472-5502f24cd7df",
+      "created_at": "2026-08-29T09:33:02.621Z",
+      "updated_at": "2026-08-29T09:33:02.621Z"
+    },
+    {
+      "title": "What Is Virtual Memory?",
+      "slug": "what-is-virtual-memory",
+      "category": "Operating Systems",
+      "description": "An overview of virtual memory, page faults, and demand paging.",
+      "reading_time_minutes": 6,
+      "related_subject_id": "sub_os",
+      "status": "PUBLISHED",
+      "content": "\n      <h2>The Problem with Physical Memory</h2>\n      <p>Historically, an entire program had to be loaded into main memory (RAM) to execute. If a program was larger than available RAM, it simply couldn't run. Furthermore, keeping idle programs fully in RAM is highly inefficient.</p>\n\n      <h2>What is Virtual Memory?</h2>\n      <p><strong>Virtual Memory</strong> is a memory management capability of an OS that creates an illusion for users of a very large (main) memory. It abstracts main memory into an extremely large, uniform array of storage, separating logical memory as viewed by the user from physical memory.</p>\n\n      <h2>How Demand Paging Works</h2>\n      <p>Virtual memory is typically implemented via <strong>Demand Paging</strong>:</p>\n      <ul>\n        <li>Instead of loading the whole program, the OS loads only the pages needed immediately.</li>\n        <li>When a process attempts to access a page that is not currently in RAM, a <strong>Page Fault</strong> occurs.</li>\n        <li>The OS traps this fault, locates the required page on the hard drive (swap space), and loads it into a free frame in physical memory.</li>\n        <li>If physical memory is full, a <strong>Page Replacement Algorithm</strong> (like LRU or FIFO) decides which page to evict to disk.</li>\n      </ul>\n\n      <h2>Benefits of Virtual Memory</h2>\n      <ul>\n        <li><strong>Larger Programs:</strong> Programs can be larger than physical memory.</li>\n        <li><strong>Higher Degree of Multiprogramming:</strong> More programs can run concurrently since each takes up less RAM.</li>\n        <li><strong>Memory Isolation:</strong> Processes cannot access each other's memory, enhancing security.</li>\n      </ul>\n    ",
+      "id": "5637ddba-c402-4ba6-b20a-65b6969650b3",
+      "created_at": "2026-08-29T09:33:02.621Z",
+      "updated_at": "2026-08-29T09:33:02.621Z"
+    },
+    {
+      "title": "Stack vs Queue",
+      "slug": "stack-vs-queue",
+      "category": "Data Structures",
+      "description": "Understand the difference between LIFO and FIFO data structures.",
+      "reading_time_minutes": 4,
+      "related_subject_id": "sub_dsa",
+      "status": "PUBLISHED",
+      "content": "\n      <h2>Introduction</h2>\n      <p>Stacks and Queues are both linear data structures that handle collections of items. However, the order in which items are added and removed differs fundamentally.</p>\n\n      <h2>Stack (LIFO)</h2>\n      <p>A Stack operates on the <strong>Last-In-First-Out (LIFO)</strong> principle. The element added last is the first one to be removed.</p>\n      <ul>\n        <li><strong>Push:</strong> Add an item to the top.</li>\n        <li><strong>Pop:</strong> Remove the item from the top.</li>\n        <li><strong>Peek:</strong> View the top item without removing it.</li>\n      </ul>\n      <p><em>Real-world analogy:</em> A stack of plates. You add to the top and take from the top.</p>\n      <p><strong>Use Cases:</strong> Undo mechanisms, expression evaluation, function call tracking (The Call Stack).</p>\n\n      <h2>Queue (FIFO)</h2>\n      <p>A Queue operates on the <strong>First-In-First-Out (FIFO)</strong> principle. The element added first is the first one to be removed.</p>\n      <ul>\n        <li><strong>Enqueue:</strong> Add an item to the back (rear).</li>\n        <li><strong>Dequeue:</strong> Remove the item from the front.</li>\n      </ul>\n      <p><em>Real-world analogy:</em> A line of people at a ticket counter.</p>\n      <p><strong>Use Cases:</strong> Task scheduling, Breadth-First Search (BFS), printer spooling.</p>\n\n      <h2>Code Example: Stack Implementation</h2>\n      <pre><code>class Stack {\n    constructor() {\n        this.items = [];\n    }\n    push(element) {\n        this.items.push(element);\n    }\n    pop() {\n        return this.items.pop();\n    }\n}</code></pre>\n    ",
+      "id": "c79d2a42-a706-4835-aaaf-b30979934353",
+      "created_at": "2026-08-29T09:33:02.621Z",
+      "updated_at": "2026-08-29T09:33:02.621Z"
+    },
+    {
+      "title": "Array vs Linked List",
+      "slug": "array-vs-linked-list",
+      "category": "Data Structures",
+      "description": "Compare the memory layout, performance, and use cases of Arrays and Linked Lists.",
+      "reading_time_minutes": 5,
+      "related_subject_id": "sub_dsa",
+      "status": "PUBLISHED",
+      "content": "\n      <h2>Overview</h2>\n      <p>Arrays and Linked Lists are fundamental linear data structures used to store collections of elements, but they organize data in memory very differently.</p>\n\n      <h2>Array</h2>\n      <p>An array stores elements in <strong>contiguous memory locations</strong>. The size is typically fixed upon creation (though dynamic arrays abstract this).</p>\n      <ul>\n        <li><strong>Access:</strong> Fast <em>O(1)</em> access using an index because the memory location can be calculated directly.</li>\n        <li><strong>Insertion/Deletion:</strong> Slow <em>O(n)</em> if occurring in the middle, as elements must be shifted.</li>\n        <li><strong>Memory:</strong> Predictable and cache-friendly.</li>\n      </ul>\n\n      <h2>Linked List</h2>\n      <p>A Linked List stores elements in <strong>nodes</strong> scattered randomly in memory. Each node contains the data and a pointer (reference) to the next node.</p>\n      <ul>\n        <li><strong>Access:</strong> Slow <em>O(n)</em> access because you must traverse from the head node to find an element.</li>\n        <li><strong>Insertion/Deletion:</strong> Fast <em>O(1)</em> if you already have a pointer to the location, as no shifting is required.</li>\n        <li><strong>Memory:</strong> Dynamic size, but requires extra overhead for pointers and is not cache-friendly.</li>\n      </ul>\n\n      <h2>Comparison Summary</h2>\n      <table class=\"w-full text-sm border-collapse border border-zinc-200\">\n        <thead>\n          <tr class=\"bg-zinc-50\">\n            <th class=\"border border-zinc-200 p-2 text-left\">Operation</th>\n            <th class=\"border border-zinc-200 p-2 text-left\">Array</th>\n            <th class=\"border border-zinc-200 p-2 text-left\">Linked List</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n            <td class=\"border border-zinc-200 p-2\">Random Access</td>\n            <td class=\"border border-zinc-200 p-2 text-emerald-600\">O(1)</td>\n            <td class=\"border border-zinc-200 p-2 text-red-600\">O(n)</td>\n          </tr>\n          <tr>\n            <td class=\"border border-zinc-200 p-2\">Insert at Beginning</td>\n            <td class=\"border border-zinc-200 p-2 text-red-600\">O(n)</td>\n            <td class=\"border border-zinc-200 p-2 text-emerald-600\">O(1)</td>\n          </tr>\n        </tbody>\n      </table>\n    ",
+      "id": "b508a0e9-ecf8-4ac6-8942-5ed9449e3b41",
+      "created_at": "2026-08-29T09:33:02.621Z",
+      "updated_at": "2026-08-29T09:33:02.621Z"
+    },
+    {
+      "title": "What Is Database Normalization?",
+      "slug": "what-is-database-normalization",
+      "category": "Database Management Systems",
+      "description": "Learn the principles of organizing relational databases to reduce redundancy and improve integrity.",
+      "reading_time_minutes": 6,
+      "related_subject_id": "",
+      "status": "PUBLISHED",
+      "content": "\n      <h2>Introduction</h2>\n      <p><strong>Database Normalization</strong> is the process of structuring a relational database in accordance with a series of so-called normal forms in order to reduce data redundancy and improve data integrity.</p>\n\n      <h2>The Normal Forms</h2>\n      \n      <h3>1. First Normal Form (1NF)</h3>\n      <p>A table is in 1NF if it contains only atomic (indivisible) values and each record is unique.</p>\n      <ul>\n        <li>Eliminate repeating groups.</li>\n        <li>Create a separate table for each set of related data.</li>\n      </ul>\n\n      <h3>2. Second Normal Form (2NF)</h3>\n      <p>A table is in 2NF if it is in 1NF and all non-key attributes are fully functionally dependent on the primary key.</p>\n      <ul>\n        <li>Eliminate partial dependencies (where an attribute depends on only part of a composite primary key).</li>\n      </ul>\n\n      <h3>3. Third Normal Form (3NF)</h3>\n      <p>A table is in 3NF if it is in 2NF and has no transitive functional dependencies.</p>\n      <ul>\n        <li>Every non-key attribute must depend \"on the key, the whole key, and nothing but the key.\"</li>\n        <li>Example: If <em>Zip Code -> City</em>, and the primary key is <em>Customer_ID</em>, move Zip Code and City to a new table.</li>\n      </ul>\n\n      <h2>Why Normalize?</h2>\n      <p>Normalization resolves update anomalies, insertion anomalies, and deletion anomalies. However, over-normalization can lead to excessive <code>JOIN</code> operations, decreasing read performance. In such cases, deliberate <em>denormalization</em> is sometimes used in data warehousing.</p>\n    ",
+      "id": "cfea58fd-2f74-4659-b13e-78c4b55744bc",
+      "created_at": "2026-08-29T09:33:02.621Z",
+      "updated_at": "2026-08-29T09:33:02.621Z"
+    },
+    {
+      "title": "Primary Key vs Foreign Key",
+      "slug": "primary-key-vs-foreign-key",
+      "category": "Database Management Systems",
+      "description": "Understand the foundational constraints of relational databases.",
+      "reading_time_minutes": 3,
+      "related_subject_id": "",
+      "status": "PUBLISHED",
+      "content": "\n      <h2>Primary Key</h2>\n      <p>A <strong>Primary Key</strong> is a column (or set of columns) that uniquely identifies each row in a table. It enforces the entity integrity of the table.</p>\n      <ul>\n        <li>Must contain UNIQUE values.</li>\n        <li>Cannot contain NULL values.</li>\n        <li>A table can have only ONE primary key.</li>\n      </ul>\n\n      <h2>Foreign Key</h2>\n      <p>A <strong>Foreign Key</strong> is a column (or set of columns) in one table that refers to the Primary Key in another table. It enforces referential integrity between two tables.</p>\n      <ul>\n        <li>Ensures that a record in a child table has a corresponding valid record in the parent table.</li>\n        <li>Can contain duplicate values.</li>\n        <li>Can contain NULL values.</li>\n      </ul>\n\n      <h2>SQL Example</h2>\n      <pre><code>CREATE TABLE Students (\n    StudentID int PRIMARY KEY,\n    Name varchar(50)\n);\n\nCREATE TABLE Orders (\n    OrderID int PRIMARY KEY,\n    StudentID int,\n    FOREIGN KEY (StudentID) REFERENCES Students(StudentID)\n);</code></pre>\n    ",
+      "id": "702453e8-710e-4d1b-85c9-ab68d300c9e7",
+      "created_at": "2026-08-29T09:33:02.621Z",
+      "updated_at": "2026-08-29T09:33:02.621Z"
+    },
+    {
+      "title": "What Is an IP Address?",
+      "slug": "what-is-an-ip-address",
+      "category": "Computer Networks",
+      "description": "A beginner-friendly guide to IPv4, IPv6, public, and private IP addresses.",
+      "reading_time_minutes": 4,
+      "related_subject_id": "",
+      "status": "PUBLISHED",
+      "content": "\n      <h2>Overview</h2>\n      <p>An <strong>Internet Protocol (IP) address</strong> is a unique numerical identifier assigned to every device connected to a computer network that uses the Internet Protocol for communication. It serves two main functions:</p>\n      <ol>\n        <li>Host or network interface identification.</li>\n        <li>Location addressing.</li>\n      </ol>\n\n      <h2>IPv4 vs IPv6</h2>\n      <ul>\n        <li><strong>IPv4:</strong> 32-bit number expressed in dotted-decimal format (e.g., <code>192.168.1.1</code>). It allows for roughly 4.3 billion unique addresses.</li>\n        <li><strong>IPv6:</strong> Developed to resolve IPv4 exhaustion. It is a 128-bit number expressed in hexadecimal (e.g., <code>2001:0db8:85a3:0000:0000:8a2e:0370:7334</code>).</li>\n      </ul>\n\n      <h2>Public vs Private IP</h2>\n      <p>Because IPv4 addresses are limited, local networks (like your home Wi-Fi) use <strong>Private IP addresses</strong> (e.g., 192.168.x.x or 10.x.x.x) for devices inside the house. The router uses Network Address Translation (NAT) to communicate with the outside internet using a single <strong>Public IP address</strong>.</p>\n    ",
+      "id": "ac790e76-90f5-4ca6-b54d-0992b15570c1",
+      "created_at": "2026-08-29T09:33:02.621Z",
+      "updated_at": "2026-08-29T09:33:02.621Z"
+    },
+    {
+      "title": "TCP vs UDP",
+      "slug": "tcp-vs-udp",
+      "category": "Computer Networks",
+      "description": "Compare the two primary transport layer protocols of the Internet.",
+      "reading_time_minutes": 5,
+      "related_subject_id": "",
+      "status": "PUBLISHED",
+      "content": "\n      <h2>The Transport Layer</h2>\n      <p>Transmission Control Protocol (TCP) and User Datagram Protocol (UDP) are the two most commonly used protocols at the Transport Layer of the OSI model. Both send packets of data over the internet, but they do it in entirely different ways.</p>\n\n      <h2>TCP (Transmission Control Protocol)</h2>\n      <p>TCP is <strong>connection-oriented</strong>. It establishes a robust connection before sending data (via a three-way handshake).</p>\n      <ul>\n        <li><strong>Reliable:</strong> Guarantees delivery. If packets are lost, TCP resends them.</li>\n        <li><strong>Ordered:</strong> Reassembles packets in the exact order they were sent.</li>\n        <li><strong>Slower:</strong> The overhead of error-checking and handshaking reduces speed.</li>\n        <li><em>Use cases:</em> Web browsing (HTTP/HTTPS), Email (SMTP), File Transfer (FTP).</li>\n      </ul>\n\n      <h2>UDP (User Datagram Protocol)</h2>\n      <p>UDP is <strong>connectionless</strong>. It just blasts packets at the recipient without checking if they arrived.</p>\n      <ul>\n        <li><strong>Unreliable:</strong> No guarantee of delivery. No retries for lost packets.</li>\n        <li><strong>Unordered:</strong> Packets may arrive out of order.</li>\n        <li><strong>Faster:</strong> Minimal overhead.</li>\n        <li><em>Use cases:</em> Live video streaming, Voice over IP (VoIP), Online gaming.</li>\n      </ul>\n    ",
+      "id": "26a685f8-ec6f-405e-bc5b-c8f61329e4d4",
+      "created_at": "2026-08-29T09:33:02.621Z",
+      "updated_at": "2026-08-29T09:33:02.621Z"
+    },
+    {
+      "title": "OOP Concepts Explained",
+      "slug": "oop-concepts-explained",
+      "category": "Object-Oriented Programming",
+      "description": "A clear explanation of Encapsulation, Abstraction, Inheritance, and Polymorphism.",
+      "reading_time_minutes": 7,
+      "related_subject_id": "sub_oop",
+      "status": "PUBLISHED",
+      "content": "\n      <h2>What is OOP?</h2>\n      <p>Object-Oriented Programming (OOP) is a programming paradigm based on the concept of \"objects,\" which can contain data (attributes) and code (methods). There are four core pillars of OOP:</p>\n\n      <h3>1. Encapsulation</h3>\n      <p>Bundling the data and the methods that operate on that data into a single unit (class), and restricting direct access to some of the object's components. This is typically achieved using private/protected access modifiers.</p>\n\n      <h3>2. Abstraction</h3>\n      <p>Hiding complex implementation details and showing only the essential features of the object. For example, when driving a car, you use the steering wheel and pedals (interface) without needing to understand the engine mechanics (implementation).</p>\n\n      <h3>3. Inheritance</h3>\n      <p>A mechanism where a new class (child) derives properties and behaviors from an existing class (parent). This promotes code reusability.</p>\n\n      <h3>4. Polymorphism</h3>\n      <p>The ability of different objects to respond to the same method call in their own specific way. This includes Method Overloading (compile-time) and Method Overriding (run-time).</p>\n\n      <h2>Java Example</h2>\n      <pre><code>// Inheritance & Polymorphism\nclass Animal {\n    public void makeSound() {\n        System.out.println(\"Some sound\");\n    }\n}\n\nclass Dog extends Animal {\n    @Override\n    public void makeSound() {\n        System.out.println(\"Bark\");\n    }\n}</code></pre>\n    ",
+      "id": "8b9d08cd-f022-4e5d-be46-43cb226b2be7",
+      "created_at": "2026-08-29T09:33:02.621Z",
+      "updated_at": "2026-08-29T09:33:02.621Z"
+    },
+    {
+      "title": "Pointers in C",
+      "slug": "pointers-in-c",
+      "category": "C Programming",
+      "description": "Demystifying memory addresses, pointers, and dereferencing in C.",
+      "reading_time_minutes": 6,
+      "related_subject_id": "",
+      "status": "PUBLISHED",
+      "content": "\n      <h2>What is a Pointer?</h2>\n      <p>In C, a <strong>pointer</strong> is a variable that stores the memory address of another variable. Instead of holding a data value directly (like an integer), it points to where the value lives in RAM.</p>\n\n      <h2>Syntax and Operators</h2>\n      <ul>\n        <li><code>&amp;</code> (Address-of Operator): Returns the memory address of a variable.</li>\n        <li><code>*</code> (Dereference Operator): Accesses the value stored at the memory address the pointer is holding.</li>\n      </ul>\n\n      <h2>Code Example</h2>\n      <pre><code>#include &lt;stdio.h&gt;\n\nint main() {\n    int age = 25;\n    int *ptr = &amp;age;  // ptr now holds the address of age\n\n    printf(\"Value of age: %d\\n\", age);           // Outputs: 25\n    printf(\"Address of age: %p\\n\", ptr);         // Outputs memory address (e.g., 0x7ffd...)\n    printf(\"Value via pointer: %d\\n\", *ptr);     // Outputs: 25\n\n    *ptr = 30;  // Modifying value using pointer\n    printf(\"New value of age: %d\\n\", age);       // Outputs: 30\n\n    return 0;\n}</code></pre>\n\n      <h2>Why Use Pointers?</h2>\n      <p>Pointers are essential for dynamic memory allocation (<code>malloc</code>, <code>free</code>), building complex data structures like linked lists, and passing large structs to functions efficiently by reference rather than copying them.</p>\n    ",
+      "id": "15ae1448-ace5-41c5-9a4a-7e966286535b",
+      "created_at": "2026-08-29T09:33:02.621Z",
+      "updated_at": "2026-08-29T09:33:02.621Z"
+    },
+    {
+      "title": "Recursion Explained",
+      "slug": "recursion-explained",
+      "category": "Algorithms / Programming",
+      "description": "Understanding base cases, recursive cases, and the call stack.",
+      "reading_time_minutes": 5,
+      "related_subject_id": "sub_dsa",
+      "status": "PUBLISHED",
+      "content": "\n      <h2>What is Recursion?</h2>\n      <p>Recursion is a programming technique where a function calls itself in order to solve smaller instances of the same problem.</p>\n\n      <h2>The Two Rules of Recursion</h2>\n      <ol>\n        <li><strong>Base Case:</strong> A condition that stops the recursion. Without it, the function will call itself infinitely, resulting in a Stack Overflow.</li>\n        <li><strong>Recursive Case:</strong> The part of the function that breaks down the problem and calls the function itself.</li>\n      </ol>\n\n      <h2>Classic Example: Factorial</h2>\n      <pre><code>function factorial(n) {\n    // Base Case\n    if (n === 0 || n === 1) {\n        return 1;\n    }\n    // Recursive Case\n    return n * factorial(n - 1);\n}</code></pre>\n\n      <h2>The Call Stack</h2>\n      <p>When <code>factorial(3)</code> is called:</p>\n      <ul>\n        <li><code>factorial(3)</code> waits for <code>factorial(2)</code></li>\n        <li><code>factorial(2)</code> waits for <code>factorial(1)</code></li>\n        <li><code>factorial(1)</code> hits the base case and returns 1.</li>\n        <li>The stack unwinds: 2 * 1 = 2. Then 3 * 2 = 6.</li>\n      </ul>\n      <p>Result: 6.</p>\n    ",
+      "id": "c7be04aa-d6fa-4792-9a10-28bde7f6d19f",
+      "created_at": "2026-08-29T09:33:02.621Z",
+      "updated_at": "2026-08-29T09:33:02.621Z"
+    },
+    {
+      "title": "How to Prepare for a CSE Semester Exam",
+      "slug": "how-to-prepare-for-cse-exam",
+      "category": "Exam Preparation",
+      "description": "Strategic tips for studying theory and practicing code for Computer Science Engineering exams.",
+      "reading_time_minutes": 4,
+      "related_subject_id": "",
+      "status": "PUBLISHED",
+      "content": "\n      <h2>The Challenge of CSE Exams</h2>\n      <p>Computer Science Engineering exams are uniquely challenging because they blend heavy theoretical concepts (like automata theory) with practical, syntax-specific implementation (like data structures in C++). Cramming the night before rarely works.</p>\n\n      <h2>1. Analyze the Syllabus (COs)</h2>\n      <p>Look at your Course Outcomes (COs). Universities map their exam questions directly to these COs. Ensure you have covered at least one major topic from every CO.</p>\n\n      <h2>2. Practice Tracing, Not Just Coding</h2>\n      <p>In exams, you often have to write code on paper or trace the output of a given snippet. Practice dry-running recursive functions and loops with a pen and paper. Be comfortable manually updating variable states.</p>\n\n      <h2>3. Understand, Don't Memorize</h2>\n      <p>If you memorize an algorithm, a slight variation in the question will stump you. Understand the <em>intuition</em> behind the algorithm. For example, know <em>why</em> Dijkstra's uses a priority queue.</p>\n\n      <h2>4. Previous Year Papers</h2>\n      <p>Reviewing past papers is the most high-yield activity you can do. It reveals the depth required for specific topics and highlights recurring numerical problems (like CPU scheduling algorithms or subnetting).</p>\n\n      <h2>Summary</h2>\n      <p>Focus on understanding core concepts, practice writing pseudo-code, and use OpenCSE study guides to clarify complex topics!</p>\n    ",
+      "id": "764ae6dc-e4ad-41c2-b9a7-628fc4ef2c76",
+      "created_at": "2026-08-29T09:33:02.621Z",
+      "updated_at": "2026-08-29T09:33:02.621Z"
     }
   ]
 }

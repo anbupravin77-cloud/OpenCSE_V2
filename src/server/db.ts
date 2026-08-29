@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
-import { DB, Subject, CO, Topic, Resource } from '../types';
+import { DB, Subject, CO, Topic, Resource, AcademicResource } from '../types';
 import { INITIAL_DATA } from '../data';
 
 const DATA_DIR = process.env.DATA_DIR || process.cwd();
@@ -11,12 +11,13 @@ const defaultDb: DB = {
   subjects: [],
   cos: [],
   topics: [],
-  resources: []
+  resources: [],
+  academic_resources: []
 };
 
 // Migration script
 function migrateLegacyData(legacyData: any[]): DB {
-  const db: DB = { subjects: [], cos: [], topics: [], resources: [] };
+  const db: DB = { subjects: [], cos: [], topics: [], resources: [], academic_resources: [] };
   const now = new Date().toISOString();
 
   legacyData.forEach(s => {
@@ -117,6 +118,9 @@ export function initDb() {
       } else if (!data.subjects || !data.cos || !data.topics) {
         // Corrupted or different format, reset to default
         fs.writeFileSync(DB_FILE, JSON.stringify(defaultDb, null, 2), 'utf8');
+      } else if (!data.academic_resources) {
+        data.academic_resources = [];
+        fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2), 'utf8');
       }
     } catch (e) {
       console.error('Error reading db.json, creating new one.', e);

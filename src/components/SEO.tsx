@@ -58,7 +58,7 @@ export function SEO({
 
     // 6. AdSense Loading
     if (loadAdsense) {
-      const adsenseClient = 'ca-pub-9179183326125387';
+      const adsenseClient = 'ca-pub-5652255852120529';
       const existingScript = document.querySelector(`script[src*="pagead2.googlesyndication.com"]`);
       if (!existingScript) {
         const script = document.createElement('script');
