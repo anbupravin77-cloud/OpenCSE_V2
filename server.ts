@@ -53,16 +53,17 @@ async function startServer() {
     // 5. HTTP Strict Transport Security (HSTS)
     res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
     
-    // 6. Safe Content Security Policy (allows Google AdSense, Google Fonts, and secure assets)
+    // 6. Safe Content Security Policy (allows Google AdSense, Adsterra, Google Fonts, and secure assets)
     res.setHeader(
       'Content-Security-Policy',
       "default-src 'self'; " +
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://pagead2.googlesyndication.com https://adservice.google.com https://www.googletagmanager.com; " +
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://pagead2.googlesyndication.com https://adservice.google.com https://www.googletagmanager.com https://*.profitableratecpmnetwork.com https://profitableratecpmnetwork.com https://3nbf4.com https://*.3nbf4.com; " +
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
       "font-src 'self' https://fonts.gstatic.com data:; " +
       "img-src 'self' data: blob: https:; " +
-      "connect-src 'self' https://pagead2.googlesyndication.com https://*.google.com; " +
-      "frame-src 'self' https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; " +
+      "connect-src 'self' https://pagead2.googlesyndication.com https://*.google.com https://*.profitableratecpmnetwork.com https://*.3nbf4.com; " +
+      "frame-src 'self' https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com https://*.profitableratecpmnetwork.com https://*.3nbf4.com; " +
+      "worker-src 'self' blob: https://3nbf4.com https://*.3nbf4.com; " +
       "object-src 'none'; " +
       "base-uri 'self';"
     );

@@ -51,7 +51,7 @@
     }
     </script>
 
-    <!-- Google AdSense (Deferred post-load to protect critical path FCP/LCP) -->
+    <!-- Google AdSense & Monetag Worker (Deferred post-load to protect critical path FCP/LCP) -->
     <script>
       window.addEventListener('load', function() {
         var s = document.createElement('script');
@@ -59,6 +59,10 @@
         s.async = true;
         s.crossOrigin = 'anonymous';
         document.head.appendChild(s);
+
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/sw.js').catch(function() {});
+        }
       });
     </script>
   </head>

@@ -12,6 +12,8 @@ import { FullSubject, YearType } from './types';
 import { SEO } from './components/SEO';
 import { ThemeProvider } from './context/ThemeContext';
 import { ThemeToggle } from './components/ThemeToggle';
+import { AdBanner } from './components/AdBanner';
+import { SponsoredResourceCard } from './components/SponsoredResource';
 
 // Code-split route chunks for ultra-fast First Contentful Paint (FCP) and Largest Contentful Paint (LCP)
 const StudentSubjectRoute = lazy(() => import('./components/StudentSubjectViewer'));
@@ -441,8 +443,8 @@ function StudentDashboard() {
                   aria-selected={isSelected}
                   className={`rounded-lg px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold uppercase tracking-wider whitespace-nowrap transition duration-150 cursor-pointer min-h-[44px] flex items-center justify-center focus-visible:ring-2 focus-visible:ring-zinc-950 dark:focus-visible:ring-white focus-visible:outline-none ${
                     isSelected 
-                      ? 'bg-white dark:bg-zinc-800 text-zinc-950 dark:text-white shadow-sm border border-zinc-300/80 dark:border-zinc-600 font-bold' 
-                      : 'text-zinc-600 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-100 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 border border-transparent font-medium active:scale-95'
+                    ? 'bg-white dark:bg-zinc-800 text-zinc-950 dark:text-white shadow-sm border border-zinc-300/80 dark:border-zinc-600 font-bold' 
+                    : 'text-zinc-600 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-100 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 border border-transparent font-medium active:scale-95'
                   }`}
                 >
                   {isSelected && (
@@ -455,6 +457,14 @@ function StudentDashboard() {
           </nav>
         </div>
       )}
+
+      {/* Adsterra Placement 1: Non-intrusive banner above curriculum course list */}
+      <AdBanner
+        id="adsterra-slot-top"
+        scriptSrc="https://pl31083245.profitableratecpmnetwork.com/2f/d4/be/2fd4bec6390d4e856a021e9569115229.js"
+        label="Sponsored"
+        className="mb-8"
+      />
 
       {/* Curriculum Section Header Bar */}
       <div className="flex items-center justify-between pb-3.5 mb-6 border-b border-zinc-200 dark:border-zinc-800/80">
@@ -559,8 +569,16 @@ function StudentDashboard() {
         )}
       </div>
 
+      {/* Adsterra Placement 2: Non-intrusive banner between Course Cards and Academic Standards section */}
+      <AdBanner
+        id="adsterra-slot-bottom"
+        scriptSrc="https://pl31083247.profitableratecpmnetwork.com/f3/69/25/f36925580aada60b2e246dd710cb9b4b.js"
+        label="Advertisement"
+        className="mt-12 mb-6"
+      />
+
       {/* Comprehensive Academic Curriculum & Outcome-Based Education Overview (SEO & AdSense Compliance Content) */}
-      <section aria-labelledby="academic-overview-heading" className="mt-16 sm:mt-24 pt-12 border-t border-zinc-200 dark:border-zinc-800 space-y-8 transform-gpu">
+      <section aria-labelledby="academic-overview-heading" className="mt-12 sm:mt-16 pt-12 border-t border-zinc-200 dark:border-zinc-800 space-y-8 transform-gpu">
         <div>
           <span className="text-xs font-mono font-bold tracking-widest text-zinc-700 dark:text-zinc-300 uppercase">Academic Repository & Standards</span>
           <h2 id="academic-overview-heading" className="text-2xl sm:text-3xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white mt-2 mb-4">
@@ -585,6 +603,9 @@ function StudentDashboard() {
             </p>
           </div>
         </div>
+
+        {/* Adsterra Placement 3: Sponsored Learning Partner Resource (Direct Link) */}
+        <SponsoredResourceCard className="my-6" />
 
         <div className="space-y-4 pt-4">
           <h3 className="text-xl font-serif font-bold text-zinc-950 dark:text-white">Frequently Asked Questions (FAQ) for Students</h3>
