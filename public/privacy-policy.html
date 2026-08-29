@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy — OpenCSE</title>
+    <meta name="description" content="OpenCSE Privacy Policy: Learn how we protect student privacy, handle server diagnostic logs, and disclose third-party Google AdSense advertising cookies." />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <link rel="canonical" href="https://opencse.in/privacy-policy.html" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" title="Sitemap" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="OpenCSE" />
+    <meta property="og:title" content="Privacy Policy — OpenCSE" />
+    <meta property="og:description" content="Read OpenCSE's privacy policy and third-party advertising disclosures." />
+    <meta property="og:url" content="https://opencse.in/privacy-policy.html" />
+    <meta name="theme-color" content="#09090b" />
+
+    <style>
+      :root {
+        --bg: #fafafa;
+        --card-bg: #ffffff;
+        --border: rgba(0, 0, 0, 0.08);
+        --border-strong: rgba(0, 0, 0, 0.16);
+        --text: #09090b;
+        --muted: #52525b;
+        --footer-bg: rgba(0, 0, 0, 0.02);
+        --callout-bg: #f4f4f5;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #09090b;
+          --card-bg: #121215;
+          --border: rgba(255, 255, 255, 0.08);
+          --border-strong: rgba(255, 255, 255, 0.18);
+          --text: #fafafa;
+          --muted: #a1a1aa;
+          --footer-bg: rgba(255, 255, 255, 0.02);
+          --callout-bg: #18181b;
+        }
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        line-height: 1.75;
+        font-size: 1.0625rem;
+        -webkit-font-smoothing: antialiased;
+      }
+      a { color: inherit; text-decoration: underline; }
+      header {
+        border-bottom: 1px solid var(--border);
+        padding: 1rem 1.5rem;
+        background: var(--bg);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        backdrop-filter: blur(8px);
+      }
+      .header-inner {
+        max-width: 56rem;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: Outfit, Georgia, serif;
+        font-size: 1.25rem;
+        font-weight: 700;
+        text-decoration: none;
+        color: var(--text);
+      }
+      .header-nav {
+        display: flex;
+        gap: 1.25rem;
+        align-items: center;
+      }
+      .header-nav a {
+        text-decoration: none;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--muted);
+        transition: color 0.15s ease;
+      }
+      .header-nav a:hover { color: var(--text); }
+      
+      main {
+        max-width: 56rem;
+        margin: 0 auto;
+        padding: 2.5rem 1.5rem 5rem 1.5rem;
+      }
+      .breadcrumb {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        color: var(--muted);
+        margin-bottom: 2rem;
+        font-weight: 500;
+      }
+      .breadcrumb a {
+        text-decoration: none;
+        color: var(--muted);
+        transition: color 0.15s ease;
+      }
+      .breadcrumb a:hover {
+        color: var(--text);
+        text-decoration: underline;
+      }
+      .breadcrumb-sep {
+        color: var(--muted);
+        opacity: 0.5;
+      }
+      
+      .doc-header {
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 1.75rem;
+        margin-bottom: 2.5rem;
+      }
+      h1 {
+        font-family: Outfit, Georgia, serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin: 0 0 0.5rem 0;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+      }
+      .last-updated {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.8125rem;
+        color: var(--muted);
+        margin: 0;
+      }
+      
+      .doc-content section {
+        margin-bottom: 2.5rem;
+      }
+      h2 {
+        font-family: Outfit, Georgia, serif;
+        font-size: 1.375rem;
+        font-weight: 700;
+        margin: 0 0 0.875rem 0;
+        color: var(--text);
+        letter-spacing: -0.01em;
+      }
+      h3 {
+        font-family: Outfit, Georgia, serif;
+        font-size: 1.125rem;
+        font-weight: 700;
+        margin: 0 0 0.5rem 0;
+        color: var(--text);
+      }
+      p {
+        color: var(--muted);
+        margin: 0 0 1.25rem 0;
+      }
+      ul {
+        color: var(--muted);
+        margin: 0 0 1.5rem 0;
+        padding-left: 1.5rem;
+      }
+      li {
+        margin-bottom: 0.625rem;
+      }
+      strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+      .callout {
+        background: var(--callout-bg);
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+      }
+      .callout p { margin-bottom: 0.75rem; }
+      .callout ul { margin-bottom: 0; }
+
+      /* Compact Legal Footer */
+      .legal-footer {
+        border-top: 1px solid var(--border);
+        padding: 2.5rem 1.5rem;
+        background: var(--footer-bg);
+      }
+      .legal-footer-inner {
+        max-width: 56rem;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.25rem;
+      }
+      @media (min-width: 640px) {
+        .legal-footer-inner {
+          flex-direction: row;
+        }
+      }
+      .legal-footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 0.875rem;
+        flex-wrap: wrap;
+      }
+      .legal-footer-brand .copyright {
+        font-size: 0.8125rem;
+        color: var(--muted);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+      .legal-footer-nav {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        font-size: 0.8125rem;
+      }
+      .legal-footer-nav a {
+        color: var(--muted);
+        text-decoration: none;
+        transition: color 0.15s ease;
+      }
+      .legal-footer-nav a:hover {
+        color: var(--text);
+        text-decoration: underline;
+      }
+      .legal-footer-nav .sep {
+        color: var(--border-strong);
+        font-size: 0.75rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <header>
+        <div class="header-inner">
+          <a href="/" class="logo">
+            <svg style="width: 1.75rem; height: 1.75rem; flex-shrink: 0;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" fill="currentColor" aria-hidden="true">
+              <path d="M 181.37 65.65 A 90 90 0 0 0 62.77 172.18 L 87.56 269.69 L 161.29 142 L 137.29 142 Z" />
+              <path d="M 118.63 234.35 A 90 90 0 0 0 237.23 127.82 L 212.44 30.31 L 138.71 158 L 162.71 158 Z" />
+            </svg>
+            <span>OpenCSE</span>
+          </a>
+          <nav class="header-nav" aria-label="Main Navigation">
+            <a href="/">Curriculum</a>
+            <a href="/resources">Resources</a>
+            <a href="/contact.html">Contact</a>
+          </nav>
+        </div>
+      </header>
+
+      <main>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          <span class="breadcrumb-sep">/</span>
+          <span>Privacy Policy</span>
+        </nav>
+
+        <div class="doc-header">
+          <h1>Privacy Policy</h1>
+          <p class="last-updated">Last Updated: August 2026</p>
+        </div>
+
+        <div class="doc-content">
+          <section>
+            <h2>1. Introduction</h2>
+            <p>
+              OpenCSE ("we", "our", or "the platform") is dedicated to providing an open, free, and distraction-free academic repository for Computer Science students. This Privacy Policy clarifies our practices regarding information collection, storage, and visitor privacy when using our website at <a href="https://opencse.in/">https://opencse.in/</a>.
+            </p>
+          </section>
+
+          <section>
+            <h2>2. Information Collection & Data Minimization</h2>
+            <p>
+              We adhere to strict data minimization principles. As a public academic curriculum directory:
+            </p>
+            <ul>
+              <li><strong>No Mandatory Registration:</strong> Visitors can browse curricula, read topics, and review study modules without creating an account or providing personal information.</li>
+              <li><strong>Server Diagnostic Logs:</strong> Like most web hosting servers, our infrastructure may record standard technical log entries (such as IP address, browser user-agent, requested URL, and timestamp) strictly for security diagnostics, system monitoring, and DDoS prevention.</li>
+              <li><strong>Browser Storage:</strong> We use browser storage (localStorage/sessionStorage) exclusively for user interface preferences (such as selected academic year or light/dark theme) and administrator sessions.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>3. Third-Party Services & Google AdSense Disclosures</h2>
+            <p>
+              OpenCSE may utilize reputable third-party partners to support infrastructure, CDN caching, and non-intrusive advertising:
+            </p>
+            <div class="callout">
+              <h3>Google AdSense & Third-Party Advertising Disclosures</h3>
+              <p>
+                When advertising services (such as Google AdSense) are active on our site:
+              </p>
+              <ul>
+                <li>Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to this website or other websites.</li>
+                <li>Google's use of advertising cookies enables it and its partners to serve ads to our users based on their visit to our sites and/or other sites on the Internet.</li>
+                <li>Users may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer">Google Ads Settings</a> or through <a href="https://www.aboutads.info" target="_blank" rel="noopener noreferrer">aboutads.info</a>.</li>
+              </ul>
+            </div>
+          </section>
+
+          <section>
+            <h2>4. Cookies and Web Beacons</h2>
+            <p>
+              Cookies are small text files stored on your device. OpenCSE does not use invasive personal tracking cookies. Third-party services (such as Google Fonts or Google AdSense) may place cookies subject to their privacy policies. You can configure your browser to reject cookies or alert you when a cookie is placed.
+            </p>
+          </section>
+
+          <section>
+            <h2>5. GDPR & CCPA Rights</h2>
+            <p>
+              Depending on your jurisdiction, you have rights regarding your personal information, including the right to access, rectify, or request deletion of any diagnostic data we may hold. Because OpenCSE does not harvest user accounts or sell visitor data, we maintain zero personal profiles.
+            </p>
+          </section>
+
+          <section>
+            <h2>6. Contact for Privacy Inquiries</h2>
+            <p>
+              If you have questions regarding this Privacy Policy, please visit our <a href="/contact.html">Contact Page</a> or email our administrative team at <strong>anbupravin77@gmail.com</strong>.
+            </p>
+          </section>
+        </div>
+      </main>
+
+      <footer class="legal-footer" aria-label="Legal Page Footer">
+        <div class="legal-footer-inner">
+          <div class="legal-footer-brand">
+            <a href="/" class="logo">
+              <svg style="width: 1.35rem; height: 1.35rem; flex-shrink: 0;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" fill="currentColor" aria-hidden="true">
+                <path d="M 181.37 65.65 A 90 90 0 0 0 62.77 172.18 L 87.56 269.69 L 161.29 142 L 137.29 142 Z" />
+                <path d="M 118.63 234.35 A 90 90 0 0 0 237.23 127.82 L 212.44 30.31 L 138.71 158 L 162.71 158 Z" />
+              </svg>
+              <span>OpenCSE</span>
+            </a>
+            <span class="copyright">© 2026 OpenCSE</span>
+          </div>
+          <nav class="legal-footer-nav" aria-label="Legal Navigation">
+            <a href="/privacy-policy.html">Privacy Policy</a>
+            <span class="sep">•</span>
+            <a href="/terms-of-service.html">Terms of Service</a>
+            <span class="sep">•</span>
+            <a href="/disclaimer.html">Disclaimer</a>
+            <span class="sep">•</span>
+            <a href="/contact.html">Contact</a>
+          </nav>
+        </div>
+      </footer>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

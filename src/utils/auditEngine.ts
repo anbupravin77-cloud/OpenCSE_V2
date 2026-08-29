@@ -57,7 +57,7 @@ export async function runAdSenseAudit(targetUrl: string = window.location.origin
   });
 
   // Ensure standard internal routes are tracked
-  ['/', '/about', '/contact', '/privacy', '/terms', '/content-policy', '/disclaimer', '/sitemap', '/resources', '/faq', '/analyzer', '/checklist', '/calculator'].forEach(r => internalDestinations.add(r));
+  ['/', '/about', '/contact', '/privacy', '/terms', '/content-policy', '/disclaimer', '/sitemap', '/resources', '/analyzer'].forEach(r => internalDestinations.add(r));
 
   const linkStats: InternalLinkStats = {
     totalLinksFound: rawHrefs.length,
@@ -733,10 +733,10 @@ export async function runAdSenseAudit(targetUrl: string = window.location.origin
       category: 'ux',
       title: 'Comprehensive Footer Navigation Architecture',
       status: 'PASS',
-      evidence: 'Organized footer columns for Tools, Guides, Academic Curriculum, and Legal Policies.',
+      evidence: 'Organized footer navigation with links to Curriculum, Resources, Diagnostics, Legal Policies, and Sitemap.',
       whyItMatters: 'Google reviewers inspect footers first to find privacy, terms, contact, and sitemaps.',
-      whatWeDetected: 'Contains working links to all 16 requested utility and compliance pages.',
-      recommendation: 'Keep all legal links grouped distinctly in the footer.',
+      whatWeDetected: 'Contains working links to Curriculum, Resources, Website Analyzer, Legal Policies, and Sitemap.',
+      recommendation: 'Keep all legal and curriculum links grouped distinctly in the footer.',
       scoreWeight: 3
     },
     {

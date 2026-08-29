@@ -83,13 +83,21 @@ async function startServer() {
     }
   }));
 
+  const getBaseUrl = (req: express.Request) => {
+    const host = req.get('host') || 'opencse.in';
+    const proto = req.headers['x-forwarded-proto'] || req.protocol || 'https';
+    if (host.includes('opencse.in')) {
+      return 'https://opencse.in';
+    }
+    if (process.env.APP_URL && !process.env.APP_URL.includes('localhost')) {
+      return process.env.APP_URL.replace(/\/$/, '');
+    }
+    return `${proto}://${host}`;
+  };
+
   // --- LLMS.TXT (Agentic Browsing & AI Agent Discovery) ---
   app.get('/llms.txt', (req, res) => {
-    const host = req.get('host') || 'opencse.org';
-    const proto = req.headers['x-forwarded-proto'] || req.protocol || 'https';
-    const baseUrl = process.env.APP_URL && !process.env.APP_URL.includes('localhost') 
-      ? process.env.APP_URL.replace(/\/$/, '') 
-      : `${proto}://${host}`;
+    const baseUrl = getBaseUrl(req);
 
     const db = getDb();
     const activeSubjects = (db.subjects || []).filter(s => s.is_active);
@@ -116,11 +124,13 @@ async function startServer() {
     lines.push('');
     lines.push('## Institutional & Editorial Pages');
     lines.push('');
-    lines.push(`- [About OpenCSE](${baseUrl}/about): Educational mission, curriculum standards, and editorial review processes.`);
-    lines.push(`- [Contact & Errata](${baseUrl}/contact): Direct academic inquiry channel, error reporting, and curriculum suggestions.`);
-    lines.push(`- [Privacy Policy](${baseUrl}/privacy): Zero student telemetry data collection and Google AdSense compliance disclosures.`);
-    lines.push(`- [Terms of Service](${baseUrl}/terms): Non-commercial academic usage terms and intellectual property rights.`);
-    lines.push(`- [Content & Copyright Policy](${baseUrl}/content-policy): Human-in-the-loop review disclosures, DMCA copyright takedown procedure, and academic errata guidelines.`);
+    lines.push(`- [About OpenCSE](${baseUrl}/about.html): Educational mission, curriculum standards, and editorial review processes.`);
+    lines.push(`- [Contact & Errata](${baseUrl}/contact.html): Direct academic inquiry channel, error reporting, and curriculum suggestions.`);
+    lines.push(`- [Privacy Policy](${baseUrl}/privacy-policy.html): Zero student telemetry data collection and Google AdSense compliance disclosures.`);
+    lines.push(`- [Terms of Service](${baseUrl}/terms-of-service.html): Non-commercial academic usage terms and intellectual property rights.`);
+    lines.push(`- [Disclaimer & Trademark Notice](${baseUrl}/disclaimer.html): Non-affiliation notice and diagnostic tools disclaimer.`);
+    lines.push(`- [Content & Copyright Policy](${baseUrl}/content-policy.html): Human-in-the-loop review disclosures, DMCA copyright takedown procedure, and academic errata guidelines.`);
+    lines.push(`- [HTML Directory Sitemap](${baseUrl}/sitemap.html): Full directory listing of all courses, study modules, and legal documentation.`);
     lines.push('');
     lines.push('## Machine-Readable Data Feeds');
     lines.push('');
@@ -134,11 +144,7 @@ async function startServer() {
 
   // --- LLMS-FULL.TXT ---
   app.get('/llms-full.txt', (req, res) => {
-    const host = req.get('host') || 'opencse.org';
-    const proto = req.headers['x-forwarded-proto'] || req.protocol || 'https';
-    const baseUrl = process.env.APP_URL && !process.env.APP_URL.includes('localhost') 
-      ? process.env.APP_URL.replace(/\/$/, '') 
-      : `${proto}://${host}`;
+    const baseUrl = getBaseUrl(req);
 
     const db = getDb();
     const activeSubjects = (db.subjects || []).filter(s => s.is_active);
@@ -195,34 +201,34 @@ async function startServer() {
 
   // --- ROBOTS.TXT ---
   app.get('/robots.txt', (req, res) => {
-    const host = req.get('host') || 'opencse.org';
-    const proto = req.headers['x-forwarded-proto'] || req.protocol || 'https';
-    const baseUrl = `${proto}://${host}`;
+    const baseUrl = getBaseUrl(req);
+
     const robotsTxt = [
       'User-agent: *',
       'Allow: /',
+      'Allow: /about.html',
+      'Allow: /contact.html',
+      'Allow: /privacy-policy.html',
+      'Allow: /terms-of-service.html',
+      'Allow: /disclaimer.html',
+      'Allow: /content-policy.html',
+      'Allow: /sitemap.html',
       'Allow: /about',
       'Allow: /contact',
       'Allow: /privacy',
       'Allow: /terms',
       'Allow: /disclaimer',
-      'Allow: /sitemap',
       'Allow: /content-policy',
-      'Allow: /faq',
+      'Allow: /sitemap',
       'Allow: /analyzer',
       'Allow: /checker',
-      'Allow: /checklist',
-      'Allow: /calculator',
-      'Allow: /policy-generator',
-      'Allow: /seo-checklist',
-      'Allow: /how-to-get-approved',
-      'Allow: /rejection-reasons',
-      'Allow: /tips-and-tricks',
-      'Allow: /policy-checklist',
       'Allow: /subject/',
       'Allow: /resources',
       'Allow: /resources/',
       'Allow: /uploads/',
+      'Allow: /ads.txt',
+      'Allow: /llms.txt',
+      'Allow: /llms-full.txt',
       'Disallow: /admin',
       'Disallow: /admin/*',
       'Disallow: /api/*',
@@ -230,16 +236,12 @@ async function startServer() {
       '',
       `Sitemap: ${baseUrl}/sitemap.xml`
     ].join('\n');
-    res.type('text/plain').send(robotsTxt);
+    res.type('text/plain; charset=utf-8').send(robotsTxt);
   });
 
   // --- SITEMAP.XML ---
   app.get('/sitemap.xml', (req, res) => {
-    const host = req.get('host') || 'opencse.org';
-    const proto = req.headers['x-forwarded-proto'] || req.protocol || 'https';
-    const baseUrl = process.env.APP_URL && !process.env.APP_URL.includes('localhost') 
-      ? process.env.APP_URL.replace(/\/$/, '') 
-      : `${proto}://${host}`;
+    const baseUrl = getBaseUrl(req);
 
     const db = getDb();
     const activeSubjects = (db.subjects || []).filter(s => s.is_active);
@@ -255,16 +257,15 @@ async function startServer() {
 
     const staticPages: SitemapItem[] = [
       { url: '/', priority: '1.0', changefreq: 'daily' },
-      { url: '/analyzer', priority: '0.9', changefreq: 'weekly' },
-      { url: '/checklist', priority: '0.8', changefreq: 'monthly' },
-      { url: '/calculator', priority: '0.8', changefreq: 'monthly' },
-      { url: '/policy-generator', priority: '0.8', changefreq: 'monthly' },
-      { url: '/seo-checklist', priority: '0.8', changefreq: 'monthly' },
-      { url: '/how-to-get-approved', priority: '0.8', changefreq: 'monthly' },
-      { url: '/rejection-reasons', priority: '0.8', changefreq: 'monthly' },
-      { url: '/tips-and-tricks', priority: '0.8', changefreq: 'monthly' },
-      { url: '/policy-checklist', priority: '0.8', changefreq: 'monthly' },
-      { url: '/faq', priority: '0.8', changefreq: 'monthly' },
+      { url: '/resources', priority: '0.9', changefreq: 'daily' },
+      { url: '/analyzer', priority: '0.8', changefreq: 'weekly' },
+      { url: '/about.html', priority: '0.8', changefreq: 'monthly' },
+      { url: '/contact.html', priority: '0.7', changefreq: 'monthly' },
+      { url: '/privacy-policy.html', priority: '0.6', changefreq: 'yearly' },
+      { url: '/terms-of-service.html', priority: '0.6', changefreq: 'yearly' },
+      { url: '/disclaimer.html', priority: '0.6', changefreq: 'yearly' },
+      { url: '/content-policy.html', priority: '0.6', changefreq: 'yearly' },
+      { url: '/sitemap.html', priority: '0.7', changefreq: 'weekly' },
       { url: '/about', priority: '0.8', changefreq: 'monthly' },
       { url: '/contact', priority: '0.7', changefreq: 'monthly' },
       { url: '/privacy', priority: '0.6', changefreq: 'yearly' },
@@ -272,7 +273,6 @@ async function startServer() {
       { url: '/disclaimer', priority: '0.6', changefreq: 'yearly' },
       { url: '/content-policy', priority: '0.6', changefreq: 'yearly' },
       { url: '/sitemap', priority: '0.7', changefreq: 'weekly' },
-      { url: '/resources', priority: '0.9', changefreq: 'daily' },
     ];
 
     const subjectPages: SitemapItem[] = activeSubjects.map(s => ({
@@ -303,16 +303,44 @@ ${allPages.map(page => `  <url>
     res.type('application/xml').send(xml);
   });
 
+  // --- DIRECT CRAWLABLE HTML LEGAL & TRUST PAGES ---
+  const serveStaticLegalPage = (fileName: string) => (req: express.Request, res: express.Response) => {
+    const publicPath = path.join(process.cwd(), 'public', fileName);
+    const distPath = path.join(process.cwd(), 'dist', fileName);
+    if (fs.existsSync(publicPath)) {
+      return res.status(200).type('text/html; charset=utf-8').sendFile(publicPath);
+    }
+    if (fs.existsSync(distPath)) {
+      return res.status(200).type('text/html; charset=utf-8').sendFile(distPath);
+    }
+    // Fallback to standard index.html
+    const indexPath = path.join(process.cwd(), 'dist', 'index.html');
+    if (fs.existsSync(indexPath)) {
+      return res.status(200).type('text/html; charset=utf-8').sendFile(indexPath);
+    }
+    res.status(404).send('Page Not Found');
+  };
+
+  app.get('/privacy-policy.html', serveStaticLegalPage('privacy-policy.html'));
+  app.get('/privacy.html', serveStaticLegalPage('privacy-policy.html'));
+  app.get('/terms-of-service.html', serveStaticLegalPage('terms-of-service.html'));
+  app.get('/terms.html', serveStaticLegalPage('terms-of-service.html'));
+  app.get('/disclaimer.html', serveStaticLegalPage('disclaimer.html'));
+  app.get('/contact.html', serveStaticLegalPage('contact.html'));
+  app.get('/about.html', serveStaticLegalPage('about.html'));
+  app.get('/content-policy.html', serveStaticLegalPage('content-policy.html'));
+  app.get('/sitemap.html', serveStaticLegalPage('sitemap.html'));
+
   // --- API AUDIT ENDPOINT ---
   app.get('/api/audit', (req, res) => {
-    const host = req.get('host') || 'opencse.org';
+    const host = req.get('host') || 'opencse.in';
     const proto = req.headers['x-forwarded-proto'] || req.protocol || 'https';
     const origin = `${proto}://${host}`;
 
     res.json({
       status: 'success',
       target: origin,
-      serverVersion: '2.4.0',
+      serverVersion: '2.5.0',
       securityHeaders: {
         hsts: true,
         csp: true,
@@ -322,9 +350,9 @@ ${allPages.map(page => `  <url>
         permissionsPolicy: true
       },
       routesVerified: [
-        '/', '/about', '/contact', '/privacy', '/terms', '/disclaimer', 
-        '/content-policy', '/sitemap', '/resources', '/faq', '/analyzer', 
-        '/checklist', '/calculator', '/policy-generator', '/seo-checklist'
+        '/', '/about.html', '/contact.html', '/privacy-policy.html', 
+        '/terms-of-service.html', '/disclaimer.html', '/content-policy.html', 
+        '/sitemap.html', '/resources', '/analyzer'
       ]
     });
   });
@@ -584,6 +612,34 @@ ${allPages.map(page => `  <url>
       return { ...subject, cos };
     });
     res.json(result);
+  });
+
+  // Explicit static legal & crawlable routes for direct search engine / crawler indexing
+  const staticHtmlFiles: Record<string, string> = {
+    '/privacy-policy.html': 'privacy-policy.html',
+    '/privacy.html': 'privacy-policy.html',
+    '/terms-of-service.html': 'terms-of-service.html',
+    '/terms.html': 'terms-of-service.html',
+    '/disclaimer.html': 'disclaimer.html',
+    '/contact.html': 'contact.html',
+    '/about.html': 'about.html',
+    '/content-policy.html': 'content-policy.html',
+    '/sitemap.html': 'sitemap.html',
+  };
+
+  Object.entries(staticHtmlFiles).forEach(([routePath, fileName]) => {
+    app.get(routePath, (req, res) => {
+      const publicPath = path.join(process.cwd(), 'public', fileName);
+      const distPath = path.join(process.cwd(), 'dist', fileName);
+      if (fs.existsSync(distPath)) {
+        res.setHeader('Content-Type', 'text/html; charset=utf-8');
+        return res.sendFile(distPath);
+      } else if (fs.existsSync(publicPath)) {
+        res.setHeader('Content-Type', 'text/html; charset=utf-8');
+        return res.sendFile(publicPath);
+      }
+      res.status(404).send('Not Found');
+    });
   });
 
   // 3. Vite Development Middleware & Production Static Serving

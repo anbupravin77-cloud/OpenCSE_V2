@@ -268,7 +268,7 @@ export function ContactPage() {
                     value={userEmail} 
                     onChange={e => setUserEmail(e.target.value)}
                     disabled={isSubmitting}
-                    placeholder="you@example.com" 
+                    placeholder="name@domain.com" 
                     className="w-full bg-white dark:bg-zinc-950 border border-zinc-300 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-950 dark:text-white focus:outline-none focus:border-zinc-900 dark:focus:border-zinc-500 transition-colors disabled:opacity-50"
                   />
                 </div>
@@ -627,7 +627,7 @@ export function DisclaimerPage() {
             5. Inquiries & Contact
           </h2>
           <p>
-            For any legal, trademark, or clarification inquiries regarding this disclaimer, please visit our <Link to="/contact" className="text-zinc-950 dark:text-white underline hover:text-zinc-600 dark:hover:text-zinc-300">Contact Portal</Link> or email us directly at <span className="font-mono text-zinc-950 dark:text-white">legal@opencse.org</span>.
+            For any legal, trademark, or clarification inquiries regarding this disclaimer, please visit our <Link to="/contact" className="text-zinc-950 dark:text-white underline hover:text-zinc-600 dark:hover:text-zinc-300">Contact Portal</Link>.
           </p>
         </section>
       </div>
@@ -640,7 +640,7 @@ export function SitemapPage() {
     <div className="max-w-4xl mx-auto py-8">
       <SEO 
         title="HTML Sitemap & Complete Directory — OpenCSE" 
-        description="Comprehensive index of all academic curricula, AdSense diagnostic tools, publisher guides, and legal compliance pages on OpenCSE."
+        description="Comprehensive index of all academic curricula, verified study guides, AdSense diagnostic tools, and institutional trust policies on OpenCSE."
         canonicalPath="/sitemap"
         breadcrumbs={[
           { name: 'Home', path: '/' },
@@ -650,120 +650,34 @@ export function SitemapPage() {
 
       <div className="border-b border-zinc-200 dark:border-zinc-800 pb-8 mb-10">
         <h1 className="text-3xl sm:text-4xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white mb-4">
-          Complete Site Directory & Index
+          Site Directory & Sitemap
         </h1>
         <p className="text-sm font-mono uppercase tracking-widest text-zinc-500">
-          Structured Navigation Index for Students, Publishers & Web Crawlers
+          Structured Index for Students, Academic Researchers & Web Crawlers
         </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Section 1: AdSense Diagnostic Suite */}
+        {/* Section 1: Academic Curricula */}
         <div className="p-6 bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 rounded-2xl space-y-4">
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-            <h2 className="text-lg font-serif font-bold text-zinc-950 dark:text-white">Diagnostic & Audit Suite</h2>
+            <h2 className="text-lg font-serif font-bold text-zinc-950 dark:text-white">Academic Curricula & Guides</h2>
           </div>
           <p className="text-xs text-zinc-500 leading-relaxed">
-            Automated tools to verify website health, technical criteria, and readiness benchmarks.
-          </p>
-          <ul className="space-y-2 text-sm">
-            <li>
-              <Link to="/analyzer" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
-                <span>54-Point Website Analyzer</span>
-                <span className="text-xs font-mono text-zinc-400">/analyzer</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/checklist" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
-                <span>Eligibility Checklist</span>
-                <span className="text-xs font-mono text-zinc-400">/checklist</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/calculator" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
-                <span>AdSense Revenue Calculator</span>
-                <span className="text-xs font-mono text-zinc-400">/calculator</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/policy-generator" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
-                <span>Compliant Policy Generator</span>
-                <span className="text-xs font-mono text-zinc-400">/policy-generator</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/seo-checklist" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
-                <span>Technical SEO Checklist</span>
-                <span className="text-xs font-mono text-zinc-400">/seo-checklist</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/policy-checklist" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
-                <span>AdSense Policy Checklist</span>
-                <span className="text-xs font-mono text-zinc-400">/policy-checklist</span>
-              </Link>
-            </li>
-          </ul>
-        </div>
-
-        {/* Section 2: Publisher Guides */}
-        <div className="p-6 bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 rounded-2xl space-y-4">
-          <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
-            <h2 className="text-lg font-serif font-bold text-zinc-950 dark:text-white">Publisher Guides & KB</h2>
-          </div>
-          <p className="text-xs text-zinc-500 leading-relaxed">
-            In-depth documentation, approval troubleshooting, and common pitfalls.
-          </p>
-          <ul className="space-y-2 text-sm">
-            <li>
-              <Link to="/how-to-get-approved" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
-                <span>How to Get Approved (Step-by-Step)</span>
-                <span className="text-xs font-mono text-zinc-400">/how-to-get-approved</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/rejection-reasons" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
-                <span>Top AdSense Rejection Reasons & Fixes</span>
-                <span className="text-xs font-mono text-zinc-400">/rejection-reasons</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/tips-and-tricks" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
-                <span>Approval Tips & Best Practices</span>
-                <span className="text-xs font-mono text-zinc-400">/tips-and-tricks</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/faq" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
-                <span>Frequently Asked Questions</span>
-                <span className="text-xs font-mono text-zinc-400">/faq</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/resources" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
-                <span>Academic Resource Hub & Articles</span>
-                <span className="text-xs font-mono text-zinc-400">/resources</span>
-              </Link>
-            </li>
-          </ul>
-        </div>
-
-        {/* Section 3: Academic Curricula */}
-        <div className="p-6 bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 rounded-2xl space-y-4">
-          <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
-            <h2 className="text-lg font-serif font-bold text-zinc-950 dark:text-white">Academic Curriculum</h2>
-          </div>
-          <p className="text-xs text-zinc-500 leading-relaxed">
-            Distraction-free Outcome-Based Education (OBE) course structures for CSE.
+            Distraction-free Outcome-Based Education (OBE) course structures and verified study notes.
           </p>
           <ul className="space-y-2 text-sm">
             <li>
               <Link to="/" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
                 <span>Curriculum Home (All Academic Years)</span>
                 <span className="text-xs font-mono text-zinc-400">/</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/resources" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
+                <span>Academic Resource Hub & Articles</span>
+                <span className="text-xs font-mono text-zinc-400">/resources</span>
               </Link>
             </li>
             <li>
@@ -787,8 +701,33 @@ export function SitemapPage() {
           </ul>
         </div>
 
-        {/* Section 4: Legal & Machine Feeds */}
+        {/* Section 2: Diagnostics */}
         <div className="p-6 bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 rounded-2xl space-y-4">
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+            <h2 className="text-lg font-serif font-bold text-zinc-950 dark:text-white">Diagnostic & Audit Tools</h2>
+          </div>
+          <p className="text-xs text-zinc-500 leading-relaxed">
+            Automated tools to verify website health, technical criteria, and readiness benchmarks.
+          </p>
+          <ul className="space-y-2 text-sm">
+            <li>
+              <Link to="/analyzer" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
+                <span>54-Point Website Analyzer</span>
+                <span className="text-xs font-mono text-zinc-400">/analyzer</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/admin" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
+                <span>Admin Management Portal</span>
+                <span className="text-xs font-mono text-zinc-400">/admin</span>
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        {/* Section 3: Legal & Institutional */}
+        <div className="p-6 bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 rounded-2xl space-y-4 md:col-span-2">
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-purple-500"></span>
             <h2 className="text-lg font-serif font-bold text-zinc-950 dark:text-white">Legal, Trust & Feeds</h2>
@@ -796,51 +735,55 @@ export function SitemapPage() {
           <p className="text-xs text-zinc-500 leading-relaxed">
             Mandatory compliance documentation, user rights, and machine-readable data feeds.
           </p>
-          <ul className="space-y-2 text-sm">
-            <li>
-              <Link to="/about" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
-                <span>About Us & Editorial Mission</span>
-                <span className="text-xs font-mono text-zinc-400">/about</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/contact" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
-                <span>Contact & Errata Submission</span>
-                <span className="text-xs font-mono text-zinc-400">/contact</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/privacy" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
-                <span>Privacy Policy & AdSense Disclosures</span>
-                <span className="text-xs font-mono text-zinc-400">/privacy</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/terms" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
-                <span>Terms of Service</span>
-                <span className="text-xs font-mono text-zinc-400">/terms</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/disclaimer" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
-                <span>Disclaimer & Trademark Notice</span>
-                <span className="text-xs font-mono text-zinc-400">/disclaimer</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/content-policy" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
-                <span>Content Policy & DMCA Takedown</span>
-                <span className="text-xs font-mono text-zinc-400">/content-policy</span>
-              </Link>
-            </li>
-            <li className="pt-2 border-t border-zinc-200 dark:border-zinc-800 flex items-center gap-3 text-xs font-mono text-zinc-500">
-              <a href="/sitemap.xml" target="_blank" rel="noreferrer" className="hover:underline text-zinc-950 dark:text-white">XML Sitemap</a>
-              <span>•</span>
-              <a href="/robots.txt" target="_blank" rel="noreferrer" className="hover:underline text-zinc-950 dark:text-white">Robots.txt</a>
-              <span>•</span>
-              <a href="/llms.txt" target="_blank" rel="noreferrer" className="hover:underline text-zinc-950 dark:text-white">LLMs.txt</a>
-            </li>
-          </ul>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link to="/about" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
+                  <span>About Us & Mission</span>
+                  <span className="text-xs font-mono text-zinc-400">/about</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
+                  <span>Contact & Feedback</span>
+                  <span className="text-xs font-mono text-zinc-400">/contact</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/privacy" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
+                  <span>Privacy Policy & AdSense Disclosures</span>
+                  <span className="text-xs font-mono text-zinc-400">/privacy</span>
+                </Link>
+              </li>
+            </ul>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link to="/terms" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
+                  <span>Terms of Service</span>
+                  <span className="text-xs font-mono text-zinc-400">/terms</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/disclaimer" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
+                  <span>Disclaimer & Non-Affiliation</span>
+                  <span className="text-xs font-mono text-zinc-400">/disclaimer</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/content-policy" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:underline flex items-center justify-between">
+                  <span>Content Policy & DMCA Takedown</span>
+                  <span className="text-xs font-mono text-zinc-400">/content-policy</span>
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div className="pt-3 border-t border-zinc-200 dark:border-zinc-800 flex items-center gap-3 text-xs font-mono text-zinc-500">
+            <a href="/sitemap.xml" target="_blank" rel="noreferrer" className="hover:underline text-zinc-950 dark:text-white">XML Sitemap</a>
+            <span>•</span>
+            <a href="/robots.txt" target="_blank" rel="noreferrer" className="hover:underline text-zinc-950 dark:text-white">Robots.txt</a>
+            <span>•</span>
+            <a href="/llms.txt" target="_blank" rel="noreferrer" className="hover:underline text-zinc-950 dark:text-white">LLMs.txt</a>
+          </div>
         </div>
       </div>
     </div>

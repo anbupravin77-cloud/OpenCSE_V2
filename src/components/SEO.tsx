@@ -34,8 +34,11 @@ export function SEO({
     };
 
     // 3. Set Description & Open Graph
-    const currentOrigin = window.location.origin;
-    const fullCanonicalUrl = `${currentOrigin}${canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`}`;
+    const productionOrigin = 'https://opencse.in';
+    const isLocalhost = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+    const currentOrigin = isLocalhost ? window.location.origin : productionOrigin;
+    const cleanPath = canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`;
+    const fullCanonicalUrl = `${currentOrigin}${cleanPath}`;
 
     setMetaTag('name', 'description', description);
     setMetaTag('property', 'og:title', formattedTitle);
