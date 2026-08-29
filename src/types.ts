@@ -72,6 +72,8 @@ export type DB = {
   academic_resources: AcademicResource[];
 };
 
+export type YearType = '1st' | '2nd' | '3rd' | '4th';
+
 // Joined types for easy frontend usage
 export type FullTopic = Topic & { resources: Resource[] };
 export type FullCO = CO & { topics: FullTopic[] };

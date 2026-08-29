@@ -52,74 +52,77 @@ body {
 }
 
 /* ==========================================================================
-   Academic Design System & Subtle Card Micro-Interactions
+   Academic Design System & Composited GPU Card Micro-Interactions
    ========================================================================== */
 
-/* Base Academic Card (Clean, high-contrast, structured) */
-.dark .academic-card {
-  background-color: #111114;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
-  transform: translateZ(0);
+/* Base Academic Card (Clean, high-contrast, structured, GPU composited) */
+.academic-card {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  will-change: transform, opacity;
   transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), 
               background-color 0.18s ease, 
               border-color 0.18s ease, 
               box-shadow 0.18s ease;
+}
+
+.dark .academic-card {
+  background-color: #111114;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
 }
 
 .light .academic-card {
   background-color: #ffffff;
   border: 1px solid rgba(228, 228, 231, 0.9);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.03);
-  transform: translateZ(0);
-  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), 
-              background-color 0.18s ease, 
-              border-color 0.18s ease, 
-              box-shadow 0.18s ease;
 }
 
-/* Hover: Subtle 2px lift, refined contrast border */
+/* Hover: Subtle 2px lift on GPU thread */
 .dark .academic-card:hover {
   background-color: #16161b;
   border-color: rgba(255, 255, 255, 0.16);
   box-shadow: 0 6px 20px -4px rgba(0, 0, 0, 0.55);
-  transform: translateY(-2px) translateZ(0);
+  transform: translate3d(0, -2px, 0);
 }
 
 .light .academic-card:hover {
   background-color: #fcfcfd;
   border-color: rgba(180, 180, 190, 0.8);
   box-shadow: 0 6px 16px -4px rgba(0, 0, 0, 0.06);
-  transform: translateY(-2px) translateZ(0);
+  transform: translate3d(0, -2px, 0);
 }
 
-/* Topic & Row Item Specifics */
-.dark .academic-row {
-  background-color: #111114;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+/* Topic & Row Item Specifics (Composited) */
+.academic-row {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  will-change: transform, opacity;
   transition: transform 0.16s cubic-bezier(0.16, 1, 0.3, 1),
               background-color 0.16s ease,
               border-color 0.16s ease;
+}
+
+.dark .academic-row {
+  background-color: #111114;
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .light .academic-row {
   background-color: #ffffff;
   border: 1px solid rgba(228, 228, 231, 0.85);
-  transition: transform 0.16s cubic-bezier(0.16, 1, 0.3, 1),
-              background-color 0.16s ease,
-              border-color 0.16s ease;
 }
 
 .dark .academic-row:hover {
   background-color: #16161a;
   border-color: rgba(255, 255, 255, 0.14);
-  transform: translateY(-1.5px) translateZ(0);
+  transform: translate3d(0, -1.5px, 0);
 }
 
 .light .academic-row:hover {
   background-color: #fcfcfd;
   border-color: rgba(180, 180, 190, 0.75);
-  transform: translateY(-1.5px) translateZ(0);
+  transform: translate3d(0, -1.5px, 0);
 }
 
 /* Static Panels */
@@ -158,7 +161,7 @@ body {
   .subject-card:hover,
   .topic-card:hover,
   .resource-card:hover {
-    transform: translateZ(0);
+    transform: translate3d(0, 0, 0);
     background-color: inherit;
     border-color: inherit;
     box-shadow: inherit;
@@ -170,7 +173,7 @@ body {
   .subject-card:active,
   .topic-card:active,
   .resource-card:active {
-    transform: scale(0.99) translateZ(0);
+    transform: scale3d(0.99, 0.99, 1);
     opacity: 0.97;
     transition: transform 0.06s ease, opacity 0.06s ease;
   }
@@ -181,6 +184,7 @@ body {
   background-size: 28px 28px;
   mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 25%, transparent 80%);
   -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 25%, transparent 80%);
+  transform: translate3d(0, 0, 0);
 }
 
 .dark .academic-grid-pattern {
@@ -193,13 +197,14 @@ body {
 
 .academic-hero-glow {
   background: radial-gradient(ellipse 65% 55% at 50% 35%, rgba(0, 0, 0, 0.035) 0%, rgba(0, 0, 0, 0.01) 45%, transparent 75%);
+  transform: translate3d(0, 0, 0);
 }
 
 .dark .academic-hero-glow {
   background: radial-gradient(ellipse 65% 55% at 50% 35%, rgba(148, 163, 184, 0.10) 0%, rgba(100, 116, 139, 0.03) 45%, transparent 75%);
 }
 
-/* Skeleton Loading Shimmer without Layout Shift */
+/* Composited Skeleton Loading Shimmer without Layout Shift */
 @keyframes skeleton-shimmer {
   0% {
     opacity: 0.45;
@@ -214,6 +219,9 @@ body {
 
 .skeleton-shimmer {
   animation: skeleton-shimmer 1.5s ease-in-out infinite;
+  will-change: opacity;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
 /* Minimalist Scrollbar */
@@ -284,7 +292,13 @@ body {
   .subject-card:active,
   .topic-card,
   .topic-card:hover,
-  .topic-card:active {
+  .topic-card:active,
+  .academic-card,
+  .academic-card:hover,
+  .academic-card:active,
+  .academic-row,
+  .academic-row:hover,
+  .academic-row:active {
     transform: none !important;
     transition: none !important;
   }
@@ -293,4 +307,3 @@ body {
     display: none !important;
   }
 }
-

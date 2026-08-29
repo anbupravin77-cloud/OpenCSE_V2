@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import compression from 'compression';
 import path from 'path';
 import fs from 'fs';
 import multer from 'multer';
@@ -35,6 +36,7 @@ async function startServer() {
 
   initDb();
 
+  app.use(compression());
   app.use(express.json({ limit: '10mb' }));
   app.use(cors());
 
@@ -45,7 +47,12 @@ async function startServer() {
     next();
   });
 
-  app.use('/uploads', express.static(UPLOADS_DIR, { maxAge: '1y' }));
+  app.use('/uploads', express.static(UPLOADS_DIR, { 
+    maxAge: '1y',
+    setHeaders: (res) => {
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+    }
+  }));
 
   // --- LLMS.TXT (Agentic Browsing & AI Agent Discovery) ---
   app.get('/llms.txt', (req, res) => {
@@ -511,8 +518,10 @@ ${allPages.map(page => `  <url>
     app.use(express.static(distPath, {
       maxAge: '1y',
       setHeaders: (res, filepath) => {
-        if (filepath.endsWith('.html')) {
+        if (filepath.endsWith('.html') || filepath.endsWith('.txt') || filepath.endsWith('.xml')) {
           res.setHeader('Cache-Control', 'no-cache');
+        } else {
+          res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
         }
       }
     }));
